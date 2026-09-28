@@ -527,7 +527,7 @@
 
         function renderAvatarSelector() {
             const container = document.getElementById('avatar-selector');
-            const seeds = ['Bijak', 'Budi', 'Tunas', 'Ilham', 'Cilik'];
+            const seeds = ['Bijak', 'Budi', 'Tunas', 'Ilham', 'Cilik', 'Melur', 'Kasih', 'Cerdik'];
             container.innerHTML = seeds.map((seed, idx) => `
                 <div onclick="selectAvatar('${seed}')" class="p-2 border-2 ${idx === 0 ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200'} rounded-2xl cursor-pointer text-center hover:bg-emerald-50 transition avatar-opt" data-seed="${seed}">
                     <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${seed}" class="w-12 h-12 mx-auto">
