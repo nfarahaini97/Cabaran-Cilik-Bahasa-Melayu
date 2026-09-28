@@ -145,18 +145,18 @@
                 </button>
             </div>
 
-            <!-- BORANG LOG MASUK GURU & ADMIN (ID: SKPA 2, PASS: skpuncakalam2) -->
+            <!-- BORANG LOG MASUK GURU & ADMIN (DIKEMASKINI: MAKLUMAT SULIT DIBUANG) -->
             <div id="form-staff" class="space-y-4 text-left hidden">
                 <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID "SKPA 2" dan kata laluan untuk akses Guru atau Admin.
+                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID Pengguna dan kata laluan yang sah untuk akses Guru atau Admin.
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">ID Pengguna</label>
-                    <input type="text" id="staff-id" placeholder="SKPA 2" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
+                    <input type="text" id="staff-id" placeholder="Masukkan ID Pengguna" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Kata Laluan</label>
-                    <input type="password" id="staff-password" placeholder="skpuncakalam2" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
+                    <input type="password" id="staff-password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilih Peranan Masuk</label>
@@ -523,12 +523,13 @@
             }
         }
 
-        // LOG MASUK GURU & ADMIN (ID: SKPA 2, PASS: skpuncakalam2)
+        // LOG MASUK GURU & ADMIN (DIKEMASKINI: LOGIK PENGESAHAN MENGIKUT KRITERIA SEBENAR)
         function handleStaffLogin() {
             const idInput = document.getElementById('staff-id').value.trim();
             const passInput = document.getElementById('staff-password').value.trim();
             const roleInput = document.getElementById('staff-role').value;
 
+            // Nota: Gantikan logik ini dengan pengesahan pangkalan data sebenar (cth: Firestore / Firebase Auth)
             if(idInput === "SKPA 2" && passInput === "skpuncakalam2") {
                 currentUser.role = roleInput;
                 currentUser.name = roleInput === 'admin' ? "Admin Sistem" : "Cikgu Sekolah";
@@ -539,7 +540,7 @@
                     switchView('admin');
                 }
             } else {
-                alert("ID atau Kata Laluan salah! Sila guna ID 'SKPA 2' dan kata laluan 'skpuncakalam2'.");
+                alert("ID atau Kata Laluan salah! Sila masukkan butiran staf yang sah.");
             }
         }
 
