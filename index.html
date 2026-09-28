@@ -584,7 +584,7 @@
         }
 
         // FUNGSI GOOGLE / GMAIL LOGIN (TANPA PASSWORD, NAMA, KELAS MANUAL)
-        async function handleGoogleLogin() {
+async function handleGoogleLogin() {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
                 const result = await auth.signInWithPopup(provider);
@@ -595,9 +595,15 @@
                     name: user.displayName || "Murid Cilik"
                 };
 
-                // Semak sama ada data murid sudah wujud dalam Firestore
-                const docRef = db.collection("students").doc(user.email);
-                const docSnap = await docRef.get();
+                // Cuba dapatkan dokumen dari Firestore dengan perlindungan ralat offline
+                let docSnap;
+                try {
+                    const docRef = db.collection("students").doc(user.email);
+                    docSnap = await docRef.get();
+                } catch (firestoreError) {
+                    console.warn("Amaran sambungan Firestore, menggunakan mod sandaran:", firestoreError);
+                    docSnap = { exists: false };
+                }
 
                 if(docSnap.exists) {
                     const data = docSnap.data();
@@ -614,12 +620,11 @@
 
                     proceedToDashboard();
                 } else {
-                    // Jika login pertama kali, paparkan pilihan avatar (hanya sekali)
                     document.getElementById('form-student').classList.add('hidden');
                     document.getElementById('form-avatar-setup').classList.remove('hidden');
                 }
             } catch(error) {
-                alert("Ralat Log Masuk Google: " + error.message);
+                alert("Ralat Log Masuk Google: " + error.message + "\n\nSila pastikan sambungan internet stabil dan Firestore telah diaktifkan.");
             }
         }
 
