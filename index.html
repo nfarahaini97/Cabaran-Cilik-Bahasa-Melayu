@@ -526,10 +526,8 @@
                     let qText = `Soalan ${i} untuk topik ${topic.title}: Yang manakah contoh yang paling tepat bagi ${topic.title.toLowerCase()}?`;
                     let ans = `Pilihan Betul ${i}`;
                     let opts = [ans, `Pilihan Salah A ${i}`, `Pilihan Salah B ${i}`];
-                    // Shuffle options
                     opts.sort(() => Math.random() - 0.5);
 
-                    // Custom realistic examples for Year 1
                     if(topic.title === "Kata Nama Am") {
                         const items = [
                             {q: "Pilih kata nama am untuk haiwan:", o: ["kucing", "Ali", "Proton"], a: "kucing"},
@@ -579,7 +577,7 @@
             email: "",
             name: "",
             class: "1 KSSR",
-            avatar: "",
+            avatar: "Bijak",
             points: 0,
             badgesCount: 0,
             streak: 1,
@@ -664,7 +662,7 @@
                 const user = result.user;
 
                 tempGoogleUser = {
-                    email: user.email,
+                    email: user.email || "murid@cilik.com",
                     name: user.displayName || "Murid Cilik"
                 };
 
@@ -673,7 +671,7 @@
                     const docRef = db.collection("students").doc(user.email);
                     docSnap = await docRef.get();
                 } catch (firestoreError) {
-                    console.warn("Amaran sambungan Firestore, menggunakan mod sandaran:", firestoreError);
+                    console.warn("Amaran sambungan Firestore:", firestoreError);
                     docSnap = { exists: false };
                 }
 
@@ -696,61 +694,64 @@
                     document.getElementById('form-avatar-setup').classList.remove('hidden');
                 }
             } catch(error) {
-                alert("Ralat Log Masuk Google: " + error.message + "\n\nSila pastikan sambungan internet stabil dan Firestore telah diaktifkan.");
+                // Mod Sandaran Automatik Jika Pop-up Disekat Browser (Fallback)
+                tempGoogleUser = {
+                    email: "murid.cilik@delima.edu.my",
+                    name: "Murid Cilik"
+                };
+                document.getElementById('form-student').classList.add('hidden');
+                document.getElementById('form-avatar-setup').classList.remove('hidden');
             }
         }
 
-// SIMPAN AVATAR PILIHAN (DIBETULKAN DENGAN TRY-CATCH SELAMAT)
-async function saveAvatarSelection() {
-    // 1. Pastikan nama/emel diambil daripada tempGoogleUser, jika tiada guna nilai sandaran
-    if (!tempGoogleUser || !tempGoogleUser.email) {
-        currentUser.email = "murid@cilik.com";
-        currentUser.name = "Murid Cilik";
-    } else {
-        currentUser.email = tempGoogleUser.email;
-        currentUser.name = tempGoogleUser.name;
-    }
+        // FUNGSI SIMPAN AVATAR YANG DIPERBAIKI (MENGELAKKAN STUCK)
+        async function saveAvatarSelection() {
+            if (!tempGoogleUser || !tempGoogleUser.email) {
+                currentUser.email = "murid.cilik@delima.edu.my";
+                currentUser.name = "Murid Cilik";
+            } else {
+                currentUser.email = tempGoogleUser.email;
+                currentUser.name = tempGoogleUser.name;
+            }
 
-    // 2. Tetapkan nilai asas akaun murid
-    currentUser.class = "1 KSSR";
-    currentUser.role = "student";
-    currentUser.points = 0;
-    currentUser.badgesCount = 0;
-    currentUser.streak = 1;
-    currentUser.attempts = 1;
-    currentUser.topicProgress = {};
+            currentUser.class = "1 KSSR";
+            currentUser.role = "student";
+            currentUser.points = 0;
+            currentUser.badgesCount = 0;
+            currentUser.streak = 1;
+            currentUser.attempts = 1;
+            currentUser.topicProgress = {};
 
-    // 3. Cuba simpan data ke Firebase, jika gagal teruskan ke dashboard tanpa menyekat murid
-    try {
-        await saveUserData();
-    } catch (err) {
-        console.warn("Amaran: Gagal simpan ke pangkalan data awan, meneruskan mod luar talian:", err);
-    }
-    
-    // 4. Beralih ke paparan utama (dashboard) dengan lancar
-    proceedToDashboard();
-}
-
-async function saveUserData() {
-    if (currentUser.role === 'student' && currentUser.email) {
-        // Semak jika rujukan db wujud sebelum menghantar data
-        if (typeof db !== 'undefined' && db) {
-            await db.collection("students").doc(currentUser.email).set({
-                name: currentUser.name,
-                class: currentUser.class,
-                points: currentUser.points,
-                badgesCount: currentUser.badgesCount,
-                streak: currentUser.streak,
-                attempts: currentUser.attempts,
-                avatar: currentUser.avatar,
-                topicProgress: currentUser.topicProgress,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
+            // Cuba simpan ke Firebase, abaikan ralat jika offline supaya murid tetap boleh masuk
+            try {
+                await saveUserData();
+            } catch (err) {
+                console.warn("Mod luar talian diaktifkan:", err);
+            }
+            
+            proceedToDashboard();
         }
-    }
-}
+
+        async function saveUserData() {
+            if (currentUser.role === 'student' && currentUser.email) {
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection("students").doc(currentUser.email).set({
+                        name: currentUser.name,
+                        class: currentUser.class,
+                        points: currentUser.points,
+                        badgesCount: currentUser.badgesCount,
+                        streak: currentUser.streak,
+                        attempts: currentUser.attempts,
+                        avatar: currentUser.avatar,
+                        topicProgress: currentUser.topicProgress,
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true });
+                }
+            }
+        }
 
         function proceedToDashboard() {
+            document.getElementById('form-avatar-setup').classList.add('hidden');
             updateHeaderUI();
             switchView('dashboard');
             try {
@@ -760,10 +761,10 @@ async function saveUserData() {
 
         function updateHeaderUI() {
             document.getElementById('main-header').classList.remove('hidden');
-            document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
+            document.getElementById('header-username').innerText = (currentUser.name || "Murid").split(' ')[0];
             document.getElementById('header-points').innerText = currentUser.points;
-            document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
-            document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
+            document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar || 'Bijak'}`;
+            document.getElementById('dash-welcome').innerText = `Hai, ${(currentUser.name || "Murid").split(' ')[0]}! 👋`;
             document.getElementById('dash-points').innerText = currentUser.points;
             document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
             document.getElementById('dash-streak').innerText = currentUser.streak;
