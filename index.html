@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <!-- Desktop Nav Menu (Murid) -->
+            <!-- Desktop Nav Menu (Hanya untuk Murid) -->
             <nav id="nav-student-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                 <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
                 <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
@@ -66,15 +66,7 @@
                 <button onclick="switchView('progress')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-chart-line mr-1"></i> Kemajuan</button>
             </nav>
 
-            <!-- Desktop Nav Menu (Guru) -->
-            <nav id="nav-teacher-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
-                <button onclick="switchView('teacher')" class="px-3 py-2 rounded-xl hover:bg-amber-50 text-amber-600 transition"><i class="fa-solid fa-chalkboard-user mr-1"></i> Dashboard Guru</button>
-            </nav>
-
-            <!-- Desktop Nav Menu (Admin) -->
-            <nav id="nav-admin-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
-                <button onclick="switchView('admin')" class="px-3 py-2 rounded-xl hover:bg-purple-50 text-purple-600 transition"><i class="fa-solid fa-gear mr-1"></i> Dashboard Admin</button>
-            </nav>
+            <!-- Nota: Menu Guru & Admin dikosongkan/dibuang kerana fokus kepada data result murid sahaja -->
 
             <!-- User Quick Stats & Logout -->
             <div class="flex items-center space-x-3">
@@ -167,11 +159,11 @@
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilih Peranan Masuk</label>
                     <select id="staff-role" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold bg-white">
                         <option value="teacher">Mod Guru</option>
-                        <option value="admin">Mod Admin</option>
+                        <option value="admin">Mod Admin (Analisis Result)</option>
                     </select>
                 </div>
                 <button onclick="handleStaffLogin()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
-                    Log Masuk Sistem 🔑
+                    Semak Data Result Murid 🔑
                 </button>
             </div>
         </div>
@@ -375,14 +367,14 @@
             <div id="minigame-container" class="pastel-card p-6 md:p-8 hidden"></div>
         </div>
 
-        <!-- VIEW 10: TEACHER DASHBOARD -->
+        <!-- VIEW 10: TEACHER DASHBOARD (Fokus Paparan Data Result Murid Untuk Intervensi) -->
         <div id="view-teacher" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
-                    <p class="text-xs text-gray-500">Pemantauan prestasi murid dan pengenalpastian intervensi.</p>
+                    <h2 class="text-2xl font-bold text-amber-700">Dashboard Intervensi Guru 👩‍🏫</h2>
+                    <p class="text-xs text-gray-500">Paparan data keputusan murid secara khusus untuk analisis bimbingan dan intervensi.</p>
                 </div>
-                <button onclick="logout()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
+                <button onclick="logout()" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
 
             <!-- Kad Amaran Intervensi Murid -->
@@ -391,14 +383,14 @@
                     <div class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-triangle-exclamation"></i></div>
                     <h3 class="font-bold text-red-700 text-base">Murid Memerlukan Intervensi Segera</h3>
                 </div>
-                <p class="text-xs text-red-600 mb-3">Murid berikut mempunyai purata markah di bawah 40% atau belum menguasai topik asas:</p>
+                <p class="text-xs text-red-600 mb-3">Murid berikut mempunyai purata penguasaan di bawah 50% atau memerlukan bimbingan topik asas:</p>
                 <div id="intervention-list" class="space-y-2"></div>
             </div>
 
             <!-- Ringkasan Kad & Carta -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="pastel-card p-5 bg-white">
-                    <span class="text-xs font-bold text-gray-400 uppercase">Jumlah Murid</span>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Jumlah Murid Direkod</span>
                     <h3 id="tr-total-students" class="text-3xl font-bold text-gray-800 mt-1">0</h3>
                 </div>
                 <div class="pastel-card p-5 bg-white">
@@ -413,13 +405,13 @@
 
             <!-- Carta Prestasi Mengikut Topik -->
             <div class="pastel-card p-6 space-y-4">
-                <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-chart-bar mr-2"></i> Prestasi Mengikut Topik (Carta Penguasaan)</h3>
+                <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-chart-bar mr-2"></i> Analisis Penguasaan Result Mengikut Topik</h3>
                 <div id="teacher-topic-chart" class="space-y-3"></div>
             </div>
 
             <!-- Jadual Terperinci Senarai Murid, Progress & Topik -->
             <div class="pastel-card p-6 space-y-4">
-                <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-table mr-2"></i> Jadual Terperinci Prestasi Murid</h3>
+                <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-table mr-2"></i> Jadual Result & Prestasi Murid</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs md:text-sm">
                         <thead class="bg-gray-50 text-gray-500 uppercase font-semibold">
@@ -439,88 +431,48 @@
             </div>
         </div>
 
-        <!-- VIEW 11: ADMIN DASHBOARD -->
+        <!-- VIEW 11: ADMIN DASHBOARD (Fokus Keputusan & Analisis Result Global) -->
         <div id="view-admin" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
-                    <p class="text-xs text-gray-500">Pengurusan Soalan, Jawapan, Tahap Kesukaran dan Prestasi Keseluruhan.</p>
+                    <h2 class="text-2xl font-bold text-purple-700">Dashboard Analisis Result Admin ⚙️</h2>
+                    <p class="text-xs text-gray-500">Paparan maklumat analitikal result keseluruhan murid untuk tindakan intervensi peringkat sekolah.</p>
                 </div>
-                <button onclick="logout()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
+                <button onclick="logout()" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
 
             <!-- Lihat Prestasi Keseluruhan (Kad & Statistik) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="pastel-card p-5 bg-purple-50 border-purple-200">
-                    <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Soalan Bank</span>
+                    <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Soalan Kuiz</span>
                     <h3 id="admin-total-questions" class="text-3xl font-bold text-purple-800 mt-1">0</h3>
                 </div>
                 <div class="pastel-card p-5 bg-purple-50 border-purple-200">
-                    <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Pengguna Aktif</span>
+                    <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Murid Berdaftar</span>
                     <h3 id="admin-total-users" class="text-3xl font-bold text-purple-800 mt-1">0</h3>
                 </div>
                 <div class="pastel-card p-5 bg-purple-50 border-purple-200">
-                    <span class="text-xs font-bold text-purple-600 uppercase">Tahap Kesukaran Aktif</span>
-                    <h3 class="text-3xl font-bold text-purple-800 mt-1">Standard</h3>
+                    <span class="text-xs font-bold text-purple-600 uppercase">Status Intervensi Global</span>
+                    <h3 class="text-3xl font-bold text-purple-800 mt-1">Aktif</h3>
                 </div>
             </div>
 
-            <!-- Bahagian Tambah / Edit Soalan & Jawapan -->
+            <!-- Jadual Ringkasan Result Keseluruhan Murid untuk Admin -->
             <div class="pastel-card p-6 space-y-4">
-                <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="admin-form-title" class="font-bold text-purple-800 text-base"><i class="fa-solid fa-circle-plus mr-2"></i> Tambah Soalan Baharu</h3>
-                    <button onclick="resetAdminForm()" id="admin-cancel-edit" class="hidden px-3 py-1 bg-gray-200 rounded-lg text-xs font-bold text-gray-600">Batal Edit</button>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="hidden" id="edit-question-index" value="-1">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Topik Berkaitan</label>
-                        <select id="admin-q-topic" class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none text-sm font-semibold bg-white">
-                            <option value="Kata Nama Am">Kata Nama Am</option>
-                            <option value="Kata Nama Khas">Kata Nama Khas</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Tetapkan Tahap Kesukaran</label>
-                        <select id="admin-q-difficulty" class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none text-sm font-semibold bg-white">
-                            <option value="Mudah">Mudah</option>
-                            <option value="Sederhana">Sederhana</option>
-                            <option value="Sukar">Sukar</option>
-                        </select>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pernyataan Soalan</label>
-                        <input type="text" id="admin-q-text" placeholder="Cth: Pilih kata nama am..." class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none text-sm font-semibold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilihan Pilihan / Jawapan</label>
-                        <input type="text" id="admin-q-options" placeholder="Cth: bapa, Ali, sekolah (pisahkan dengan koma)" class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none text-sm font-semibold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Jawapan Betul</label>
-                        <input type="text" id="admin-q-answer" placeholder="Cth: sekolah" class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none text-sm font-semibold">
-                    </div>
-                </div>
-                <button onclick="saveAdminQuestion()" class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow transition text-sm">
-                    Simpan Soalan & Jawapan 💾
-                </button>
-            </div>
-
-            <!-- Senarai Soalan Sedia Ada (Untuk Edit/Tambah) -->
-            <div class="pastel-card p-6 space-y-4">
-                <h3 class="font-bold text-purple-800 text-base"><i class="fa-solid fa-list-check mr-2"></i> Senarai Bank Soalan</h3>
+                <h3 class="font-bold text-purple-800 text-base"><i class="fa-solid fa-chart-line mr-2"></i> Rekod Result Keseluruhan Murid (Analisis Sistem)</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs md:text-sm">
-                        <thead class="bg-gray-50 text-gray-500 uppercase font-semibold">
+                        <thead class="bg-purple-50 text-purple-600 uppercase font-semibold">
                             <tr>
-                                <th class="p-3">Topik</th>
-                                <th class="p-3">Soalan</th>
-                                <th class="p-3">Jawapan</th>
-                                <th class="p-3">Kesukaran</th>
-                                <th class="p-3 text-center">Tindakan</th>
+                                <th class="p-3">Nama Murid</th>
+                                <th class="p-3">Kelas</th>
+                                <th class="p-3">Emel</th>
+                                <th class="p-3">Markah Terkumpul</th>
+                                <th class="p-3">Lencana</th>
+                                <th class="p-3">Status Penguasaan</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-questions-table" class="divide-y divide-gray-100 font-medium text-gray-700"></tbody>
+                        <tbody id="admin-results-table" class="divide-y divide-gray-100 font-medium text-gray-700"></tbody>
                     </table>
                 </div>
             </div>
@@ -722,25 +674,19 @@
             document.getElementById('dash-streak').innerText = currentUser.streak;
 
             const studentMenu = document.getElementById('nav-student-menu');
-            const teacherMenu = document.getElementById('nav-teacher-menu');
-            const adminMenu = document.getElementById('nav-admin-menu');
             const mobileNav = document.getElementById('mobile-nav');
             const pointsContainer = document.getElementById('header-points-container');
 
             studentMenu.classList.add('hidden');
-            teacherMenu.classList.add('hidden');
-            adminMenu.classList.add('hidden');
             mobileNav.classList.add('hidden');
             pointsContainer.classList.remove('hidden');
 
             if(currentUser.role === 'teacher') {
-                teacherMenu.classList.remove('hidden');
                 pointsContainer.classList.add('hidden');
-                document.getElementById('header-subtitle').innerText = "Mod Guru";
+                document.getElementById('header-subtitle').innerText = "Mod Guru (Intervensi)";
             } else if(currentUser.role === 'admin') {
-                adminMenu.classList.remove('hidden');
                 pointsContainer.classList.add('hidden');
-                document.getElementById('header-subtitle').innerText = "Mod Admin";
+                document.getElementById('header-subtitle').innerText = "Mod Admin (Analisis Result)";
             } else {
                 studentMenu.classList.remove('hidden');
                 mobileNav.classList.remove('hidden');
@@ -930,14 +876,14 @@
             `;
         }
 
-        // ================= SISTEM APLIKASI GURU =================
+        // ================= SISTEM APLIKASI GURU (INTERVENSI RESULT) =================
         async function renderTeacherDashboard() {
             const tbody = document.getElementById('teacher-students-table');
             const interventionContainer = document.getElementById('intervention-list');
             const interventionAlert = document.getElementById('teacher-intervention-alert');
             const chartContainer = document.getElementById('teacher-topic-chart');
             
-            tbody.innerHTML = `<tr><td colspan="7" class="p-3 text-center text-gray-500">Memuatkan data murid...</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7" class="p-3 text-center text-gray-500">Memuatkan data result murid...</td></tr>`;
 
             try {
                 const snapshot = await db.collection("students").get();
@@ -981,7 +927,7 @@
                         interventionListHTML += `
                             <div class="bg-white p-3 rounded-xl border border-red-200 flex justify-between items-center text-xs font-semibold">
                                 <span>${st.name} (${st.class}) - Purata Penguasaan: ${avgProg}%</span>
-                                <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Perlu Bimbingan Topik: ${unmasteredTopics.join(', ') || 'Semua'}</span>
+                                <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Intervensi Topik: ${unmasteredTopics.join(', ') || 'Semua'}</span>
                             </div>
                         `;
                     }
@@ -1022,7 +968,7 @@
                     <div class="space-y-3">
                         <div>
                             <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
-                                <span>Kata Nama Am (Penguasaan Keseluruhan Kelas)</span>
+                                <span>Kata Nama Am (Penguasaan Result Kelas)</span>
                                 <span>75%</span>
                             </div>
                             <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
@@ -1031,7 +977,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
-                                <span>Kata Nama Khas (Penguasaan Keseluruhan Kelas)</span>
+                                <span>Kata Nama Khas (Penguasaan Result Kelas)</span>
                                 <span>60%</span>
                             </div>
                             <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
@@ -1042,99 +988,49 @@
                 `;
 
             } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-3 text-center text-red-500">Ralat memuatkan data guru.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-3 text-center text-red-500">Ralat memuatkan data result guru.</td></tr>`;
             }
         }
 
-        // ================= SISTEM APLIKASI ADMIN =================
+        // ================= SISTEM APLIKASI ADMIN (ANALISIS RESULT) =================
         async function renderAdminDashboard() {
             document.getElementById('admin-total-questions').innerText = questionBank.length;
-            
+            const tbody = document.getElementById('admin-results-table');
+            tbody.innerHTML = `<tr><td colspan="6" class="p-3 text-center text-gray-500">Memuatkan data result analisis...</td></tr>`;
+
             try {
                 const snapshot = await db.collection("students").get();
                 document.getElementById('admin-total-users').innerText = snapshot.size > 0 ? snapshot.size : 1;
+
+                let students = [];
+                if(!snapshot.empty) {
+                    snapshot.forEach(doc => {
+                        students.push({ id: doc.id, ...doc.data() });
+                    });
+                } else {
+                    students = [
+                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 Fiksyen", points: 150, badgesCount: 3 },
+                        { id: "danial@delima.edu.my", name: "Danial Bin Zulkifli", class: "1 Fiksyen", points: 40, badgesCount: 1 }
+                    ];
+                }
+
+                tbody.innerHTML = students.map(st => `
+                    <tr class="hover:bg-purple-50/50">
+                        <td class="p-3 font-bold text-purple-900">${st.name}</td>
+                        <td class="p-3">${st.class || '1 Fiksyen'}</td>
+                        <td class="p-3 text-gray-500">${st.id}</td>
+                        <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
+                        <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
+                        <td class="p-3">
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold ${ (st.points || 0) >= 100 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-750' }">
+                                ${ (st.points || 0) >= 100 ? 'Cemerlang / Dikuasai' : 'Perlu Intervensi' }
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
+
             } catch(e) {
-                document.getElementById('admin-total-users').innerText = 1;
-            }
-
-            renderAdminQuestionsTable();
-        }
-
-        function renderAdminQuestionsTable() {
-            const tbody = document.getElementById('admin-questions-table');
-            if(questionBank.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Tiada soalan dalam bank.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = questionBank.map((q, idx) => `
-                <tr class="hover:bg-purple-50/50">
-                    <td class="p-3 font-semibold text-purple-700">${q.topic}</td>
-                    <td class="p-3 font-bold">${q.question}</td>
-                    <td class="p-3 text-emerald-600 font-semibold">${q.answer}</td>
-                    <td class="p-3"><span class="px-2 py-1 bg-purple-100 text-purple-700 rounded-lg text-[10px] font-bold">${q.difficulty}</span></td>
-                    <td class="p-3 text-center space-x-2">
-                        <button onclick="editQuestion(${idx})" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-700 font-bold rounded-lg text-xs"><i class="fa-solid fa-pen"></i> Edit</button>
-                        <button onclick="deleteQuestion(${idx})" class="px-2.5 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-lg text-xs"><i class="fa-solid fa-trash"></i> Padam</button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function saveAdminQuestion() {
-            const editIdx = parseInt(document.getElementById('edit-question-index').value);
-            const topic = document.getElementById('admin-q-topic').value;
-            const difficulty = document.getElementById('admin-q-difficulty').value;
-            const qText = document.getElementById('admin-q-text').value.trim();
-            const qOptionsRaw = document.getElementById('admin-q-options').value.trim();
-            const qAnswer = document.getElementById('admin-q-answer').value.trim();
-
-            if(!qText || !qOptionsRaw || !qAnswer) {
-                alert("Sila lengkapkan semua maklumat soalan, pilihan jawapan dan jawapan betul.");
-                return;
-            }
-
-            const options = qOptionsRaw.split(',').map(item => item.trim());
-
-            if(editIdx >= 0) {
-                questionBank[editIdx] = { topic, question: qText, options, answer: qAnswer, difficulty };
-                alert("Soalan berjaya dikemaskini!");
-            } else {
-                questionBank.push({ topic, question: qText, options, answer: qAnswer, difficulty });
-                alert("Soalan baharu berjaya ditambah!");
-            }
-
-            resetAdminForm();
-            renderAdminDashboard();
-        }
-
-        function editQuestion(idx) {
-            const q = questionBank[idx];
-            document.getElementById('edit-question-index').value = idx;
-            document.getElementById('admin-q-topic').value = q.topic;
-            document.getElementById('admin-q-difficulty').value = q.difficulty;
-            document.getElementById('admin-q-text').value = q.question;
-            document.getElementById('admin-q-options').value = q.options.join(', ');
-            document.getElementById('admin-q-answer').value = q.answer;
-
-            document.getElementById('admin-form-title').innerHTML = `<i class="fa-solid fa-pen-to-square mr-2"></i> Edit Soalan #${idx + 1}`;
-            document.getElementById('admin-cancel-edit').classList.remove('hidden');
-            window.scrollTo({ top: 300, behavior: 'smooth' });
-        }
-
-        function resetAdminForm() {
-            document.getElementById('edit-question-index').value = "-1";
-            document.getElementById('admin-q-text').value = "";
-            document.getElementById('admin-q-options').value = "";
-            document.getElementById('admin-q-answer').value = "";
-            document.getElementById('admin-form-title').innerHTML = `<i class="fa-solid fa-circle-plus mr-2"></i> Tambah Soalan Baharu`;
-            document.getElementById('admin-cancel-edit').classList.add('hidden');
-        }
-
-        function deleteQuestion(idx) {
-            if(confirm("Adakah anda pasti untuk memadam soalan ini?")) {
-                questionBank.splice(idx, 1);
-                renderAdminDashboard();
+                tbody.innerHTML = `<tr><td colspan="6" class="p-3 text-center text-red-500">Ralat memuatkan analisis data admin.</td></tr>`;
             }
         }
 
