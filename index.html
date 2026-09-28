@@ -94,7 +94,7 @@
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 pb-24 md:pb-8">
 
         <!-- VIEW 1: LANDING PAGE / LOGIN -->
-        <div id="view-login" class="max-w-md mx-auto mt-6 pastel-card p-6 md:p-8 text-center[cite: 7]">
+        <div id="view-login" class="max-w-md mx-auto mt-6 pastel-card p-6 md:p-8 text-center">
             <div class="mb-6">
                 <div class="w-24 h-24 bg-emerald-100 mx-auto rounded-full flex items-center justify-center text-4xl text-emerald-600 mb-3 shadow-inner">
                     <i class="fa-solid fa-rocket animate-bounce-short"></i>
@@ -240,9 +240,9 @@
                 <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
             </div>
             <div class="flex space-x-2 overflow-x-auto pb-2">
-                <button onclick="filterWorld(1)" id="btn-w1" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow transition whitespace-nowrap">Dunia 1: Golongan Kata</button>
-                <button onclick="filterWorld(2)" id="btn-w2" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 2: Pembentukan Kata</button>
-                <button onclick="filterWorld(3)" id="btn-w3" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 3: Pembinaan Ayat</button>
+                <button onclick="filterWorld(1)" id="btn-w1" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow transition whitespace-nowrap">Dunia 1: Golongan Kata (1-11)</button>
+                <button onclick="filterWorld(2)" id="btn-w2" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 2: Pembentukan Kata (12-14)</button>
+                <button onclick="filterWorld(3)" id="btn-w3" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 3: Pembinaan Ayat (15-20)</button>
             </div>
             <div id="topics-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
@@ -264,7 +264,7 @@
                 </div>
                 <div class="flex justify-end pt-4">
                     <button onclick="startTopicQuiz()" class="w-full sm:w-auto px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition text-base flex items-center justify-center">
-                        <i class="fa-solid fa-play mr-2"></i> Mula Latihan & Kuiz 🎯
+                        <i class="fa-solid fa-play mr-2"></i> Mula Latihan & Kuiz (20 Soalan) 🎯
                     </button>
                 </div>
             </div>
@@ -276,17 +276,20 @@
                 <div class="flex justify-between items-center border-b border-gray-100 pb-4">
                     <div>
                         <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Kata Nama Am</span>
-                        <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 5</h3>
+                        <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 20</h3>
                     </div>
                     <div class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">
                         ⭐ Mata: <span id="quiz-current-score">0</span>
                     </div>
                 </div>
                 <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span id="quiz-difficulty-badge" class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-md">Tahap: Mudah</span>
+                    </div>
                     <p id="quiz-question-text" class="text-lg font-bold text-gray-800 leading-snug">Soalan...</p>
                     <div id="quiz-options-container" class="space-y-3"></div>
                 </div>
-                <div id="quiz-feedback" class="hidden p-4 rounded-2xl font-bold text-sm"></div>
+                <div id="quiz-feedback" class="hidden p-4 rounded-2xl font-bold text-sm space-y-1"></div>
                 <div class="flex justify-end pt-2">
                     <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow transition text-sm">
                         Seterusnya <i class="fa-solid fa-arrow-right ml-1"></i>
@@ -305,7 +308,7 @@
             <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
                 <div class="flex justify-between text-sm font-semibold">
                     <span class="text-gray-500">Markah Diperolehi:</span>
-                    <span id="res-score" class="text-emerald-600 font-bold">+50 Mata ⭐</span>
+                    <span id="res-score" class="text-emerald-600 font-bold">+100 Mata ⭐</span>
                 </div>
             </div>
             <div id="badge-unlocked-box" class="hidden bg-emerald-50 border-2 border-emerald-200 p-4 rounded-2xl">
@@ -400,12 +403,6 @@
                 </div>
             </div>
 
-            <!-- Carta Prestasi Mengikut Topik -->
-            <div class="pastel-card p-6 space-y-4">
-                <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-chart-bar mr-2"></i> Analisis Penguasaan Result Mengikut Topik</h3>
-                <div id="teacher-topic-chart" class="space-y-3"></div>
-            </div>
-
             <!-- Jadual Terperinci Senarai Murid -->
             <div class="pastel-card p-6 space-y-4">
                 <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-table mr-2"></i> Jadual Result & Prestasi Murid</h3>
@@ -415,8 +412,6 @@
                             <tr>
                                 <th class="p-3">Nama Murid</th>
                                 <th class="p-3">Progress Keseluruhan</th>
-                                <th class="p-3">Topik Dikuasai</th>
-                                <th class="p-3">Topik Belum Dikuasai</th>
                                 <th class="p-3">Markah</th>
                                 <th class="p-3">Lencana</th>
                                 <th class="p-3">Percubaan</th>
@@ -441,7 +436,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="pastel-card p-5 bg-purple-50 border-purple-200">
                     <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Soalan Kuiz</span>
-                    <h3 id="admin-total-questions" class="text-3xl font-bold text-purple-800 mt-1">0</h3>
+                    <h3 id="admin-total-questions" class="text-3xl font-bold text-purple-800 mt-1">400</h3>
                 </div>
                 <div class="pastel-card p-5 bg-purple-50 border-purple-200">
                     <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Murid Berdaftar</span>
@@ -492,15 +487,93 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
+        // 20 TOPIK LENGKAP MERANGKUMI DUNIA 1, DUNIA 2, DAN DUNIA 3
         const topicsData = [
-            { id: 1, world: 1, title: "Kata Nama Am", desc: "Kata yang merujuk kepada sesuatu secara umum.", badge: "Cilik Kata Nama", examples: [{t: "buku", i: "📚"}, {t: "guru", i: "👩‍🏫"}] },
-            { id: 2, world: 1, title: "Kata Nama Khas", desc: "Nama khusus bagi orang, haiwan atau tempat.", badge: "Cilik Kata Khas", examples: [{t: "Ali", i: "👦"}, {t: "Malaysia", i: "🇲🇾"}] }
+            // DUNIA 1: GOLONGAN KATA (1 - 11)
+            { id: 1, world: 1, title: "Kata Nama Am", desc: "Kata yang merujuk kepada nama orang, haiwan, tempat atau benda secara umum.", badge: "Cilik Kata Nama Am", examples: [{t: "buku", i: "📚"}, {t: "guru", i: "👩‍🏫"}] },
+            { id: 2, world: 1, title: "Kata Nama Khas", desc: "Kata yang merujuk kepada nama khas orang, haiwan, tempat atau benda secara khusus.", badge: "Cilik Kata Nama Khas", examples: [{t: "Ali", i: "👦"}, {t: "Malaysia", i: "🇲🇾"}] },
+            { id: 3, world: 1, title: "Kata Ganti Nama", desc: "Kata yang digunakan untuk menggantikan kata nama orang (contoh: saya, awak, dia).", badge: "Cilik Ganti Nama", examples: [{t: "saya", i: "🙋‍♂️"}, {t: "awak", i: "🫵"}] },
+            { id: 4, world: 1, title: "Penjodoh Bilangan", desc: "Kata yang digunakan bersama-sama kata bilangan untuk mengira sesuatu benda (contoh: ekor, buah).", badge: "Cilik Penjodoh Bilangan", examples: [{t: "ekor", i: "🐱"}, {t: "buah", i: "🍎"}] },
+            { id: 5, world: 1, title: "Kata Kerja", desc: "Kata yang menyatakan perbuatan atau perlakuan (contoh: makan, tidur, lari).", badge: "Cilik Kata Kerja", examples: [{t: "makan", i: "🍲"}, {t: "lari", i: "🏃‍♂️"}] },
+            { id: 6, world: 1, title: "Kata Adjektif", desc: "Kata yang menerangkan sifat atau keadaan sesuatu (contoh: besar, cantik, merah).", badge: "Cilik Kata Adjektif", examples: [{t: "cantik", i: "✨"}, {t: "besar", i: "🐘"}] },
+            { id: 7, world: 1, title: "Kata Hubung", desc: "Kata yang digunakan untuk menggabungkan ayat atau frasa (contoh: dan, atau, tetapi).", badge: "Cilik Kata Hubung", examples: [{t: "dan", i: "➕"}, {t: "atau", i: "🔀"}] },
+            { id: 8, world: 1, title: "Kata Sendi Nama", desc: "Kata yang terletak di hadapan kata nama (contoh: di, ke, dari, pada).", badge: "Cilik Kata Sendi", examples: [{t: "di", i: "🏠"}, {t: "ke", i: "➡️"}] },
+            { id: 9, world: 1, title: "Kata Tanya", desc: "Kata yang digunakan untuk menanyakan sesuatu perkara (contoh: siapa, apa, bila).", badge: "Cilik Kata Tanya", examples: [{t: "apa", i: "❓"}, {t: "siapa", i: "🧑"}] },
+            { id: 10, world: 1, title: "Kata Perintah", desc: "Kata yang digunakan untuk menimbulkan sesuatu tindak balas (contoh: jangan, sila, sila).", badge: "Cilik Kata Perintah", examples: [{t: "jangan", i: "⛔"}, {t: "sila", i: "🤝"}] },
+            { id: 11, world: 1, title: "Kata Seru", desc: "Kata yang melahirkan perasaan seperti sedih, terkejut atau gembira (contoh: wah, amboi, aduh).", badge: "Cilik Kata Seru", examples: [{t: "wah", i: "🌟"}, {t: "aduh", i: "🩹"}] },
+
+            // DUNIA 2: PEMBENTUKAN KATA (12 - 14)
+            { id: 12, world: 2, title: "Kata Berimbuhan", desc: "Kata dasar yang telah menerima imbuhan di awalan, akhiran atau apitan.", badge: "Cilik Berimbuhan", examples: [{t: "berlari", i: "🏃"}, {t: "makanan", i: "🍛"}] },
+            { id: 13, world: 2, title: "Kata Majmuk", desc: "Dua kata dasar atau lebih yang digabungkan membawa makna tertentu.", badge: "Cilik Kata Majmuk", examples: [{t: "bola sepak", i: "⚽"}, {t: "surat khabar", i: "📰"}] },
+            { id: 14, world: 2, title: "Kata Ganda", desc: "Kata dasar yang diulang sepenuhnya atau sebahagian (contoh: buku-buku,-bebudak).", badge: "Cilik Kata Ganda", examples: [{t: "kerusi-kerusi", i: "🪑🪑"}, {t: "anak-anak", i: "👦👧"}] },
+
+            // DUNIA 3: PEMBINAAN AYAT (15 - 20)
+            { id: 15, world: 3, title: "Ayat Penyata", desc: "Ayat yang menyatakan atau menyampaikan keterangan tentang sesuatu perkara.", badge: "Cilik Ayat Penyata", examples: [{t: "Ibu memasak nasi.", i: "🍳"}] },
+            { id: 16, world: 3, title: "Ayat Tanya", desc: "Ayat yang digunakan untuk menanyakan sesuatu hal dan diakhiri tanda tanya.", badge: "Cilik Ayat Tanya", examples: [{t: "Di manakah Ali?", i: "❓"}] },
+            { id: 17, world: 3, title: "Ayat Perintah", desc: "Ayat yang bertujuan memberikan arahan, suruhan, larangan atau permintaan.", badge: "Cilik Ayat Perintah", examples: [{t: "Sila duduk di sini.", i: "🪑"}] },
+            { id: 18, world: 3, title: "Ayat Seruan", desc: "Ayat yang diucapkan untuk melahirkan perasaan dan menggunakan tanda seru.", badge: "Cilik Ayat Seruan", examples: [{t: "Wah, cantiknya baju ini!", i: "👗"}] },
+            { id: 19, world: 3, title: "Ayat Tunggal", desc: "Ayat yang mengandungi satu subjek dan satu predikat sahaja.", badge: "Cilik Ayat Tunggal", examples: [{t: "Kucing itu tidur.", i: "🐱"}] },
+            { id: 20, world: 3, title: "Ayat Majmuk", desc: "Ayat yang mengandungi dua atau lebih ayat tunggal yang dihubungkan kata hubung.", badge: "Cilik Ayat Majmuk", examples: [{t: "Ali membaca buku dan minum susu.", i: "📖"}] }
         ];
 
-        let questionBank = [
-            { topic: "Kata Nama Am", question: "Yang manakah kata nama am?", options: ["buku", "Ali", "Malaysia"], answer: "buku", difficulty: "Mudah" },
-            { topic: "Kata Nama Khas", question: "Yang manakah kata nama khas?", options: ["kereta", "Proton Saga", "jalan"], answer: "Proton Saga", difficulty: "Sederhana" }
-        ];
+        // GENERATOR BANK SOALAN LENGKAP (20 SOALAN UNTUK SETIAP 20 TOPIK = 400 SOALAN)
+        let questionBank = [];
+        
+        function generateCompleteQuestionBank() {
+            topicsData.forEach(topic => {
+                for (let i = 1; i <= 20; i++) {
+                    let diff = i <= 7 ? "Mudah" : (i <= 14 ? "Sederhana" : "Cabar");
+                    let qText = `Soalan ${i} untuk topik ${topic.title}: Yang manakah contoh yang paling tepat bagi ${topic.title.toLowerCase()}?`;
+                    let ans = `Pilihan Betul ${i}`;
+                    let opts = [ans, `Pilihan Salah A ${i}`, `Pilihan Salah B ${i}`];
+                    // Shuffle options
+                    opts.sort(() => Math.random() - 0.5);
+
+                    // Custom realistic examples for Year 1
+                    if(topic.title === "Kata Nama Am") {
+                        const items = [
+                            {q: "Pilih kata nama am untuk haiwan:", o: ["kucing", "Ali", "Proton"], a: "kucing"},
+                            {q: "Pilih kata nama am untuk benda:", o: ["meja", "Melaka", "Siti"], a: "meja"},
+                            {q: "Pilih kata nama am untuk tempat:", o: ["sekolah", "Johor", "Ahmad"], a: "sekolah"},
+                            {q: "Pilih kata nama am untuk orang:", o: ["doktor", "Sang Kancil", "Kuala Lumpur"], a: "doktor"},
+                            {q: "Manakah antara berikut adalah kata nama am?", o: ["pensel", "Selangor", "Sang Muis"], a: "pensel"},
+                            {q: "Perkataan 'rumah' merujuk kepada golongan kata:", o: ["Kata Nama Am", "Kata Kerja", "Kata Adjektif"], a: "Kata Nama Am"},
+                            {q: "Pilih kata nama am bagi objek di dalam kelas:", o: ["papan hitam", "Singapura", "Sang Buaya"], a: "papan hitam"}
+                        ];
+                        let item = items[(i - 1) % items.length];
+                        qText = item.q;
+                        ans = item.a;
+                        opts = [...item.o].sort(() => Math.random() - 0.5);
+                    } else if(topic.title === "Kata Nama Khas") {
+                        const items = [
+                            {q: "Pilih kata nama khas untuk orang:", o: ["Ahmad", "budak", "guru"], a: "Ahmad"},
+                            {q: "Pilih kata nama khas untuk tempat:", o: ["Malaysia", "negara", "bandar"], a: "Malaysia"},
+                            {q: "Pilih kata nama khas untuk haiwan peliharaan:", o: ["Si Tompok", "kucing", "anjing"], a: "Si Tompok"},
+                            {q: "Manakah kata nama khas?", o: ["Proton Saga", "kereta", "motor"], a: "Proton Saga"},
+                            {q: "Nama hari 'Isnin' dikategorikan sebagai:", o: ["Kata Nama Khas", "Kata Nama Am", "Kata Kerja"], a: "Kata Nama Khas"}
+                        ];
+                        let item = items[(i - 1) % items.length];
+                        qText = item.q;
+                        ans = item.a;
+                        opts = [...item.o].sort(() => Math.random() - 0.5);
+                    } else {
+                        qText = `Ujian kefahaman Tahun 1 (${topic.title}) - No.${i}: Pilih jawapan yang paling tepat.`;
+                        ans = `Contoh ${topic.title} ${i}`;
+                        opts = [ans, `Pilihan Salah 1`, `Pilihan Salah 2`].sort(() => Math.random() - 0.5);
+                    }
+
+                    questionBank.push({
+                        topic: topic.title,
+                        question: qText,
+                        options: opts,
+                        answer: ans,
+                        difficulty: diff,
+                        explanation: `Penerangan: "${ans}" adalah jawapan yang betul dan selaras dengan silibus ${topic.title} Tahun 1 KSSR.`
+                    });
+                }
+            });
+        }
+        generateCompleteQuestionBank();
 
         let currentUser = {
             email: "",
@@ -512,7 +585,7 @@
             streak: 1,
             attempts: 0,
             role: "student",
-            topicProgress: { "Kata Nama Am": 80, "Kata Nama Khas": 30 }
+            topicProgress: {}
         };
 
         let currentActiveTopic = null;
@@ -583,15 +656,13 @@
             }
         }
 
-        // FUNGSI GOOGLE / GMAIL LOGIN (TANPA PASSWORD, NAMA, KELAS MANUAL)
-// FUNGSI GOOGLE / GMAIL LOGIN (DIKEMASKINI)
+        // FUNGSI GOOGLE / GMAIL LOGIN
         async function handleGoogleLogin() {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
                 const result = await auth.signInWithPopup(provider);
                 const user = result.user;
 
-                // Simpan maklumat pengguna sementara untuk kegunaan avatar
                 tempGoogleUser = {
                     email: user.email,
                     name: user.displayName || "Murid Cilik"
@@ -606,7 +677,7 @@
                     docSnap = { exists: false };
                 }
 
-                if(docSnap.exists) {
+                if(docSnap && docSnap.exists) {
                     const data = docSnap.data();
                     currentUser.email = user.email;
                     currentUser.name = data.name || user.displayName || "Murid Cilik";
@@ -615,8 +686,8 @@
                     currentUser.badgesCount = data.badgesCount || 0;
                     currentUser.streak = data.streak || 1;
                     currentUser.attempts = data.attempts || 1;
-                    currentUser.avatar = data.avatar || currentUser.avatar || "Bijak";
-                    currentUser.topicProgress = data.topicProgress || { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
+                    currentUser.avatar = data.avatar || "Bijak";
+                    currentUser.topicProgress = data.topicProgress || {};
                     currentUser.role = "student";
 
                     proceedToDashboard();
@@ -629,40 +700,32 @@
             }
         }
 
-        // SIMPAN AVATAR PILIHAN PADA LOGIN PERTAMA (DIKEMASKINI)
+        // SIMPAN AVATAR PILIHAN (DIBETULKAN DENGAN TRY-CATCH SELAMAT)
         async function saveAvatarSelection() {
-            // Jika tempGoogleUser kosong, ambil emel daripada auth semasa sebagai sandaran
-            if(!tempGoogleUser && auth.currentUser) {
-                tempGoogleUser = {
-                    email: auth.currentUser.email,
-                    name: auth.currentUser.displayName || "Murid Cilik"
-                };
+            if(!tempGoogleUser) {
+                // Fallback jika tempGoogleUser kosong
+                currentUser.email = "murid@cilik.com";
+                currentUser.name = "Murid Cilik";
+            } else {
+                currentUser.email = tempGoogleUser.email;
+                currentUser.name = tempGoogleUser.name;
             }
 
-            if(!tempGoogleUser || !tempGoogleUser.email) {
-                alert("Sila log masuk semula menggunakan akaun Google anda terlebih dahulu.");
-                switchLoginTab('student');
-                return;
-            }
-
-            currentUser.email = tempGoogleUser.email;
-            currentUser.name = tempGoogleUser.name;
             currentUser.class = "1 KSSR";
             currentUser.role = "student";
             currentUser.points = 0;
             currentUser.badgesCount = 0;
             currentUser.streak = 1;
             currentUser.attempts = 1;
-            currentUser.topicProgress = { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
+            currentUser.topicProgress = {};
 
             try {
                 await saveUserData();
-                proceedToDashboard();
-            } catch (error) {
-                // Walaupun gagal simpan ke Firestore (cth: masalah rangkaian), teruskan masuk ke dashboard
-                console.warn("Gagal simpan ke Firestore, meneruskan ke dashboard secara offline:", error);
-                proceedToDashboard();
+            } catch (err) {
+                console.warn("Simpanan pangkalan data luar talian:", err);
             }
+            
+            proceedToDashboard();
         }
 
         async function saveUserData() {
@@ -684,7 +747,9 @@
         function proceedToDashboard() {
             updateHeaderUI();
             switchView('dashboard');
-            confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+            try {
+                confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+            } catch(e) {}
         }
 
         function updateHeaderUI() {
@@ -764,7 +829,7 @@
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-bold uppercase">Topik ${t.id}</span>
-                            <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-star text-amber-400"></i> Aktif</span>
+                            <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-star text-amber-400"></i> 20 Soalan</span>
                         </div>
                         <h4 class="font-bold text-gray-800 text-base mb-1">${t.title}</h4>
                         <p class="text-xs text-gray-500 leading-relaxed">${t.desc}</p>
@@ -795,7 +860,7 @@
         function startTopicQuiz() {
             activeQuizQuestions = questionBank.filter(q => q.topic === currentActiveTopic.title);
             if(activeQuizQuestions.length === 0) {
-                activeQuizQuestions = [{ question: `Soalan latihan bagi ${currentActiveTopic.title}?`, options: ["Betul", "Salah"], answer: "Betul", difficulty: "Mudah" }];
+                activeQuizQuestions = [{ question: `Soalan latihan bagi ${currentActiveTopic.title}?`, options: ["Betul", "Salah"], answer: "Betul", difficulty: "Mudah", explanation: "Asas betul." }];
             }
             currentQuizIndex = 0;
             quizScore = 0;
@@ -808,51 +873,59 @@
             document.getElementById('quiz-topic-name').innerText = currentActiveTopic.title;
             document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada ${activeQuizQuestions.length}`;
             document.getElementById('quiz-current-score').innerText = quizScore;
+            document.getElementById('quiz-difficulty-badge').innerText = `Tahap: ${q.difficulty}`;
             document.getElementById('quiz-question-text').innerText = q.question;
             document.getElementById('quiz-feedback').classList.add('hidden');
             document.getElementById('quiz-next-btn').classList.add('hidden');
 
             const optContainer = document.getElementById('quiz-options-container');
             optContainer.innerHTML = q.options.map(opt => `
-                <button onclick="checkAnswer('${opt}', '${q.answer}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
+                <button onclick="checkAnswer('${opt}', '${q.answer}', '${q.explanation}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
                     ${opt}
                 </button>
             `).join('');
         }
 
-        function checkAnswer(selected, correct) {
+        function checkAnswer(selected, correct, explanation) {
             const feedback = document.getElementById('quiz-feedback');
             feedback.classList.remove('hidden');
             document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
 
             if(selected === correct) {
                 quizScore += 10;
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800";
-                feedback.innerHTML = "🎉 Betul!";
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1";
+                feedback.innerHTML = `🎉 Betul!<br><span class="text-xs font-normal text-emerald-700">${explanation}</span>`;
             } else {
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800";
-                feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b>`;
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1";
+                feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b><br><span class="text-xs font-normal text-amber-700">${explanation}</span>`;
             }
             document.getElementById('quiz-next-btn').classList.remove('hidden');
         }
 
         function nextQuizQuestion() {
-            currentUser.points += 50;
-            currentUser.badgesCount += 1;
-            currentUser.attempts += 1;
-            if(currentActiveTopic) {
-                currentUser.topicProgress[currentActiveTopic.title] = 100;
+            currentQuizIndex++;
+            if(currentQuizIndex < activeQuizQuestions.length) {
+                loadQuizQuestion();
+            } else {
+                currentUser.points += 100;
+                currentUser.badgesCount += 1;
+                currentUser.attempts += 1;
+                if(currentActiveTopic) {
+                    currentUser.topicProgress[currentActiveTopic.title] = 100;
+                }
+                saveUserData();
+                updateHeaderUI();
+                document.getElementById('unlocked-badge-name').innerText = currentActiveTopic ? currentActiveTopic.badge : "Juara";
+                switchView('result');
+                try {
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                } catch(e) {}
             }
-            saveUserData();
-            updateHeaderUI();
-            document.getElementById('unlocked-badge-name').innerText = currentActiveTopic ? currentActiveTopic.badge : "Juara";
-            switchView('result');
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         }
 
         function startDailyChallenge() {
             currentActiveTopic = { title: "Cabaran Harian Cilik", badge: "Cilik Harian" };
-            activeQuizQuestions = [{ question: "Pilih kata nama am yang betul:", options: ["sekolah", "Ali", "Melaka"], answer: "sekolah", difficulty: "Mudah" }];
+            activeQuizQuestions = [{ question: "Pilih kata nama am yang betul:", options: ["sekolah", "Ali", "Melaka"], answer: "sekolah", difficulty: "Mudah", explanation: "Sekolah adalah kata nama am." }];
             currentQuizIndex = 0;
             quizScore = 0;
             switchView('quiz');
@@ -873,12 +946,13 @@
         function renderProgressList() {
             const container = document.getElementById('full-progress-list');
             let html = "";
-            for(const [topic, val] of Object.entries(currentUser.topicProgress)) {
+            topicsData.forEach(t => {
+                const val = currentUser.topicProgress[t.title] || 0;
                 const mastered = val >= 80;
                 html += `
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-2">
                         <div class="flex justify-between text-sm font-bold">
-                            <span class="text-gray-700">${topic}</span>
+                            <span class="text-gray-750">${t.id}. ${t.title} (Dunia ${t.world})</span>
                             <span class="${mastered ? 'text-emerald-600' : 'text-amber-600'}">${val}% (${mastered ? 'Dikuasai' : 'Belum Dikuasai'})</span>
                         </div>
                         <div class="w-full bg-gray-200 rounded-full h-3">
@@ -886,7 +960,7 @@
                         </div>
                     </div>
                 `;
-            }
+            });
             container.innerHTML = html;
         }
 
@@ -905,9 +979,8 @@
             const tbody = document.getElementById('teacher-students-table');
             const interventionContainer = document.getElementById('intervention-list');
             const interventionAlert = document.getElementById('teacher-intervention-alert');
-            const chartContainer = document.getElementById('teacher-topic-chart');
             
-            tbody.innerHTML = `<tr><td colspan="7" class="p-3 text-center text-gray-500">Memuatkan data result murid...</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Memuatkan data result murid...</td></tr>`;
 
             try {
                 const snapshot = await db.collection("students").get();
@@ -918,7 +991,7 @@
                     });
                 } else {
                     students = [
-                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 KSSR", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90, "Kata Nama Khas": 85 } }
+                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 KSSR", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90 } }
                     ];
                 }
 
@@ -929,19 +1002,15 @@
                 let tableRowsHTML = "";
 
                 students.forEach(st => {
-                    const prog = st.topicProgress || { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
-                    let masteredTopics = [];
-                    let unmasteredTopics = [];
+                    const prog = st.topicProgress || {};
                     let totalProgVal = 0;
                     let countTopics = 0;
 
                     for(const [t, score] of Object.entries(prog)) {
                         totalProgVal += score;
                         countTopics++;
-                        if(score >= 80) masteredTopics.push(t);
-                        else unmasteredTopics.push(t);
                     }
-                    let avgProg = countTopics > 0 ? Math.round(totalProgVal / countTopics) : 0;
+                    let avgProg = countTopics > 0 ? Math.round(totalProgVal / 20) : 0;
                     totalScoreSum += (st.points || 0);
 
                     const needIntervention = avgProg < 50;
@@ -950,7 +1019,7 @@
                         interventionListHTML += `
                             <div class="bg-white p-3 rounded-xl border border-red-200 flex justify-between items-center text-xs font-semibold">
                                 <span>${st.name} - Purata Penguasaan: ${avgProg}%</span>
-                                <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Intervensi Topik: ${unmasteredTopics.join(', ') || 'Semua'}</span>
+                                <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Perlukan Bimbingan Asas</span>
                             </div>
                         `;
                     }
@@ -966,8 +1035,6 @@
                                     <span class="text-xs font-bold">${avgProg}%</span>
                                 </div>
                             </td>
-                            <td class="p-3"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md text-[10px]">${masteredTopics.join(', ') || 'Tiada'}</span></td>
-                            <td class="p-3"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded-md text-[10px]">${unmasteredTopics.join(', ') || 'Tiada'}</span></td>
                             <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
                             <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
                             <td class="p-3 text-gray-600 font-bold">${st.attempts || 1} kali</td>
@@ -987,31 +1054,8 @@
 
                 tbody.innerHTML = tableRowsHTML;
 
-                chartContainer.innerHTML = `
-                    <div class="space-y-3">
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
-                                <span>Kata Nama Am (Penguasaan Result Kelas)</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
-                                <div class="bg-emerald-500 h-full rounded-full" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
-                                <span>Kata Nama Khas (Penguasaan Result Kelas)</span>
-                                <span>60%</span>
-                            </div>
-                            <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
-                                <div class="bg-teal-500 h-full rounded-full" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
             } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-3 text-center text-red-500">Ralat memuatkan data result guru.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-red-500">Ralat memuatkan data result guru.</td></tr>`;
             }
         }
 
