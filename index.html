@@ -701,48 +701,55 @@
         }
 
         // SIMPAN AVATAR PILIHAN (DIBETULKAN DENGAN TRY-CATCH SELAMAT)
-        async function saveAvatarSelection() {
-            if(!tempGoogleUser) {
-                // Fallback jika tempGoogleUser kosong
-                currentUser.email = "murid@cilik.com";
-                currentUser.name = "Murid Cilik";
-            } else {
-                currentUser.email = tempGoogleUser.email;
-                currentUser.name = tempGoogleUser.name;
-            }
+// SIMPAN AVATAR PILIHAN (DIBETULKAN DENGAN TRY-CATCH SELAMAT)
+async function saveAvatarSelection() {
+    // 1. Pastikan nama/emel diambil daripada tempGoogleUser, jika tiada guna nilai sandaran
+    if (!tempGoogleUser || !tempGoogleUser.email) {
+        currentUser.email = "murid@cilik.com";
+        currentUser.name = "Murid Cilik";
+    } else {
+        currentUser.email = tempGoogleUser.email;
+        currentUser.name = tempGoogleUser.name;
+    }
 
-            currentUser.class = "1 KSSR";
-            currentUser.role = "student";
-            currentUser.points = 0;
-            currentUser.badgesCount = 0;
-            currentUser.streak = 1;
-            currentUser.attempts = 1;
-            currentUser.topicProgress = {};
+    // 2. Tetapkan nilai asas akaun murid
+    currentUser.class = "1 KSSR";
+    currentUser.role = "student";
+    currentUser.points = 0;
+    currentUser.badgesCount = 0;
+    currentUser.streak = 1;
+    currentUser.attempts = 1;
+    currentUser.topicProgress = {};
 
-            try {
-                await saveUserData();
-            } catch (err) {
-                console.warn("Simpanan pangkalan data luar talian:", err);
-            }
-            
-            proceedToDashboard();
+    // 3. Cuba simpan data ke Firebase, jika gagal teruskan ke dashboard tanpa menyekat murid
+    try {
+        await saveUserData();
+    } catch (err) {
+        console.warn("Amaran: Gagal simpan ke pangkalan data awan, meneruskan mod luar talian:", err);
+    }
+    
+    // 4. Beralih ke paparan utama (dashboard) dengan lancar
+    proceedToDashboard();
+}
+
+async function saveUserData() {
+    if (currentUser.role === 'student' && currentUser.email) {
+        // Semak jika rujukan db wujud sebelum menghantar data
+        if (typeof db !== 'undefined' && db) {
+            await db.collection("students").doc(currentUser.email).set({
+                name: currentUser.name,
+                class: currentUser.class,
+                points: currentUser.points,
+                badgesCount: currentUser.badgesCount,
+                streak: currentUser.streak,
+                attempts: currentUser.attempts,
+                avatar: currentUser.avatar,
+                topicProgress: currentUser.topicProgress,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
         }
-
-        async function saveUserData() {
-            if(currentUser.role === 'student' && currentUser.email) {
-                await db.collection("students").doc(currentUser.email).set({
-                    name: currentUser.name,
-                    class: currentUser.class,
-                    points: currentUser.points,
-                    badgesCount: currentUser.badgesCount,
-                    streak: currentUser.streak,
-                    attempts: currentUser.attempts,
-                    avatar: currentUser.avatar,
-                    topicProgress: currentUser.topicProgress,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                }, { merge: true });
-            }
-        }
+    }
+}
 
         function proceedToDashboard() {
             updateHeaderUI();
