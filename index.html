@@ -47,25 +47,33 @@
     <!-- HEADER / NAVIGATION -->
     <header id="main-header" class="bg-white border-b-4 border-emerald-100 sticky top-0 z-50 hidden">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('dashboard')">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="handleLogoClick()">
                 <div class="bg-emerald-400 text-white p-2 rounded-2xl shadow-md text-2xl">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg md:text-xl font-bold text-emerald-600 leading-tight">Cilik BM</h1>
-                    <p class="text-xs text-gray-500 font-semibold">Tahun 1 KSSR</p>
+                    <h1 id="header-title" class="text-lg md:text-xl font-bold text-emerald-600 leading-tight">Cilik BM</h1>
+                    <p id="header-subtitle" class="text-xs text-gray-500 font-semibold">Tahun 1 KSSR</p>
                 </div>
             </div>
 
-            <!-- Desktop Nav Menu -->
-            <nav class="hidden md:flex items-center space-x-1 font-semibold text-sm">
+            <!-- Desktop Nav Menu (Murid) -->
+            <nav id="nav-student-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                 <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
                 <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
                 <button onclick="switchView('games')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-gamepad mr-1"></i> Permainan</button>
                 <button onclick="switchView('badges')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-medal mr-1"></i> Lencana</button>
                 <button onclick="switchView('progress')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-chart-line mr-1"></i> Kemajuan</button>
-                <button id="nav-teacher-btn" onclick="switchView('teacher')" class="hidden px-3 py-2 rounded-xl hover:bg-amber-50 text-amber-600 transition"><i class="fa-solid fa-chalkboard-user mr-1"></i> Guru</button>
-                <button id="nav-admin-btn" onclick="switchView('admin')" class="hidden px-3 py-2 rounded-xl hover:bg-purple-50 text-purple-600 transition"><i class="fa-solid fa-gear mr-1"></i> Admin</button>
+            </nav>
+
+            <!-- Desktop Nav Menu (Guru) -->
+            <nav id="nav-teacher-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
+                <button onclick="switchView('teacher')" class="px-3 py-2 rounded-xl hover:bg-amber-50 text-amber-600 transition"><i class="fa-solid fa-chalkboard-user mr-1"></i> Dashboard Guru</button>
+            </nav>
+
+            <!-- Desktop Nav Menu (Admin) -->
+            <nav id="nav-admin-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
+                <button onclick="switchView('admin')" class="px-3 py-2 rounded-xl hover:bg-purple-50 text-purple-600 transition"><i class="fa-solid fa-gear mr-1"></i> Dashboard Admin</button>
             </nav>
 
             <!-- User Quick Stats & Logout -->
@@ -83,7 +91,7 @@
         </div>
     </header>
 
-    <!-- MOBILE BOTTOM NAVIGATION -->
+    <!-- MOBILE BOTTOM NAVIGATION (Hanya untuk Murid) -->
     <div id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around py-2.5 px-2 shadow-lg hidden">
         <button onclick="switchView('dashboard')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-house text-lg"></i>Utama</button>
         <button onclick="switchView('worlds')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-book-open text-lg"></i>Belajar</button>
@@ -367,14 +375,14 @@
             <div id="minigame-container" class="pastel-card p-6 md:p-8 hidden"></div>
         </div>
 
-        <!-- VIEW 10: TEACHER DASHBOARD (DIKEMASKINI DENGAN KESEMUA KRITERIA GURU) -->
+        <!-- VIEW 10: TEACHER DASHBOARD -->
         <div id="view-teacher" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
                     <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
                     <p class="text-xs text-gray-500">Pemantauan prestasi murid dan pengenalpastian intervensi.</p>
                 </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Utama</button>
+                <button onclick="logout()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
 
             <!-- Kad Amaran Intervensi Murid -->
@@ -431,14 +439,14 @@
             </div>
         </div>
 
-        <!-- VIEW 11: ADMIN DASHBOARD (DIKEMASKINI DENGAN KRITERIA ADMIN) -->
+        <!-- VIEW 11: ADMIN DASHBOARD -->
         <div id="view-admin" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
                     <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
                     <p class="text-xs text-gray-500">Pengurusan Soalan, Jawapan, Tahap Kesukaran dan Prestasi Keseluruhan.</p>
                 </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Utama</button>
+                <button onclick="logout()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
 
             <!-- Lihat Prestasi Keseluruhan (Kad & Statistik) -->
@@ -543,7 +551,6 @@
             { id: 2, world: 1, title: "Kata Nama Khas", desc: "Nama khusus bagi orang, haiwan atau tempat.", badge: "Cilik Kata Khas", examples: [{t: "Ali", i: "👦"}, {t: "Malaysia", i: "🇲🇾"}] }
         ];
 
-        // Bank Soalan untuk Admin edit/tambah
         let questionBank = [
             { topic: "Kata Nama Am", question: "Yang manakah kata nama am?", options: ["buku", "Ali", "Malaysia"], answer: "buku", difficulty: "Mudah" },
             { topic: "Kata Nama Khas", question: "Yang manakah kata nama khas?", options: ["kereta", "Proton Saga", "jalan"], answer: "Proton Saga", difficulty: "Sederhana" }
@@ -706,7 +713,6 @@
 
         function updateHeaderUI() {
             document.getElementById('main-header').classList.remove('hidden');
-            document.getElementById('mobile-nav').classList.remove('hidden');
             document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
             document.getElementById('header-points').innerText = currentUser.points;
             document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
@@ -715,16 +721,40 @@
             document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
             document.getElementById('dash-streak').innerText = currentUser.streak;
 
+            const studentMenu = document.getElementById('nav-student-menu');
+            const teacherMenu = document.getElementById('nav-teacher-menu');
+            const adminMenu = document.getElementById('nav-admin-menu');
+            const mobileNav = document.getElementById('mobile-nav');
+            const pointsContainer = document.getElementById('header-points-container');
+
+            studentMenu.classList.add('hidden');
+            teacherMenu.classList.add('hidden');
+            adminMenu.classList.add('hidden');
+            mobileNav.classList.add('hidden');
+            pointsContainer.classList.remove('hidden');
+
             if(currentUser.role === 'teacher') {
-                document.getElementById('nav-teacher-btn').classList.remove('hidden');
-                document.getElementById('header-points-container').classList.add('hidden');
+                teacherMenu.classList.remove('hidden');
+                pointsContainer.classList.add('hidden');
+                document.getElementById('header-subtitle').innerText = "Mod Guru";
             } else if(currentUser.role === 'admin') {
-                document.getElementById('nav-admin-btn').classList.remove('hidden');
-                document.getElementById('header-points-container').classList.add('hidden');
+                adminMenu.classList.remove('hidden');
+                pointsContainer.classList.add('hidden');
+                document.getElementById('header-subtitle').innerText = "Mod Admin";
             } else {
-                document.getElementById('nav-teacher-btn').classList.add('hidden');
-                document.getElementById('nav-admin-btn').classList.add('hidden');
-                document.getElementById('header-points-container').classList.remove('hidden');
+                studentMenu.classList.remove('hidden');
+                mobileNav.classList.remove('hidden');
+                document.getElementById('header-subtitle').innerText = "Tahun 1 KSSR";
+            }
+        }
+
+        function handleLogoClick() {
+            if(currentUser.role === 'teacher') {
+                switchView('teacher');
+            } else if(currentUser.role === 'admin') {
+                switchView('admin');
+            } else {
+                switchView('dashboard');
             }
         }
 
@@ -917,7 +947,6 @@
                         students.push({ id: doc.id, ...doc.data() });
                     });
                 } else {
-                    // Data simulasi jika kosong
                     students = [
                         { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 Fiksyen", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90, "Kata Nama Khas": 85 } },
                         { id: "danial@delima.edu.my", name: "Danial Bin Zulkifli", class: "1 Fiksyen", points: 40, badgesCount: 1, attempts: 6, topicProgress: { "Kata Nama Am": 35, "Kata Nama Khas": 20 } }
@@ -946,7 +975,6 @@
                     let avgProg = countTopics > 0 ? Math.round(totalProgVal / countTopics) : 0;
                     totalScoreSum += (st.points || 0);
 
-                    // Semak intervensi (jika purata < 50 atau markah rendah)
                     const needIntervention = avgProg < 50;
                     if(needIntervention) {
                         interventionCount++;
@@ -958,7 +986,6 @@
                         `;
                     }
 
-                    // Susunan Jadual Terperinci
                     tableRowsHTML += `
                         <tr class="hover:bg-gray-50">
                             <td class="p-3 font-bold">${st.name} <span class="block text-[10px] text-gray-400 font-normal">${st.class}</span></td>
@@ -991,7 +1018,6 @@
 
                 tbody.innerHTML = tableRowsHTML;
 
-                // Paparan Carta Prestasi Mengikut Topik (Progress Bar / Carta visual)
                 chartContainer.innerHTML = `
                     <div class="space-y-3">
                         <div>
@@ -1071,11 +1097,9 @@
             const options = qOptionsRaw.split(',').map(item => item.trim());
 
             if(editIdx >= 0) {
-                // Edit soalan sedia ada
                 questionBank[editIdx] = { topic, question: qText, options, answer: qAnswer, difficulty };
                 alert("Soalan berjaya dikemaskini!");
             } else {
-                // Tambah soalan baharu
                 questionBank.push({ topic, question: qText, options, answer: qAnswer, difficulty });
                 alert("Soalan baharu berjaya ditambah!");
             }
