@@ -66,8 +66,6 @@
                 <button onclick="switchView('progress')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-chart-line mr-1"></i> Kemajuan</button>
             </nav>
 
-            <!-- Nota: Menu Guru & Admin dikosongkan/dibuang kerana fokus kepada data result murid sahaja -->
-
             <!-- User Quick Stats & Logout -->
             <div class="flex items-center space-x-3">
                 <div id="header-points-container" class="bg-amber-50 border-2 border-amber-200 px-3 py-1 rounded-full flex items-center space-x-1 shadow-sm">
@@ -96,7 +94,7 @@
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 pb-24 md:pb-8">
 
         <!-- VIEW 1: LANDING PAGE / LOGIN -->
-        <div id="view-login" class="max-w-md mx-auto mt-6 pastel-card p-6 md:p-8 text-center">
+        <div id="view-login" class="max-w-md mx-auto mt-6 pastel-card p-6 md:p-8 text-center[cite: 7]">
             <div class="mb-6">
                 <div class="w-24 h-24 bg-emerald-100 mx-auto rounded-full flex items-center justify-center text-4xl text-emerald-600 mb-3 shadow-inner">
                     <i class="fa-solid fa-rocket animate-bounce-short"></i>
@@ -111,34 +109,33 @@
                 <button onclick="switchLoginTab('staff')" id="tab-staff" class="flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition">Guru / Admin</button>
             </div>
 
-            <!-- BORANG LOG MASUK MURID -->
-            <div id="form-student" class="space-y-4 text-left">
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Emel Rasmi Murid</label>
-                    <input type="email" id="student-email" placeholder="Cth: murid@delima.edu.my" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-sm font-semibold">
+            <!-- BORANG LOG MASUK MURID (GMAIL / GOOGLE SIGN IN) -->
+            <div id="form-student" class="space-y-4 text-center">
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs text-emerald-800 font-semibold mb-4 text-left">
+                    <i class="fa-solid fa-circle-info mr-1"></i> Klik butang di bawah untuk log masuk menggunakan akaun Gmail atau DELIMa anda. Tiada kata laluan diperlukan!
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Kata Laluan</label>
-                    <input type="password" id="student-password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-sm font-semibold">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nama Penuh Murid</label>
-                    <input type="text" id="login-name" placeholder="Cth: Aisyah Binti Ahmad" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-sm font-semibold">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilih Kelas</label>
-                    <select id="login-class" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-sm font-semibold bg-white">
-                        <option value="1 Fiksyen">1 Fiksyen</option>
-                        <option value="1 Bestari">1 Bestari</option>
-                        <option value="1 Cemerlang">1 Cemerlang</option>
-                    </select>
+                <button onclick="handleGoogleLogin()" class="w-full py-4 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-3 text-sm">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Log Masuk dengan Google / Gmail</span>
+                </button>
+            </div>
+
+            <!-- BORANG PEMILIHAN AVATAR (HANYA SEKALI SELEPAS LOGIN PERTAMA KALI) -->
+            <div id="form-avatar-setup" class="space-y-4 text-left hidden">
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
+                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Selamat datang! Sila pilih avatar kesukaanmu. Pilihan ini hanya dilakukan sekali sahaja.
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Pilih Avatar Kesukaanmu</label>
                     <div id="avatar-selector" class="grid grid-cols-4 gap-2"></div>
                 </div>
-                <button onclick="handleStudentLogin()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
-                    Masuk / Sambung Belajar 🚀
+                <button onclick="saveAvatarSelection()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
+                    Simpan & Mula Belajar 🚀
                 </button>
             </div>
 
@@ -367,7 +364,7 @@
             <div id="minigame-container" class="pastel-card p-6 md:p-8 hidden"></div>
         </div>
 
-        <!-- VIEW 10: TEACHER DASHBOARD (Fokus Paparan Data Result Murid Untuk Intervensi) -->
+        <!-- VIEW 10: TEACHER DASHBOARD -->
         <div id="view-teacher" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
@@ -409,7 +406,7 @@
                 <div id="teacher-topic-chart" class="space-y-3"></div>
             </div>
 
-            <!-- Jadual Terperinci Senarai Murid, Progress & Topik -->
+            <!-- Jadual Terperinci Senarai Murid -->
             <div class="pastel-card p-6 space-y-4">
                 <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-table mr-2"></i> Jadual Result & Prestasi Murid</h3>
                 <div class="overflow-x-auto">
@@ -431,7 +428,7 @@
             </div>
         </div>
 
-        <!-- VIEW 11: ADMIN DASHBOARD (Fokus Keputusan & Analisis Result Global) -->
+        <!-- VIEW 11: ADMIN DASHBOARD -->
         <div id="view-admin" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
@@ -441,7 +438,6 @@
                 <button onclick="logout()" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
 
-            <!-- Lihat Prestasi Keseluruhan (Kad & Statistik) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="pastel-card p-5 bg-purple-50 border-purple-200">
                     <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Soalan Kuiz</span>
@@ -457,7 +453,6 @@
                 </div>
             </div>
 
-            <!-- Jadual Ringkasan Result Keseluruhan Murid untuk Admin -->
             <div class="pastel-card p-6 space-y-4">
                 <h3 class="font-bold text-purple-800 text-base"><i class="fa-solid fa-chart-line mr-2"></i> Rekod Result Keseluruhan Murid (Analisis Sistem)</h3>
                 <div class="overflow-x-auto">
@@ -465,7 +460,6 @@
                         <thead class="bg-purple-50 text-purple-600 uppercase font-semibold">
                             <tr>
                                 <th class="p-3">Nama Murid</th>
-                                <th class="p-3">Kelas</th>
                                 <th class="p-3">Emel</th>
                                 <th class="p-3">Markah Terkumpul</th>
                                 <th class="p-3">Lencana</th>
@@ -511,8 +505,8 @@
         let currentUser = {
             email: "",
             name: "",
-            class: "1 Fiksyen",
-            avatar: "bottts",
+            class: "1 KSSR",
+            avatar: "",
             points: 0,
             badgesCount: 0,
             streak: 1,
@@ -525,6 +519,7 @@
         let currentQuizIndex = 0;
         let quizScore = 0;
         let activeQuizQuestions = [];
+        let tempGoogleUser = null;
 
         window.onload = function() {
             renderAvatarSelector();
@@ -558,12 +553,14 @@
                 document.getElementById('tab-student').className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-emerald-600 shadow-sm transition";
                 document.getElementById('tab-staff').className = "flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition";
                 document.getElementById('form-student').classList.remove('hidden');
+                document.getElementById('form-avatar-setup').classList.add('hidden');
                 document.getElementById('form-staff').classList.add('hidden');
             } else {
                 document.getElementById('tab-staff').className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-amber-600 shadow-sm transition";
                 document.getElementById('tab-student').className = "flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition";
                 document.getElementById('form-staff').classList.remove('hidden');
                 document.getElementById('form-student').classList.add('hidden');
+                document.getElementById('form-avatar-setup').classList.add('hidden');
             }
         }
 
@@ -586,59 +583,62 @@
             }
         }
 
-        async function handleStudentLogin() {
-            const email = document.getElementById('student-email').value.trim();
-            const password = document.getElementById('student-password').value.trim();
-            const name = document.getElementById('login-name').value.trim();
-            const className = document.getElementById('login-class').value;
-
-            if(!email || !password || !name) {
-                alert("Sila isi emel, kata laluan dan nama penuh anda.");
-                return;
-            }
-
+        // FUNGSI GOOGLE / GMAIL LOGIN (TANPA PASSWORD, NAMA, KELAS MANUAL)
+        async function handleGoogleLogin() {
+            const provider = new firebase.auth.GoogleAuthProvider();
             try {
-                let userCred;
-                try {
-                    userCred = await auth.signInWithEmailAndPassword(email, password);
-                } catch(e) {
-                    userCred = await auth.createUserWithEmailAndPassword(email, password);
-                }
+                const result = await auth.signInWithPopup(provider);
+                const user = result.user;
 
-                currentUser.email = email;
-                currentUser.name = name;
-                currentUser.class = className;
-                currentUser.role = "student";
+                tempGoogleUser = {
+                    email: user.email,
+                    name: user.displayName || "Murid Cilik"
+                };
 
-                const docRef = db.collection("students").doc(email);
+                // Semak sama ada data murid sudah wujud dalam Firestore
+                const docRef = db.collection("students").doc(user.email);
                 const docSnap = await docRef.get();
 
                 if(docSnap.exists) {
                     const data = docSnap.data();
+                    currentUser.email = user.email;
+                    currentUser.name = data.name || user.displayName || "Murid Cilik";
+                    currentUser.class = data.class || "1 KSSR";
                     currentUser.points = data.points || 0;
                     currentUser.badgesCount = data.badgesCount || 0;
                     currentUser.streak = data.streak || 1;
                     currentUser.attempts = data.attempts || 1;
-                    currentUser.avatar = data.avatar || currentUser.avatar;
-                    currentUser.topicProgress = data.topicProgress || { "Kata Nama Am": 70, "Kata Nama Khas": 40 };
-                } else {
-                    await docRef.set({
-                        name: name,
-                        class: className,
-                        points: 0,
-                        badgesCount: 0,
-                        streak: 1,
-                        attempts: 1,
-                        avatar: currentUser.avatar,
-                        topicProgress: { "Kata Nama Am": 50, "Kata Nama Khas": 50 },
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                }
+                    currentUser.avatar = data.avatar || "Bijak";
+                    currentUser.topicProgress = data.topicProgress || { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
+                    currentUser.role = "student";
 
-                proceedToDashboard();
+                    proceedToDashboard();
+                } else {
+                    // Jika login pertama kali, paparkan pilihan avatar (hanya sekali)
+                    document.getElementById('form-student').classList.add('hidden');
+                    document.getElementById('form-avatar-setup').classList.remove('hidden');
+                }
             } catch(error) {
-                alert("Ralat Log Masuk: " + error.message);
+                alert("Ralat Log Masuk Google: " + error.message);
             }
+        }
+
+        // SIMPAN AVATAR PILIHAN PADA LOGIN PERTAMA
+        async function saveAvatarSelection() {
+            if(!tempGoogleUser) return;
+
+            currentUser.email = tempGoogleUser.email;
+            currentUser.name = tempGoogleUser.name;
+            currentUser.class = "1 KSSR";
+            currentUser.role = "student";
+            currentUser.points = 0;
+            currentUser.badgesCount = 0;
+            currentUser.streak = 1;
+            currentUser.attempts = 1;
+            currentUser.topicProgress = { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
+
+            await saveUserData();
+            proceedToDashboard();
         }
 
         async function saveUserData() {
@@ -664,38 +664,14 @@
         }
 
         function updateHeaderUI() {
-function updateHeaderUI() {
-    document.getElementById('main-header').classList.remove('hidden');
-    document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
-    document.getElementById('header-points').innerText = currentUser.points;
-    document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
-    document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
-    document.getElementById('dash-points').innerText = currentUser.points;
-    document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
-    document.getElementById('dash-streak').innerText = currentUser.streak;
-
-    const studentMenu = document.getElementById('nav-student-menu');
-    const mobileNav = document.getElementById('mobile-nav');
-    const pointsContainer = document.getElementById('header-points-container');
-
-    // Pastikan sentiasa sembunyikan menu murid dahulu sebelum semak peranan
-    studentMenu.classList.add('hidden');
-    mobileNav.classList.add('hidden');
-    pointsContainer.classList.remove('hidden');
-
-    if(currentUser.role === 'teacher') {
-        pointsContainer.classList.add('hidden');
-        document.getElementById('header-subtitle').innerText = "Mod Guru (Intervensi)";
-    } else if(currentUser.role === 'admin') {
-        pointsContainer.classList.add('hidden');
-        document.getElementById('header-subtitle').innerText = "Mod Admin (Analisis Result)";
-    } else {
-        // Hanya paparkan untuk murid sahaja
-        studentMenu.classList.remove('hidden');
-        mobileNav.classList.remove('hidden');
-        document.getElementById('header-subtitle').innerText = "Tahun 1 KSSR";
-    }
-}
+            document.getElementById('main-header').classList.remove('hidden');
+            document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
+            document.getElementById('header-points').innerText = currentUser.points;
+            document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
+            document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
+            document.getElementById('dash-points').innerText = currentUser.points;
+            document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
+            document.getElementById('dash-streak').innerText = currentUser.streak;
 
             const studentMenu = document.getElementById('nav-student-menu');
             const mobileNav = document.getElementById('mobile-nav');
@@ -900,7 +876,7 @@ function updateHeaderUI() {
             `;
         }
 
-        // ================= SISTEM APLIKASI GURU (INTERVENSI RESULT) =================
+        // ================= SISTEM GURU (INTERVENSI) =================
         async function renderTeacherDashboard() {
             const tbody = document.getElementById('teacher-students-table');
             const interventionContainer = document.getElementById('intervention-list');
@@ -918,8 +894,7 @@ function updateHeaderUI() {
                     });
                 } else {
                     students = [
-                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 Fiksyen", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90, "Kata Nama Khas": 85 } },
-                        { id: "danial@delima.edu.my", name: "Danial Bin Zulkifli", class: "1 Fiksyen", points: 40, badgesCount: 1, attempts: 6, topicProgress: { "Kata Nama Am": 35, "Kata Nama Khas": 20 } }
+                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 KSSR", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90, "Kata Nama Khas": 85 } }
                     ];
                 }
 
@@ -950,7 +925,7 @@ function updateHeaderUI() {
                         interventionCount++;
                         interventionListHTML += `
                             <div class="bg-white p-3 rounded-xl border border-red-200 flex justify-between items-center text-xs font-semibold">
-                                <span>${st.name} (${st.class}) - Purata Penguasaan: ${avgProg}%</span>
+                                <span>${st.name} - Purata Penguasaan: ${avgProg}%</span>
                                 <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Intervensi Topik: ${unmasteredTopics.join(', ') || 'Semua'}</span>
                             </div>
                         `;
@@ -958,7 +933,7 @@ function updateHeaderUI() {
 
                     tableRowsHTML += `
                         <tr class="hover:bg-gray-50">
-                            <td class="p-3 font-bold">${st.name} <span class="block text-[10px] text-gray-400 font-normal">${st.class}</span></td>
+                            <td class="p-3 font-bold">${st.name} <span class="block text-[10px] text-gray-400 font-normal">${st.id}</span></td>
                             <td class="p-3">
                                 <div class="flex items-center space-x-2">
                                     <div class="w-24 bg-gray-200 rounded-full h-2.5">
@@ -1016,11 +991,11 @@ function updateHeaderUI() {
             }
         }
 
-        // ================= SISTEM APLIKASI ADMIN (ANALISIS RESULT) =================
+        // ================= SISTEM ADMIN (ANALISIS) =================
         async function renderAdminDashboard() {
             document.getElementById('admin-total-questions').innerText = questionBank.length;
             const tbody = document.getElementById('admin-results-table');
-            tbody.innerHTML = `<tr><td colspan="6" class="p-3 text-center text-gray-500">Memuatkan data result analisis...</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Memuatkan data result analisis...</td></tr>`;
 
             try {
                 const snapshot = await db.collection("students").get();
@@ -1033,15 +1008,13 @@ function updateHeaderUI() {
                     });
                 } else {
                     students = [
-                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 Fiksyen", points: 150, badgesCount: 3 },
-                        { id: "danial@delima.edu.my", name: "Danial Bin Zulkifli", class: "1 Fiksyen", points: 40, badgesCount: 1 }
+                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", points: 150, badgesCount: 3 }
                     ];
                 }
 
                 tbody.innerHTML = students.map(st => `
                     <tr class="hover:bg-purple-50/50">
                         <td class="p-3 font-bold text-purple-900">${st.name}</td>
-                        <td class="p-3">${st.class || '1 Fiksyen'}</td>
                         <td class="p-3 text-gray-500">${st.id}</td>
                         <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
                         <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
@@ -1054,7 +1027,7 @@ function updateHeaderUI() {
                 `).join('');
 
             } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-3 text-center text-red-500">Ralat memuatkan analisis data admin.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-red-500">Ralat memuatkan analisis data admin.</td></tr>`;
             }
         }
 
@@ -1062,6 +1035,8 @@ function updateHeaderUI() {
             auth.signOut().then(() => {
                 document.getElementById('main-header').classList.add('hidden');
                 document.getElementById('mobile-nav').classList.add('hidden');
+                document.getElementById('form-avatar-setup').classList.add('hidden');
+                document.getElementById('form-student').classList.remove('hidden');
                 switchView('login');
             });
         }
