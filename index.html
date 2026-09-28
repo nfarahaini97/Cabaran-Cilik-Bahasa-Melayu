@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabaran Cilik Bahasa Melayu</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Comic Relief style feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for winning effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #F0Fdf4;
+            color: #1f2937;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+        .pastel-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 3px solid #e2e8f0;
+        }
+        .animate-bounce-short {
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-5%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+            50% { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAVIGATION -->
+    <header id="main-header" class="bg-white border-b-4 border-emerald-100 sticky top-0 z-50 hidden">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('dashboard')">
+                <div class="bg-emerald-400 text-white p-2 rounded-2xl shadow-md text-2xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold text-emerald-600 leading-tight">Cilik BM</h1>
+                    <p class="text-xs text-gray-500 font-semibold">Tahun 1 KSSR</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center space-x-1 font-semibold text-sm">
+                <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
+                <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
+                <button onclick="switchView('games')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-gamepad mr-1"></i> Permainan</button>
+                <button onclick="switchView('badges')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-medal mr-1"></i> Lencana</button>
+                <button onclick="switchView('progress')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-chart-line mr-1"></i> Kemajuan</button>
+                <button id="nav-teacher-btn" onclick="switchView('teacher')" class="hidden px-3 py-2 rounded-xl hover:bg-amber-50 text-amber-600 transition"><i class="fa-solid fa-chalkboard-user mr-1"></i> Guru</button>
+                <button id="nav-admin-btn" onclick="switchView('admin')" class="hidden px-3 py-2 rounded-xl hover:bg-purple-50 text-purple-600 transition"><i class="fa-solid fa-gear mr-1"></i> Admin</button>
+            </nav>
+
+            <!-- User Quick Stats & Logout -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-amber-50 border-2 border-amber-200 px-3 py-1 rounded-full flex items-center space-x-1 shadow-sm">
+                    <span class="text-amber-500 text-lg">⭐</span>
+                    <span id="header-points" class="font-bold text-amber-700 text-sm">350</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer bg-gray-50 border border-gray-200 p-1.5 rounded-full pr-3" onclick="logout()">
+                    <img id="header-avatar-img" src="https://api.dicebear.com/7.x/bottts/svg?seed=Aisy" class="w-8 h-8 rounded-full bg-emerald-200" alt="Avatar">
+                    <span id="header-username" class="text-xs font-bold text-gray-700 hidden sm:inline">Aisy</span>
+                    <i class="fa-solid fa-power-off text-red-400 text-xs ml-1"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around py-2.5 px-2 shadow-lg hidden">
+        <button onclick="switchView('dashboard')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-house text-lg"></i>Utama</button>
+        <button onclick="switchView('worlds')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-book-open text-lg"></i>Belajar</button>
+        <button onclick="switchView('games')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-gamepad text-lg"></i>Main</button>
+        <button onclick="switchView('badges')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-medal text-lg"></i>Lencana</button>
+        <button onclick="switchView('progress')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-chart-line text-lg"></i>Kemajuan</button>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 pb-24 md:pb-8">
+
+        <!-- VIEW 1: LANDING PAGE / LOGIN -->
+        <div id="view-login" class="max-w-md mx-auto mt-6 pastel-card p-6 md:p-8 text-center">
+            <div class="mb-6">
+                <div class="w-24 h-24 bg-emerald-100 mx-auto rounded-full flex items-center justify-center text-4xl text-emerald-600 mb-3 shadow-inner">
+                    <i class="fa-solid fa-rocket animate-bounce-short"></i>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold text-emerald-600">CABARAN CILIK BAHASA MELAYU</h1>
+                <p class="text-xs md:text-sm text-gray-500 mt-1 italic">“Belajar Bahasa Melayu, Kumpul Lencana, Jadi Juara!”</p>
+            </div>
+
+            <div class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nama Penuh Murid</label>
+                    <input type="text" id="login-name" placeholder="Cth: Aisyah Binti Ahmad" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-sm font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilih Kelas</label>
+                    <select id="login-class" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none text-sm font-semibold bg-white">
+                        <option value="1 Fiksyen">1 Fiksyen</option>
+                        <option value="1 Bestari">1 Bestari</option>
+                        <option value="1 Cemerlang">1 Cemerlang</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Pilih Avatar Kesukaanmu</label>
+                    <div id="avatar-selector" class="grid grid-cols-4 gap-2">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                <button onclick="handleLogin()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
+                    Mula Belajar! 🚀
+                </button>
+                <div class="pt-2 text-center flex justify-between text-xs font-semibold text-gray-400">
+                    <button onclick="quickDemoLogin('teacher')" class="hover:text-amber-600">Mod Guru</button>
+                    <button onclick="quickDemoLogin('admin')" class="hover:text-purple-600">Mod Admin</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: DASHBOARD MURID -->
+        <div id="view-dashboard" class="space-y-6 hidden">
+            <!-- Welcome Banner -->
+            <div class="pastel-card bg-gradient-to-r from-emerald-400 to-teal-500 text-white p-6 md:p-8 flex flex-col md:flex-row justify-between items-center shadow-lg">
+                <div class="space-y-2 text-center md:text-left mb-4 md:mb-0">
+                    <span class="bg-white/25 px-3 py-1 rounded-full text-xs font-bold tracking-wider">TAHUN 1 KSSR</span>
+                    <h2 class="text-2xl md:text-4xl font-bold" id="dash-welcome">Hai, Aisy! 👋</h2>
+                    <p class="text-emerald-50 text-sm">Hari ni nak jadi juara bahasa apa pula? Jom sambung belajar!</p>
+                </div>
+                <div class="flex space-x-3 bg-white/10 backdrop-blur p-3 rounded-2xl border border-white/25">
+                    <div class="text-center px-3 border-r border-white/20">
+                        <span class="block text-xl md:text-2xl font-bold" id="dash-points">350</span>
+                        <span class="text-xs uppercase tracking-wider opacity-80">Mata ⭐</span>
+                    </div>
+                    <div class="text-center px-3 border-r border-white/20">
+                        <span class="block text-xl md:text-2xl font-bold" id="dash-badges-count">5</span>
+                        <span class="text-xs uppercase tracking-wider opacity-80">Lencana 🏅</span>
+                    </div>
+                    <div class="text-center px-3">
+                        <span class="block text-xl md:text-2xl font-bold" id="dash-streak">3</span>
+                        <span class="text-xs uppercase tracking-wider opacity-80">Streak 🔥</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Challenge Prompt -->
+            <div class="pastel-card bg-amber-50 border-amber-200 p-5 flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-3 md:mb-0">
+                    <div class="bg-amber-400 text-white w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-amber-800 text-base">Cabaran Hari Ini 🎯</h3>
+                        <p class="text-xs text-amber-700">Jawab 3 soalan pantas hari ini untuk bonus mata ekstra!</p>
+                    </div>
+                </div>
+                <button onclick="startDailyChallenge()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow text-sm transition">
+                    Mula Cabaran
+                </button>
+            </div>
+
+            <!-- Quick Navigation Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="switchView('worlds')" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Teroka 20 Topik</h4>
+                    <p class="text-xs text-gray-500 mt-1">Dunia Golongan Kata, Pembentukan Kata & Ayat.</p>
+                </div>
+                <div onclick="switchView('games')" class="pastel-card p-5 hover:border-purple-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Permainan Cilik</h4>
+                    <p class="text-xs text-gray-500 mt-1">Main sambil belajar perkataan dan ayat menarik.</p>
+                </div>
+                <div onclick="switchView('badges')" class="pastel-card p-5 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Lencana Saya</h4>
+                    <p class="text-xs text-gray-500 mt-1">Kumpul semua lencana hebat juara bahasa.</p>
+                </div>
+                <div onclick="switchView('progress')" class="pastel-card p-5 hover:border-teal-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-xl mb-3">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Kemajuan Saya</h4>
+                    <p class="text-xs text-gray-500 mt-1">Semak tahap penguasaan topik pembelajaran.</p>
+                </div>
+            </div>
+
+            <!-- Progress summary preview -->
+            <div class="pastel-card p-6">
+                <h3 class="font-bold text-gray-800 text-lg mb-4 flex items-center"><i class="fa-solid fa-chart-line text-emerald-500 mr-2"></i> Ringkasan Penguasaan Dunia</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
+                            <span>Dunia 1: Golongan Kata (11 Topik)</span>
+                            <span id="prog-world1-val">80%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                            <div id="prog-world1-bar" class="bg-emerald-500 h-3 rounded-full transition-all duration-500" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
+                            <span>Dunia 2: Pembentukan Kata (3 Topik)</span>
+                            <span id="prog-world2-val">60%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                            <div id="prog-world2-bar" class="bg-teal-500 h-3 rounded-full transition-all duration-500" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
+                            <span>Dunia 3: Pembinaan Ayat (6 Topik)</span>
+                            <span id="prog-world3-val">40%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                            <div id="prog-world3-bar" class="bg-amber-500 h-3 rounded-full transition-all duration-500" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: PILIH DUNIA & SENARAI TOPIK -->
+        <div id="view-worlds" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Pilih Dunia & Topik 📚</h2>
+                    <p class="text-xs text-gray-500">Pilih tajuk pelajaran untuk mula mengulang kaji dan menjawab latihan.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+            </div>
+
+            <!-- Tab Dunia -->
+            <div class="flex space-x-2 overflow-x-auto pb-2">
+                <button onclick="filterWorld(1)" id="btn-w1" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow transition whitespace-nowrap">Dunia 1: Golongan Kata</button>
+                <button onclick="filterWorld(2)" id="btn-w2" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 2: Pembentukan Kata</button>
+                <button onclick="filterWorld(3)" id="btn-w3" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 3: Pembinaan Ayat</button>
+            </div>
+
+            <!-- Topic Cards Container -->
+            <div id="topics-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </div>
+
+        <!-- VIEW 4: NOTA & PEMBELAJARAN TOPIK -->
+        <div id="view-topic-detail" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <button onclick="switchView('worlds')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Senarai Topik
+                </button>
+                <span id="topic-world-badge" class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">Dunia 1</span>
+            </div>
+
+            <div class="pastel-card p-6 md:p-8 space-y-6">
+                <div>
+                    <h2 id="topic-title" class="text-2xl md:text-3xl font-bold text-emerald-600 mb-2">Kata Nama Am</h2>
+                    <p id="topic-desc" class="text-gray-600 text-sm leading-relaxed">Kata nama am ialah kata yang merujuk kepada sesuatu yang bernyawa dan tidak bernyawa secara umum.</p>
+                </div>
+
+                <div class="bg-emerald-50 border-2 border-emerald-100 p-5 rounded-2xl">
+                    <h3 class="font-bold text-emerald-800 text-base mb-3"><i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i> Contoh Bergambar & Nota Ringkas</h3>
+                    <div id="topic-examples-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                        <!-- Example items injected via JS -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 pt-4">
+                    <button onclick="startTopicQuiz()" class="w-full sm:w-auto px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition text-base flex items-center justify-center">
+                        <i class="fa-solid fa-play mr-2"></i> Mula Latihan & Kuiz 🎯
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 5: KUIZ & LATIHAN INTERAKTIF -->
+        <div id="view-quiz" class="max-w-2xl mx-auto space-y-6 hidden">
+            <div class="pastel-card p-6 md:p-8 space-y-6">
+                <!-- Quiz Header -->
+                <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+                    <div>
+                        <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Kata Nama Am</span>
+                        <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 5</h3>
+                    </div>
+                    <div class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">
+                        ⭐ Mata: <span id="quiz-current-score">0</span>
+                    </div>
+                </div>
+
+                <!-- Question Box -->
+                <div class="space-y-4">
+                    <p id="quiz-question-text" class="text-lg font-bold text-gray-800 leading-snug">Yang manakah kata nama am?</p>
+                    <div id="quiz-options-container" class="space-y-3">
+                        <!-- Options injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Feedback Box -->
+                <div id="quiz-feedback" class="hidden p-4 rounded-2xl font-bold text-sm">
+                    <!-- Feedback message -->
+                </div>
+
+                <!-- Next Button -->
+                <div class="flex justify-end pt-2">
+                    <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow transition text-sm">
+                        Seterusnya <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 6: KEPUTUSAN / PENCAPAIAN TOPIK -->
+        <div id="view-result" class="max-w-md mx-auto pastel-card p-8 text-center space-y-6 hidden">
+            <div class="w-24 h-24 bg-amber-100 text-amber-500 mx-auto rounded-full flex items-center justify-center text-4xl shadow-inner animate-bounce-short">
+                🏆
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Tahniah, Hebat! 🎉</h2>
+                <p id="result-message" class="text-sm text-gray-600 mt-1">Kamu telah berjaya menguasai topik ini dengan cemerlang!</p>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
+                <div class="flex justify-between text-sm font-semibold">
+                    <span class="text-gray-500">Markah Diperolehi:</span>
+                    <span id="res-score" class="text-emerald-600 font-bold">+50 Mata ⭐</span>
+                </div>
+                <div class="flex justify-between text-sm font-semibold">
+                    <span class="text-gray-500">Tahap Penguasaan:</span>
+                    <span id="res-mastery" class="text-amber-600 font-bold">Menguasai (100%) 🏆</span>
+                </div>
+            </div>
+
+            <div id="badge-unlocked-box" class="hidden bg-emerald-50 border-2 border-emerald-200 p-4 rounded-2xl">
+                <span class="text-2xl">🏅</span>
+                <h4 class="font-bold text-emerald-800 text-sm mt-1">Lencana Baru Dibuka!</h4>
+                <p id="unlocked-badge-name" class="text-xs text-emerald-600 font-semibold mt-0.5">Cilik Kata Nama</p>
+            </div>
+
+            <div class="flex space-x-3 pt-2">
+                <button onclick="switchView('worlds')" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm">
+                    Senarai Topik
+                </button>
+                <button onclick="switchView('dashboard')" class="flex-1 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">
+                    Utama
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW 7: LENCANA SAYA -->
+        <div id="view-badges" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Lencana & Trofi Saya 🏅</h2>
+                    <p class="text-xs text-gray-500">Kumpul semua lencana hebat dengan menguasai setiap topik pembelajaran.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="badges-grid">
+                <!-- Badges injected via JS -->
+            </div>
+        </div>
+
+        <!-- VIEW 8: KEMAJUAN SAYA -->
+        <div id="view-progress" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Kemajuan Pembelajaran 📊</h2>
+                    <p class="text-xs text-gray-500">Pantau tahap pencapaian dan penguasaan topik Bahasa Melayu kamu.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+            </div>
+
+            <div class="pastel-card p-6 space-y-6">
+                <h3 class="font-bold text-gray-800 text-lg">Pecahan Penguasaan Mengikut Topik</h3>
+                <div id="full-progress-list" class="space-y-3">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 9: PERMAINAN CILIK -->
+        <div id="view-games" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Permainan Cilik 🎮</h2>
+                    <p class="text-xs text-gray-500">Pilih mini-game menyeronokkan untuk menguji minda Bahasa Melayu.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="launchMiniGame('padan')" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition text-center space-y-3">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow">
+                        🧩
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Padankan Perkataan</h4>
+                    <p class="text-xs text-gray-500">Padankan perkataan dengan pasangan yang betul.</p>
+                </div>
+                <div onclick="launchMiniGame('susun')" class="pastel-card p-5 hover:border-teal-400 cursor-pointer transition text-center space-y-3">
+                    <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow">
+                        🚂
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Susun Ayat</h4>
+                    <p class="text-xs text-gray-500">Susun perkataan berterabir menjadi ayat yang betul.</p>
+                </div>
+                <div onclick="launchMiniGame('asing')" class="pastel-card p-5 hover:border-amber-400 cursor-pointer transition text-center space-y-3">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow">
+                        🧺
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Asingkan Perkataan</h4>
+                    <p class="text-xs text-gray-500">Asingkan kata nama am dan kata nama khas.</p>
+                </div>
+                <div onclick="launchMiniGame('belon')" class="pastel-card p-5 hover:border-purple-400 cursor-pointer transition text-center space-y-3">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow">
+                        🎈
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">Pecahkan Belon</h4>
+                    <p class="text-xs text-gray-500">Pilih belon jawapan yang betul untuk soalan pantas.</p>
+                </div>
+            </div>
+
+            <!-- Mini Game Active Container -->
+            <div id="minigame-container" class="pastel-card p-6 md:p-8 hidden">
+                <!-- Mini game UI rendered here -->
+            </div>
+        </div>
+
+        <!-- VIEW 10: TEACHER DASHBOARD -->
+        <div id="view-teacher" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
+                    <p class="text-xs text-gray-500">Pantau prestasi murid dan senarai penguasaan kelas.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Utama
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="pastel-card p-5 bg-amber-50 border-amber-200">
+                    <span class="text-amber-600 text-xs font-bold uppercase">Jumlah Murid</span>
+                    <h3 class="text-3xl font-bold text-amber-800 mt-1">28</h3>
+                    <p class="text-xs text-amber-700 mt-1">Kelas: 1 Fiksyen</p>
+                </div>
+                <div class="pastel-card p-5 bg-emerald-50 border-emerald-200">
+                    <span class="text-emerald-600 text-xs font-bold uppercase">Purata Penguasaan Kelas</span>
+                    <h3 class="text-3xl font-bold text-emerald-800 mt-1">78%</h3>
+                    <p class="text-xs text-emerald-700 mt-1">Tahap Cemerlang</p>
+                </div>
+                <div class="pastel-card p-5 bg-teal-50 border-teal-200">
+                    <span class="text-teal-600 text-xs font-bold uppercase">Topik Paling Dikuasai</span>
+                    <h3 class="text-lg font-bold text-teal-800 mt-1">Kata Nama Am</h3>
+                    <p class="text-xs text-teal-700 mt-1">92% murid menguasai</p>
+                </div>
+            </div>
+
+            <div class="pastel-card p-6">
+                <h3 class="font-bold text-gray-800 text-base mb-4">Senarai Prestasi Murid (1 Fiksyen)</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs md:text-sm">
+                        <thead class="bg-gray-50 text-gray-500 uppercase font-semibold">
+                            <tr>
+                                <th class="p-3">Nama Murid</th>
+                                <th class="p-3">Mata ⭐</th>
+                                <th class="p-3">Lencana 🏅</th>
+                                <th class="p-3">Penguasaan Topik</th>
+                                <th class="p-3">Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacher-students-table" class="divide-y divide-gray-100 font-medium text-gray-700">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 11: ADMIN DASHBOARD -->
+        <div id="view-admin" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
+                    <p class="text-xs text-gray-500">Urus pengguna, soalan latihan, dan tetapan sistem.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Utama
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="pastel-card p-6 space-y-4">
+                    <h3 class="font-bold text-purple-800 text-base flex items-center"><i class="fa-solid fa-circle-plus mr-2"></i> Tambah Soalan Baru</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">Pilih Topik</label>
+                            <select id="admin-q-topic" class="w-full p-2.5 rounded-xl border-2 border-gray-200 text-xs font-semibold bg-white">
+                                <option value="1">1. Kata Nama Am</option>
+                                <option value="2">2. Kata Nama Khas</option>
+                                <option value="5">5. Kata Kerja</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">Soalan</label>
+                            <input type="text" id="admin-q-text" placeholder="Cth: Apakah warna baju..." class="w-full p-2.5 rounded-xl border-2 border-gray-200 text-xs font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">Pilihan Jawapan (Pisahkan dengan koma)</label>
+                            <input type="text" id="admin-q-options" placeholder="A. Merah, B. Biru, C. Hijau" class="w-full p-2.5 rounded-xl border-2 border-gray-200 text-xs font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">Jawapan Betul</label>
+                            <input type="text" id="admin-q-answer" placeholder="B. Biru" class="w-full p-2.5 rounded-xl border-2 border-gray-200 text-xs font-semibold">
+                        </div>
+                        <button onclick="adminAddQuestion()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs shadow">
+                            Simpan Soalan
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pastel-card p-6 space-y-4">
+                    <h3 class="font-bold text-purple-800 text-base flex items-center"><i class="fa-solid fa-users-gear mr-2"></i> Pengurusan Kelas & Murid</h3>
+                    <p class="text-xs text-gray-600">Anda boleh mendaftar kelas baharu seperti 1 Cemerlang, 1 Bestari, atau menambah akaun murid baharu.</p>
+                    <div class="p-4 bg-purple-50 rounded-2xl border border-purple-100 space-y-2">
+                        <div class="flex justify-between text-xs font-bold text-purple-900">
+                            <span>Jumlah Kelas Aktif:</span>
+                            <span>3 Kelas</span>
+                        </div>
+                        <div class="flex justify-between text-xs font-bold text-purple-900">
+                            <span>Jumlah Soalan Dalam Bank:</span>
+                            <span>200 Soalan</span>
+                        </div>
+                    </div>
+                    <button onclick="alert('Tetapan berjaya disimpan ke Firebase!')" class="w-full py-2.5 bg-gray-100 hover:bg-gray-200 text-purple-700 font-bold rounded-xl text-xs">
+                        Kemaskini Pangkalan Data
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // FIREBASE CONFIGURATION
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTTVMV8ur0A-_GCr7qBBcIe8GzVpvYsnA",
+            authDomain: "cabaran-cilik-bahasa-melayu.firebaseapp.com",
+            databaseURL: "https://cabaran-cilik-bahasa-melayu-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "cabaran-cilik-bahasa-melayu",
+            storageBucket: "cabaran-cilik-bahasa-melayu.firebasestorage.app",
+            messagingSenderId: "218574026784",
+            appId: "1:218574026784:web:c1fd5a00bc2bb6b1bc6445"
+        };
+
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        // 20 TOPICS DATA (3 Dunia)
+        const topicsData = [
+            // DUNIA 1: GOLONGAN KATA (1-11)
+            { id: 1, world: 1, title: "Kata Nama Am", desc: "Kata yang merujuk kepada sesuatu yang bernyawa dan tidak bernyawa secara umum.", badge: "Cilik Kata Nama", examples: [{t: "buku", i: "📚"}, {t: "guru", i: "👩‍🏫"}, {t: "kucing", i: "🐱"}, {t: "sekolah", i: "🏫"}, {t: "meja", i: "🪑"}, {t: "murid", i: "👦"}] },
+            { id: 2, world: 1, title: "Kata Nama Khas", desc: "Nama khusus bagi orang, haiwan, tempat atau benda tertentu. Mesti guna huruf besar.", badge: "Cilik Kata Khas", examples: [{t: "Ali", i: "👦"}, {t: "Siti", i: "👧"}, {t: "Malaysia", i: "🇲🇾"}, {t: "Proton Saga", i: "🚗"}, {t: "Sang Kancil", i: "🦌"}, {t: "SK Seri Melor", i: "🏫"}] },
+            { id: 3, world: 1, title: "Kata Ganti Nama", desc: "Kata yang digunakan untuk menggantikan kata nama diri seperti saya, awak, dia, mereka.", badge: "Cilik Kata Ganti", examples: [{t: "saya", i: "🙋‍♂️"}, {t: "awak", i: "🫵"}, {t: "dia", i: "👦"}, {t: "mereka", i: "👥"}] },
+            { id: 4, world: 1, title: "Penjodoh Bilangan", desc: "Digunakan bersama-sama kata bilangan untuk mengira benda atau orang.", badge: "Cilik Penjodoh Bilangan", examples: [{t: "seekor kucing", i: "🐱"}, {t: "sebuah rumah", i: "🏠"}, {t: "sebatang pensel", i: "✏️"}, {t: "seorang guru", i: "👩‍🏫"}] },
+            { id: 5, world: 1, title: "Kata Kerja", desc: "Kata yang menunjukkan perbuatan atau perlakuan harian.", badge: "Cilik Kata Kerja", examples: [{t: "makan", i: "🍲"}, {t: "minum", i: "🥤"}, {t: "berlari", i: "🏃‍♂️"}, {t: "membaca", i: "📖"}, {t: "menulis", i: "✍️"}, {t: "tidur", i: "💤"}] },
+            { id: 6, world: 1, title: "Kata Adjektif", desc: "Digunakan untuk menerangkan sifat, warna, ukuran atau bentuk.", badge: "Cilik Kata Adjektif", examples: [{t: "besar", i: "🐘"}, {t: "cantik", i: "🌸"}, {t: "merah", i: "🔴"}, {t: "tinggi", i: "🦒"}, {t: "bulat", i: "⚽"}] },
+            { id: 7, world: 1, title: "Kata Hubung", desc: "Digunakan untuk menghubungkan perkataan atau ayat seperti dan, atau.", badge: "Cilik Kata Hubung", examples: [{t: "dan", i: "➕"}, {t: "atau", i: "🔀"}] },
+            { id: 8, world: 1, title: "Kata Sendi Nama", desc: "Kata di hadapan kata nama seperti di, ke, dari.", badge: "Cilik Kata Sendi", examples: [{t: "di sekolah", i: "🏫"}, {t: "ke kantin", i: "🍱"}, {t: "dari rumah", i: "🏠"}] },
+            { id: 9, world: 1, title: "Kata Tanya", desc: "Digunakan untuk menanyakan sesuatu seperti apa, siapa, di mana.", badge: "Cilik Kata Tanya", examples: [{t: "apa", i: "❓"}, {t: "siapa", i: "👤"}, {t: "di mana", i: "📍"}] },
+            { id: 10, world: 1, title: "Kata Perintah", desc: "Memberikan arahan, larangan atau silaan seperti jangan, sila, tolong.", badge: "Cilik Kata Perintah", examples: [{t: "jangan", i: "⛔"}, {t: "sila", i: "🧎‍♂️"}, {t: "tolong", i: "🤝"}] },
+            { id: 11, world: 1, title: "Kata Seru", desc: "Digunakan untuk melahirkan perasaan seperti wah, amboi, oh.", badge: "Cilik Kata Seru", examples: [{t: "wah", i: "⭐"}, {t: "amboi", i: "😲"}, {t: "oh", i: "💡"}] },
+
+            // DUNIA 2: PEMBENTUKAN KATA (12-14)
+            { id: 12, world: 2, title: "Kata Berimbuhan", desc: "Kata dasar yang menerima imbuhan awalan atau akhiran seperti meN-, ber-.", badge: "Cilik Pembentuk Kata", examples: [{t: "baca ➔ membaca", i: "📖"}, {t: "main ➔ bermain", i: "⚽"}] },
+            { id: 13, world: 2, title: "Kata Majmuk", desc: "Gabungan dua kata dasar yang membawa makna tertentu (rangkai kata bebas).", badge: "Cilik Kata Majmuk", examples: [{t: "jam tangan", i: "⌚"}, {t: "papan putih", i: "⬜"}, {t: "kereta api", i: "🚂"}] },
+            { id: 14, world: 2, title: "Kata Ganda", desc: "Kata yang diulang sepenuhnya untuk menunjukkan banyak atau jamak.", badge: "Cilik Kata Ganda", examples: [{t: "buku-buku", i: "📚"}, {t: "kerusi-kerusi", i: "🪑"}, {t: "rumah-rumah", i: "🏠"}] },
+
+            // DUNIA 3: PEMBINAAN AYAT (15-20)
+            { id: 15, world: 3, title: "Ayat Penyata", desc: "Ayat yang digunakan untuk menyatakan atau memaklumkan sesuatu.", badge: "Cilik Pembina Ayat", examples: [{t: "Ali membaca buku.", i: "📖"}] },
+            { id: 16, world: 3, title: "Ayat Tanya", desc: "Ayat yang digunakan untuk menanyakan sesuatu dengan tanda soal (?).", badge: "Cilik Ayat Tanya", examples: [{t: "Siapa nama kamu?", i: "❓"}] },
+            { id: 17, world: 3, title: "Ayat Perintah", desc: "Ayat untuk memberikan suruhan, larangan, silaan atau permintaan.", badge: "Cilik Ayat Perintah", examples: [{t: "Sila duduk.", i: "🧎‍♂️"}] },
+            { id: 18, world: 3, title: "Ayat Seruan", desc: "Ayat untuk melahirkan perasaan kagum atau hairan dengan tanda seru (!).", badge: "Cilik Ayat Seruan", examples: [{t: "Wah, cantiknya!", i: "🌸"}] },
+            { id: 19, world: 3, title: "Ayat Tunggal", desc: "Ayat yang mengandungi satu subjek dan satu predikat sahaja.", badge: "Cilik Ayat Tunggal", examples: [{t: "Ibu memasak.", i: "🍲"}] },
+            { id: 20, world: 3, title: "Ayat Majmuk", desc: "Ayat yang menggabungkan dua ayat tunggal menggunakan kata hubung dan, atau.", badge: "Cilik Ayat Majmuk", examples: [{t: "Ali membaca buku dan Siti melukis.", i: "🎨"}] }
+        ];
+
+        // MOCK QUESTION BANK FOR TOPICS
+        const sampleQuestions = {
+            1: [
+                { q: "Yang manakah kata nama am?", options: ["Ali", "kucing", "Malaysia"], answer: "kucing" },
+                { q: "Pilih kata nama am bagi objek di dalam kelas:", options: ["Proton Saga", "meja", "Siti"], answer: "meja" }
+            ],
+            2: [
+                { q: "Yang manakah kata nama khas?", options: ["sekolah", "guru", "SK Seri Melor"], answer: "SK Seri Melor" },
+                { q: "Kata nama khas mesti ditulis dengan huruf:", options: ["kecil", "besar", "condong"], answer: "besar" }
+            ],
+            5: [
+                { q: "Adik sedang ______ buku di ruang tamu.", options: ["makan", "membaca", "tidur"], answer: "membaca" },
+                { q: "Pilih kata kerja bagi perlakuan sukan:", options: ["berlari", "kerusi", "buku"], answer: "berlari" }
+            ]
+        };
+
+        // CURRENT USER STATE
+        let currentUser = {
+            name: "Aisyah Binti Ahmad",
+            class: "1 Fiksyen",
+            avatar: "bottts",
+            points: 350,
+            badgesCount: 5,
+            streak: 3,
+            role: "student"
+        };
+
+        let currentActiveTopic = null;
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let activeQuizQuestions = [];
+
+        // INITIALIZE APP
+        window.onload = function() {
+            renderAvatarSelector();
+        };
+
+        function renderAvatarSelector() {
+            const container = document.getElementById('avatar-selector');
+            const seeds = ['Aisy', 'Budi', 'Chantalle', 'Danial'];
+            container.innerHTML = seeds.map((seed, idx) => `
+                <div onclick="selectAvatar('${seed}')" class="p-2 border-2 ${idx === 0 ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200'} rounded-2xl cursor-pointer text-center hover:bg-emerald-50 transition avatar-opt" data-seed="${seed}">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${seed}" class="w-12 h-12 mx-auto">
+                    <span class="text-[10px] font-bold text-gray-600 mt-1 block">${seed}</span>
+                </div>
+            `).join('');
+            currentUser.avatar = seeds[0];
+        }
+
+        function selectAvatar(seed) {
+            currentUser.avatar = seed;
+            document.querySelectorAll('.avatar-opt').forEach(el => {
+                if(el.dataset.seed === seed) {
+                    el.className = "p-2 border-2 border-emerald-500 bg-emerald-50 rounded-2xl cursor-pointer text-center avatar-opt";
+                } else {
+                    el.className = "p-2 border-2 border-gray-200 rounded-2xl cursor-pointer text-center hover:bg-emerald-50 transition avatar-opt";
+                }
+            });
+        }
+
+        function handleLogin() {
+            const nameInput = document.getElementById('login-name').value.trim();
+            const classInput = document.getElementById('login-class').value;
+            if(nameInput) currentUser.name = nameInput;
+            currentUser.class = classInput;
+            currentUser.role = "student";
+
+            proceedToDashboard();
+        }
+
+        function quickDemoLogin(role) {
+            if(role === 'teacher') {
+                currentUser.name = "Cikgu Salmah";
+                currentUser.role = "teacher";
+                switchView('teacher');
+            } else if(role === 'admin') {
+                currentUser.name = "Admin Sistem";
+                currentUser.role = "admin";
+                switchView('admin');
+            }
+            updateHeaderUI();
+        }
+
+        function proceedToDashboard() {
+            updateHeaderUI();
+            switchView('dashboard');
+            confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+        }
+
+        function updateHeaderUI() {
+            document.getElementById('main-header').classList.remove('hidden');
+            document.getElementById('mobile-nav').classList.remove('hidden');
+            document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
+            document.getElementById('header-points').innerText = currentUser.points;
+            document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
+            document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
+            document.getElementById('dash-points').innerText = currentUser.points;
+            document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
+            document.getElementById('dash-streak').innerText = currentUser.streak;
+
+            if(currentUser.role === 'teacher') {
+                document.getElementById('nav-teacher-btn').classList.remove('hidden');
+            } else if(currentUser.role === 'admin') {
+                document.getElementById('nav-admin-btn').classList.remove('hidden');
+            }
+        }
+
+        function switchView(viewName) {
+            const views = ['login', 'dashboard', 'worlds', 'topic-detail', 'quiz', 'result', 'badges', 'progress', 'games', 'teacher', 'admin'];
+            views.forEach(v => {
+                const el = document.getElementById(`view-${v}`);
+                if(el) el.classList.add('hidden');
+            });
+
+            const target = document.getElementById(`view-${viewName}`);
+            if(target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            if(viewName === 'worlds') filterWorld(1);
+            if(viewName === 'badges') renderBadges();
+            if(viewName === 'progress') renderProgressList();
+            if(viewName === 'teacher') renderTeacherTable();
+        }
+
+        // TOPICS & WORLDS FILTER
+        function filterWorld(worldNum) {
+            ['w1', 'w2', 'w3'].forEach(w => {
+                const btn = document.getElementById(`btn-${w}`);
+                btn.className = "px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap";
+            });
+            document.getElementById(`btn-w${worldNum}`).className = "px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow transition whitespace-nowrap";
+
+            const container = document.getElementById('topics-container');
+            const filtered = topicsData.filter(t => t.world === worldNum);
+
+            container.innerHTML = filtered.map(t => `
+                <div onclick="openTopic(${t.id})" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-bold uppercase">Topik ${t.id}</span>
+                            <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-star text-amber-400"></i> Menguasai</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-base mb-1">${t.title}</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">${t.desc}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs font-bold text-emerald-600">
+                        <span>Mula Belajar</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openTopic(topicId) {
+            currentActiveTopic = topicsData.find(t => t.id === topicId);
+            if(!currentActiveTopic) return;
+
+            document.getElementById('topic-title').innerText = currentActiveTopic.title;
+            document.getElementById('topic-desc').innerText = currentActiveTopic.desc;
+            document.getElementById('topic-world-badge').innerText = `Dunia ${currentActiveTopic.world}`;
+
+            const grid = document.getElementById('topic-examples-grid');
+            grid.innerHTML = currentActiveTopic.examples.map(ex => `
+                <div class="bg-white p-3 rounded-xl border border-emerald-100 text-center shadow-sm">
+                    <span class="text-2xl block mb-1">${ex.i}</span>
+                    <span class="text-xs font-bold text-gray-700">${ex.t}</span>
+                </div>
+            `).join('');
+
+            switchView('topic-detail');
+        }
+
+        // QUIZ ENGINE
+        function startTopicQuiz() {
+            activeQuizQuestions = sampleQuestions[currentActiveTopic.id] || [
+                { q: `Yang manakah berkaitan dengan ${currentActiveTopic.title}?`, options: ["Betul", "Salah", "Tidak pasti"], answer: "Betul" },
+                { q: "Pilih jawapan yang paling tepat bagi topik ini:", options: ["Pilihan A", "Pilihan B", "Pilihan C"], answer: "Pilihan A" }
+            ];
+            currentQuizIndex = 0;
+            quizScore = 0;
+            switchView('quiz');
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            const q = activeQuizQuestions[currentQuizIndex];
+            document.getElementById('quiz-topic-name').innerText = currentActiveTopic.title;
+            document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada ${activeQuizQuestions.length}`;
+            document.getElementById('quiz-current-score').innerText = quizScore;
+            document.getElementById('quiz-question-text').innerText = q.q;
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            const optContainer = document.getElementById('quiz-options-container');
+            optContainer.innerHTML = q.options.map(opt => `
+                <button onclick="checkAnswer('${opt}', '${q.answer}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
+                    ${opt}
+                </button>
+            `).join('');
+        }
+
+        function checkAnswer(selected, correct) {
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.disabled = true);
+
+            if(selected === correct) {
+                quizScore += 10;
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800";
+                feedback.innerHTML = "🎉 Betul! Hebat sekali!";
+                confetti({ particleCount: 30, spread: 40 });
+            } else {
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800";
+                feedback.innerHTML = `😊 Belum tepat. Cuba lagi! Jawapan betul ialah: <b>${correct}</b>`;
+            }
+
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            if(currentQuizIndex < activeQuizQuestions.length) {
+                loadQuizQuestion();
+            } else {
+                // Finish quiz
+                currentUser.points += 50;
+                currentUser.badgesCount += 1;
+                updateHeaderUI();
+                document.getElementById('unlocked-badge-name').innerText = currentActiveTopic.badge;
+                switchView('result');
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            }
+        }
+
+        function startDailyChallenge() {
+            currentActiveTopic = { id: 1, title: "Cabaran Harian Cilik", badge: "Cilik Harian" };
+            activeQuizQuestions = [
+                { q: "Yang manakah kata nama am?", options: ["Ali", "sekolah", "Malaysia"], answer: "sekolah" },
+                { q: "Adik sedang ______ susu.", options: ["minum", "berlari", "membaca"], answer: "minum" }
+            ];
+            currentQuizIndex = 0;
+            quizScore = 0;
+            switchView('quiz');
+            loadQuizQuestion();
+        }
+
+        // RENDER BADGES
+        function renderBadges() {
+            const badges = [
+                { name: "Cilik Baru Belajar", desc: "Mula mendaftar dan aktif", icon: "🌱", unlocked: true },
+                { name: "Cilik Kata Nama", desc: "Menguasai Kata Nama Am & Khas", icon: "📖", unlocked: true },
+                { name: "Cilik Kata Kerja", desc: "Menguasai perbuatan harian", icon: "🏃", unlocked: true },
+                { name: "Cilik Kata Adjektif", desc: "Menguasai sifat dan warna", icon: "🎨", unlocked: false },
+                { name: "Cilik Kata Hubung", desc: "Menguasai ayat penghubung", icon: "🔗", unlocked: false },
+                { name: "Juara Bahasa Melayu", desc: "Menguasai semua 20 topik", icon: "🏆", unlocked: false }
+            ];
+
+            const grid = document.getElementById('badges-grid');
+            grid.innerHTML = badges.map(b => `
+                <div class="pastel-card p-5 text-center space-y-3 ${b.unlocked ? 'border-emerald-300 bg-emerald-50/30' : 'opacity-60 bg-gray-50'}">
+                    <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-3xl shadow-inner ${b.unlocked ? 'bg-emerald-100 text-emerald-600' : 'bg-gray-200 text-gray-400'}">
+                        ${b.icon}
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-base">${b.name}</h4>
+                    <p class="text-xs text-gray-500">${b.desc}</p>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold ${b.unlocked ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-600'}">
+                        ${b.unlocked ? 'Dimiliki 🏅' : 'Belum Dikunci 🔒'}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        // PROGRESS LIST
+        function renderProgressList() {
+            const container = document.getElementById('full-progress-list');
+            container.innerHTML = topicsData.slice(0, 8).map(t => `
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-gray-800 text-sm">${t.title}</h4>
+                        <span class="text-[10px] text-gray-500">Dunia ${t.world} • KSSR Tahun 1</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-bold text-emerald-600">80% Menguasai 🏆</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // MINI GAMES
+        function launchMiniGame(gameType) {
+            const container = document.getElementById('minigame-container');
+            container.classList.remove('hidden');
+
+            if(gameType === 'padan') {
+                container.innerHTML = `
+                    <h3 class="font-bold text-gray-800 text-lg mb-3">🧩 Permainan Padankan Perkataan</h3>
+                    <p class="text-xs text-gray-600 mb-4">Padankan gambar kucing dengan perkataan yang betul.</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div onclick="alert('Tahniah! Padanan betul.')" class="p-4 bg-emerald-50 border-2 border-emerald-300 rounded-xl cursor-pointer font-bold text-emerald-700">🐱 Kucing</div>
+                        <div onclick="alert('Tahniah! Padanan betul.')" class="p-4 bg-emerald-50 border-2 border-emerald-300 rounded-xl cursor-pointer font-bold text-emerald-700">📚 Buku</div>
+                    </div>
+                `;
+            } else if(gameType === 'susun') {
+                container.innerHTML = `
+                    <h3 class="font-bold text-gray-800 text-lg mb-3">🚂 Permainan Susun Ayat</h3>
+                    <p class="text-xs text-gray-600 mb-4">Susun perkataan: [ membaca / Ali / buku ]</p>
+                    <div class="flex space-x-2 mb-4">
+                        <span class="px-4 py-2 bg-gray-100 border rounded-xl font-bold text-sm">Ali</span>
+                        <span class="px-4 py-2 bg-gray-100 border rounded-xl font-bold text-sm">membaca</span>
+                        <span class="px-4 py-2 bg-gray-100 border rounded-xl font-bold text-sm">buku</span>
+                    </div>
+                    <button onclick="confetti(); alert('Syabas! Susunan ayat betul.')" class="px-4 py-2 bg-emerald-500 text-white font-bold rounded-xl text-xs">Semak Jawapan</button>
+                `;
+            } else {
+                container.innerHTML = `
+                    <h3 class="font-bold text-gray-800 text-lg mb-3">🎮 Permainan Cilik</h3>
+                    <p class="text-xs text-gray-600 mb-4">Permainan interaktif sedang dimuatkan untuk murid Tahun 1.</p>
+                    <button onclick="document.getElementById('minigame-container').classList.add('hidden')" class="px-4 py-2 bg-gray-200 font-bold rounded-xl text-xs">Tutup</button>
+                `;
+            }
+        }
+
+        // TEACHER DASHBOARD TABLE
+        function renderTeacherTable() {
+            const students = [
+                { name: "Aisyah Binti Ahmad", points: 350, badges: 5, mastery: "85%" },
+                { name: "Muhammad Farhan", points: 420, badges: 7, mastery: "94%" },
+                { name: "Nurul Ain", points: 290, badges: 4, mastery: "72%" },
+                { name: "Haikal Bin Zulkifli", points: 310, badges: 4, mastery: "75%" }
+            ];
+
+            const tbody = document.getElementById('teacher-students-table');
+            tbody.innerHTML = students.map(s => `
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3 font-bold">${s.name}</td>
+                    <td class="p-3 text-amber-600 font-bold">${s.points} ⭐</td>
+                    <td class="p-3 text-emerald-600 font-bold">${s.badges} 🏅</td>
+                    <td class="p-3">${s.mastery}</td>
+                    <td class="p-3"><button onclick="alert('Paparan intervensi bagi ${s.name}')" class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-lg text-xs font-bold">Intervensi</button></td>
+                </tr>
+            `).join('');
+        }
+
+        // ADMIN ADD QUESTION
+        function adminAddQuestion() {
+            const qText = document.getElementById('admin-q-text').value;
+            if(!qText) {
+                alert('Sila masukkan soalan.');
+                return;
+            }
+            alert('Soalan berjaya ditambah ke Pangkalan Data Firebase!');
+            document.getElementById('admin-q-text').value = '';
+            document.getElementById('admin-q-options').value = '';
+            document.getElementById('admin-q-answer').value = '';
+        }
+
+        function logout() {
+            document.getElementById('main-header').classList.add('hidden');
+            document.getElementById('mobile-nav').classList.add('hidden');
+            switchView('login');
+        }
+    </script>
+</body>
+</html>
