@@ -532,7 +532,7 @@
 
         function renderAvatarSelector() {
             const container = document.getElementById('avatar-selector');
-            const seeds = ['Aisy', 'Budi', 'Chantalle', 'Danial'];
+            const seeds = ['Bijak', 'Budi', 'Tunas', 'Ilham', 'Cilik'];
             container.innerHTML = seeds.map((seed, idx) => `
                 <div onclick="selectAvatar('${seed}')" class="p-2 border-2 ${idx === 0 ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200'} rounded-2xl cursor-pointer text-center hover:bg-emerald-50 transition avatar-opt" data-seed="${seed}">
                     <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${seed}" class="w-12 h-12 mx-auto">
@@ -664,14 +664,38 @@
         }
 
         function updateHeaderUI() {
-            document.getElementById('main-header').classList.remove('hidden');
-            document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
-            document.getElementById('header-points').innerText = currentUser.points;
-            document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
-            document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
-            document.getElementById('dash-points').innerText = currentUser.points;
-            document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
-            document.getElementById('dash-streak').innerText = currentUser.streak;
+function updateHeaderUI() {
+    document.getElementById('main-header').classList.remove('hidden');
+    document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
+    document.getElementById('header-points').innerText = currentUser.points;
+    document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
+    document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
+    document.getElementById('dash-points').innerText = currentUser.points;
+    document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
+    document.getElementById('dash-streak').innerText = currentUser.streak;
+
+    const studentMenu = document.getElementById('nav-student-menu');
+    const mobileNav = document.getElementById('mobile-nav');
+    const pointsContainer = document.getElementById('header-points-container');
+
+    // Pastikan sentiasa sembunyikan menu murid dahulu sebelum semak peranan
+    studentMenu.classList.add('hidden');
+    mobileNav.classList.add('hidden');
+    pointsContainer.classList.remove('hidden');
+
+    if(currentUser.role === 'teacher') {
+        pointsContainer.classList.add('hidden');
+        document.getElementById('header-subtitle').innerText = "Mod Guru (Intervensi)";
+    } else if(currentUser.role === 'admin') {
+        pointsContainer.classList.add('hidden');
+        document.getElementById('header-subtitle').innerText = "Mod Admin (Analisis Result)";
+    } else {
+        // Hanya paparkan untuk murid sahaja
+        studentMenu.classList.remove('hidden');
+        mobileNav.classList.remove('hidden');
+        document.getElementById('header-subtitle').innerText = "Tahun 1 KSSR";
+    }
+}
 
             const studentMenu = document.getElementById('nav-student-menu');
             const mobileNav = document.getElementById('mobile-nav');
