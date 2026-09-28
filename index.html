@@ -584,18 +584,19 @@
         }
 
         // FUNGSI GOOGLE / GMAIL LOGIN (TANPA PASSWORD, NAMA, KELAS MANUAL)
-async function handleGoogleLogin() {
+// FUNGSI GOOGLE / GMAIL LOGIN (DIKEMASKINI)
+        async function handleGoogleLogin() {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
                 const result = await auth.signInWithPopup(provider);
                 const user = result.user;
 
+                // Simpan maklumat pengguna sementara untuk kegunaan avatar
                 tempGoogleUser = {
                     email: user.email,
                     name: user.displayName || "Murid Cilik"
                 };
 
-                // Cuba dapatkan dokumen dari Firestore dengan perlindungan ralat offline
                 let docSnap;
                 try {
                     const docRef = db.collection("students").doc(user.email);
@@ -614,7 +615,7 @@ async function handleGoogleLogin() {
                     currentUser.badgesCount = data.badgesCount || 0;
                     currentUser.streak = data.streak || 1;
                     currentUser.attempts = data.attempts || 1;
-                    currentUser.avatar = data.avatar || "Bijak";
+                    currentUser.avatar = data.avatar || currentUser.avatar || "Bijak";
                     currentUser.topicProgress = data.topicProgress || { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
                     currentUser.role = "student";
 
@@ -628,9 +629,21 @@ async function handleGoogleLogin() {
             }
         }
 
-        // SIMPAN AVATAR PILIHAN PADA LOGIN PERTAMA
+        // SIMPAN AVATAR PILIHAN PADA LOGIN PERTAMA (DIKEMASKINI)
         async function saveAvatarSelection() {
-            if(!tempGoogleUser) return;
+            // Jika tempGoogleUser kosong, ambil emel daripada auth semasa sebagai sandaran
+            if(!tempGoogleUser && auth.currentUser) {
+                tempGoogleUser = {
+                    email: auth.currentUser.email,
+                    name: auth.currentUser.displayName || "Murid Cilik"
+                };
+            }
+
+            if(!tempGoogleUser || !tempGoogleUser.email) {
+                alert("Sila log masuk semula menggunakan akaun Google anda terlebih dahulu.");
+                switchLoginTab('student');
+                return;
+            }
 
             currentUser.email = tempGoogleUser.email;
             currentUser.name = tempGoogleUser.name;
@@ -642,8 +655,14 @@ async function handleGoogleLogin() {
             currentUser.attempts = 1;
             currentUser.topicProgress = { "Kata Nama Am": 50, "Kata Nama Khas": 50 };
 
-            await saveUserData();
-            proceedToDashboard();
+            try {
+                await saveUserData();
+                proceedToDashboard();
+            } catch (error) {
+                // Walaupun gagal simpan ke Firestore (cth: masalah rangkaian), teruskan masuk ke dashboard
+                console.warn("Gagal simpan ke Firestore, meneruskan ke dashboard secara offline:", error);
+                proceedToDashboard();
+            }
         }
 
         async function saveUserData() {
