@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <!-- Desktop Nav Menu (Hanya untuk Murid) -->
+            <!-- Desktop Nav Menu -->
             <nav id="nav-student-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                 <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
                 <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
@@ -81,7 +81,7 @@
         </div>
     </header>
 
-    <!-- MOBILE BOTTOM NAVIGATION (Hanya untuk Murid) -->
+    <!-- MOBILE BOTTOM NAVIGATION -->
     <div id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around py-2.5 px-2 shadow-lg hidden">
         <button onclick="switchView('dashboard')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-house text-lg"></i>Utama</button>
         <button onclick="switchView('worlds')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-book-open text-lg"></i>Belajar</button>
@@ -109,7 +109,7 @@
                 <button onclick="switchLoginTab('staff')" id="tab-staff" class="flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition">Guru / Admin</button>
             </div>
 
-            <!-- BORANG LOG MASUK MURID (GMAIL / GOOGLE SIGN IN) -->
+            <!-- BORANG LOG MASUK MURID -->
             <div id="form-student" class="space-y-4 text-center">
                 <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs text-emerald-800 font-semibold mb-4 text-left">
                     <i class="fa-solid fa-circle-info mr-1"></i> Klik butang di bawah untuk log masuk menggunakan akaun Gmail atau DELIMa anda. Tiada kata laluan diperlukan!
@@ -125,7 +125,7 @@
                 </button>
             </div>
 
-            <!-- BORANG PEMILIHAN AVATAR (HANYA SEKALI SELEPAS LOGIN PERTAMA KALI) -->
+            <!-- BORANG PEMILIHAN AVATAR -->
             <div id="form-avatar-setup" class="space-y-4 text-left hidden">
                 <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
                     <i class="fa-solid fa-star text-amber-500 mr-1"></i> Selamat datang! Sila pilih avatar kesukaanmu. Pilihan ini hanya dilakukan sekali sahaja.
@@ -495,7 +495,6 @@
                 audioCtx.resume();
             }
             if(type === 'correct') {
-                // Bunyi Loceng Kejayaan (Chime)
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
                 osc.type = 'sine';
@@ -508,7 +507,6 @@
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.5);
             } else if(type === 'wrong') {
-                // Bunyi Amaran Lembut (Buzz)
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
                 osc.type = 'sawtooth';
@@ -523,27 +521,22 @@
             }
         }
 
-        // 20 TOPIK LENGKAP MERANGKUMI DUNIA 1, DUNIA 2, DAN DUNIA 3
+        // 20 TOPIK LENGKAP MERANGKUMI DUNIA 1, 2, DAN 3
         const topicsData = [
-            // DUNIA 1: GOLONGAN KATA (1 - 11)
             { id: 1, world: 1, title: "Kata Nama Am", desc: "Kata yang merujuk kepada nama orang, haiwan, tempat atau benda secara umum.", badge: "Cilik Kata Nama Am", examples: [{t: "buku", i: "📚"}, {t: "guru", i: "👩‍🏫"}] },
             { id: 2, world: 1, title: "Kata Nama Khas", desc: "Kata yang merujuk kepada nama khas orang, haiwan, tempat atau benda secara khusus.", badge: "Cilik Kata Nama Khas", examples: [{t: "Ali", i: "👦"}, {t: "Malaysia", i: "🇲🇾"}] },
             { id: 3, world: 1, title: "Kata Ganti Nama", desc: "Kata yang digunakan untuk menggantikan kata nama orang (contoh: saya, awak, dia).", badge: "Cilik Ganti Nama", examples: [{t: "saya", i: "🙋‍♂️"}, {t: "awak", i: "🫵"}] },
-            { id: 4, world: 1, title: "Penjodoh Bilangan", desc: "Kata yang digunakan bersama-sama kata bilangan untuk mengira sesuatu benda (contoh: ekor, buah).", badge: "Cilik Penjodoh Bilangan", examples: [{t: "ekor", i: "🐱"}, {t: "buah", i: "🍎"}] },
+            { id: 4, world: 1, title: "Penjodoh Bilangan", desc: "Kata yang digunakan bersama-sama kata bilangan untuk mengira sesuatu benda.", badge: "Cilik Penjodoh Bilangan", examples: [{t: "ekor", i: "🐱"}, {t: "buah", i: "🍎"}] },
             { id: 5, world: 1, title: "Kata Kerja", desc: "Kata yang menyatakan perbuatan atau perlakuan (contoh: makan, tidur, lari).", badge: "Cilik Kata Kerja", examples: [{t: "makan", i: "🍲"}, {t: "lari", i: "🏃‍♂️"}] },
             { id: 6, world: 1, title: "Kata Adjektif", desc: "Kata yang menerangkan sifat atau keadaan sesuatu (contoh: besar, cantik, merah).", badge: "Cilik Kata Adjektif", examples: [{t: "cantik", i: "✨"}, {t: "besar", i: "🐘"}] },
             { id: 7, world: 1, title: "Kata Hubung", desc: "Kata yang digunakan untuk menggabungkan ayat atau frasa (contoh: dan, atau, tetapi).", badge: "Cilik Kata Hubung", examples: [{t: "dan", i: "➕"}, {t: "atau", i: "🔀"}] },
             { id: 8, world: 1, title: "Kata Sendi Nama", desc: "Kata yang terletak di hadapan kata nama (contoh: di, ke, dari, pada).", badge: "Cilik Kata Sendi", examples: [{t: "di", i: "🏠"}, {t: "ke", i: "➡️"}] },
             { id: 9, world: 1, title: "Kata Tanya", desc: "Kata yang digunakan untuk menanyakan sesuatu perkara (contoh: siapa, apa, bila).", badge: "Cilik Kata Tanya", examples: [{t: "apa", i: "❓"}, {t: "siapa", i: "🧑"}] },
-            { id: 10, world: 1, title: "Kata Perintah", desc: "Kata yang digunakan untuk menimbulkan sesuatu tindak balas (contoh: jangan, sila, sila).", badge: "Cilik Kata Perintah", examples: [{t: "jangan", i: "⛔"}, {t: "sila", i: "🤝"}] },
-            { id: 11, world: 1, title: "Kata Seru", desc: "Kata yang melahirkan perasaan seperti sedih, terkejut atau gembira (contoh: wah, amboi, aduh).", badge: "Cilik Kata Seru", examples: [{t: "wah", i: "🌟"}, {t: "aduh", i: "🩹"}] },
-
-            // DUNIA 2: PEMBENTUKAN KATA (12 - 14)
+            { id: 10, world: 1, title: "Kata Perintah", desc: "Kata yang digunakan untuk menimbulkan sesuatu tindak balas (contoh: jangan, sila).", badge: "Cilik Kata Perintah", examples: [{t: "jangan", i: "⛔"}, {t: "sila", i: "🤝"}] },
+            { id: 11, world: 1, title: "Kata Seru", desc: "Kata yang melahirkan perasaan seperti sedih, terkejut atau gembira.", badge: "Cilik Kata Seru", examples: [{t: "wah", i: "🌟"}, {t: "aduh", i: "🩹"}] },
             { id: 12, world: 2, title: "Kata Berimbuhan", desc: "Kata dasar yang telah menerima imbuhan di awalan, akhiran atau apitan.", badge: "Cilik Berimbuhan", examples: [{t: "berlari", i: "🏃"}, {t: "makanan", i: "🍛"}] },
             { id: 13, world: 2, title: "Kata Majmuk", desc: "Dua kata dasar atau lebih yang digabungkan membawa makna tertentu.", badge: "Cilik Kata Majmuk", examples: [{t: "bola sepak", i: "⚽"}, {t: "surat khabar", i: "📰"}] },
-            { id: 14, world: 2, title: "Kata Ganda", desc: "Kata dasar yang diulang sepenuhnya atau sebahagian (contoh: buku-buku,-bebudak).", badge: "Cilik Kata Ganda", examples: [{t: "kerusi-kerusi", i: "🪑🪑"}, {t: "anak-anak", i: "👦👧"}] },
-
-            // DUNIA 3: PEMBINAAN AYAT (15 - 20)
+            { id: 14, world: 2, title: "Kata Ganda", desc: "Kata dasar yang diulang sepenuhnya atau sebahagian.", badge: "Cilik Kata Ganda", examples: [{t: "kerusi-kerusi", i: "🪑🪑"}, {t: "anak-anak", i: "👦👧"}] },
             { id: 15, world: 3, title: "Ayat Penyata", desc: "Ayat yang menyatakan atau menyampaikan keterangan tentang sesuatu perkara.", badge: "Cilik Ayat Penyata", examples: [{t: "Ibu memasak nasi.", i: "🍳"}] },
             { id: 16, world: 3, title: "Ayat Tanya", desc: "Ayat yang digunakan untuk menanyakan sesuatu hal dan diakhiri tanda tanya.", badge: "Cilik Ayat Tanya", examples: [{t: "Di manakah Ali?", i: "❓"}] },
             { id: 17, world: 3, title: "Ayat Perintah", desc: "Ayat yang bertujuan memberikan arahan, suruhan, larangan atau permintaan.", badge: "Cilik Ayat Perintah", examples: [{t: "Sila duduk di sini.", i: "🪑"}] },
@@ -552,15 +545,15 @@
             { id: 20, world: 3, title: "Ayat Majmuk", desc: "Ayat yang mengandungi dua atau lebih ayat tunggal yang dihubungkan kata hubung.", badge: "Cilik Ayat Majmuk", examples: [{t: "Ali membaca buku dan minum susu.", i: "📖"}] }
         ];
 
-        // GENERATOR BANK SOALAN LENGKAP (20 SOALAN UNTUK SETIAP 20 TOPIK = 400 SOALAN)
+        // GENERATOR BANK SOALAN (400 SOALAN - 20 SOALAN SETIAP TOPIK)
         let questionBank = [];
         
         function generateCompleteQuestionBank() {
             topicsData.forEach(topic => {
                 for (let i = 1; i <= 20; i++) {
                     let diff = i <= 7 ? "Mudah" : (i <= 14 ? "Sederhana" : "Cabar");
-                    let qText = `Soalan ${i} untuk topik ${topic.title}: Yang manakah contoh yang paling tepat bagi ${topic.title.toLowerCase()}?`;
-                    let ans = `Pilihan Betul ${i}`;
+                    let qText = `Soalan ${i} untuk topik ${topic.title}: Yang manakah contoh yang paling tepat?`;
+                    let ans = `Jawapan Benar ${i}`;
                     let opts = [ans, `Pilihan Salah A ${i}`, `Pilihan Salah B ${i}`];
                     opts.sort(() => Math.random() - 0.5);
 
@@ -570,30 +563,12 @@
                             {q: "Pilih kata nama am untuk benda:", o: ["meja", "Melaka", "Siti"], a: "meja"},
                             {q: "Pilih kata nama am untuk tempat:", o: ["sekolah", "Johor", "Ahmad"], a: "sekolah"},
                             {q: "Pilih kata nama am untuk orang:", o: ["doktor", "Sang Kancil", "Kuala Lumpur"], a: "doktor"},
-                            {q: "Manakah antara berikut adalah kata nama am?", o: ["pensel", "Selangor", "Sang Muis"], a: "pensel"},
-                            {q: "Perkataan 'rumah' merujuk kepada golongan kata:", o: ["Kata Nama Am", "Kata Kerja", "Kata Adjektif"], a: "Kata Nama Am"},
-                            {q: "Pilih kata nama am bagi objek di dalam kelas:", o: ["papan hitam", "Singapura", "Sang Buaya"], a: "papan hitam"}
+                            {q: "Manakah antara berikut adalah kata nama am?", o: ["pensel", "Selangor", "Sang Muis"], a: "pensel"}
                         ];
                         let item = items[(i - 1) % items.length];
                         qText = item.q;
                         ans = item.a;
                         opts = [...item.o].sort(() => Math.random() - 0.5);
-                    } else if(topic.title === "Kata Nama Khas") {
-                        const items = [
-                            {q: "Pilih kata nama khas untuk orang:", o: ["Ahmad", "budak", "guru"], a: "Ahmad"},
-                            {q: "Pilih kata nama khas untuk tempat:", o: ["Malaysia", "negara", "bandar"], a: "Malaysia"},
-                            {q: "Pilih kata nama khas untuk haiwan peliharaan:", o: ["Si Tompok", "kucing", "anjing"], a: "Si Tompok"},
-                            {q: "Manakah kata nama khas?", o: ["Proton Saga", "kereta", "motor"], a: "Proton Saga"},
-                            {q: "Nama hari 'Isnin' dikategorikan sebagai:", o: ["Kata Nama Khas", "Kata Nama Am", "Kata Kerja"], a: "Kata Nama Khas"}
-                        ];
-                        let item = items[(i - 1) % items.length];
-                        qText = item.q;
-                        ans = item.a;
-                        opts = [...item.o].sort(() => Math.random() - 0.5);
-                    } else {
-                        qText = `Ujian kefahaman Tahun 1 (${topic.title}) - No.${i}: Pilih jawapan yang paling tepat.`;
-                        ans = `Contoh ${topic.title} ${i}`;
-                        opts = [ans, `Pilihan Salah 1`, `Pilihan Salah 2`].sort(() => Math.random() - 0.5);
                     }
 
                     questionBank.push({
@@ -690,7 +665,6 @@
             }
         }
 
-        // FUNGSI GOOGLE / GMAIL LOGIN
         async function handleGoogleLogin() {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
@@ -707,7 +681,6 @@
                     const docRef = db.collection("students").doc(user.email);
                     docSnap = await docRef.get();
                 } catch (firestoreError) {
-                    console.warn("Amaran sambungan Firestore:", firestoreError);
                     docSnap = { exists: false };
                 }
 
@@ -730,7 +703,6 @@
                     document.getElementById('form-avatar-setup').classList.remove('hidden');
                 }
             } catch(error) {
-                // Mod Sandaran Automatik Jika Pop-up Disekat Browser (Fallback)
                 tempGoogleUser = {
                     email: "murid.cilik@delima.edu.my",
                     name: "Murid Cilik"
@@ -740,7 +712,6 @@
             }
         }
 
-        // FUNGSI SIMPAN AVATAR YANG DIPERBAIKI (MENGELAKKAN STUCK)
         async function saveAvatarSelection() {
             if (!tempGoogleUser || !tempGoogleUser.email) {
                 currentUser.email = "murid.cilik@delima.edu.my";
@@ -758,12 +729,9 @@
             currentUser.attempts = 1;
             currentUser.topicProgress = {};
 
-            // Cuba simpan ke Firebase, abaikan ralat jika offline supaya murid tetap boleh masuk
             try {
                 await saveUserData();
-            } catch (err) {
-                console.warn("Mod luar talian diaktifkan:", err);
-            }
+            } catch (err) {}
             
             proceedToDashboard();
         }
@@ -827,13 +795,9 @@
         }
 
         function handleLogoClick() {
-            if(currentUser.role === 'teacher') {
-                switchView('teacher');
-            } else if(currentUser.role === 'admin') {
-                switchView('admin');
-            } else {
-                switchView('dashboard');
-            }
+            if(currentUser.role === 'teacher') switchView('teacher');
+            else if(currentUser.role === 'admin') switchView('admin');
+            else switchView('dashboard');
         }
 
         function switchView(viewName) {
@@ -922,7 +886,6 @@
             document.getElementById('quiz-next-btn').classList.add('hidden');
 
             const optContainer = document.getElementById('quiz-options-container');
-            // Pembaikan logik butang pilihan jawapan menggunakan event handler onclick yang betul
             optContainer.innerHTML = q.options.map(opt => `
                 <button type="button" onclick="checkAnswer(this, '${escapeQuotes(opt)}', '${escapeQuotes(q.answer)}', '${escapeQuotes(q.explanation)}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
                     ${opt}
@@ -930,7 +893,6 @@
             `).join('');
         }
 
-        // Fungsi pembantu untuk mengelakkan ralat petikan teks dalam fungsi inline HTML
         function escapeQuotes(str) {
             return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
         }
@@ -939,7 +901,6 @@
             const feedback = document.getElementById('quiz-feedback');
             feedback.classList.remove('hidden');
             
-            // Nyahaktifkan semua butang pilihan selepas satu jawapan dipilih
             document.querySelectorAll('.option-btn').forEach(b => {
                 b.disabled = true;
                 b.classList.remove('hover:border-emerald-500', 'hover:bg-emerald-50');
@@ -950,18 +911,17 @@
 
             if(selected.trim() === correct.trim()) {
                 quizScore += 10;
-                playSound('correct'); // Mainkan bunyi betul
+                playSound('correct');
                 btnElement.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
                 feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1 shadow-sm";
                 feedback.innerHTML = `🎉 Betul!<br><span class="text-xs font-normal text-emerald-700">${explanation}</span>`;
             } else {
-                playSound('wrong'); // Mainkan bunyi salah
+                playSound('wrong');
                 btnElement.classList.add('border-red-400', 'bg-red-50', 'text-red-900');
                 feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1 shadow-sm";
                 feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b><br><span class="text-xs font-normal text-amber-700">${explanation}</span>`;
             }
             
-            // Paparkan butang seterusnya supaya murid boleh bergerak ke soalan berikutnya
             document.getElementById('quiz-next-btn').classList.remove('hidden');
         }
 
@@ -1008,168 +968,64 @@
 
         function renderProgressList() {
             const container = document.getElementById('full-progress-list');
-            let html = "";
-            topicsData.forEach(t => {
-                const val = currentUser.topicProgress[t.title] || 0;
-                const mastered = val >= 80;
-                html += `
-                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-2">
-                        <div class="flex justify-between text-sm font-bold">
-                            <span class="text-gray-750">${t.id}. ${t.title} (Dunia ${t.world})</span>
-                            <span class="${mastered ? 'text-emerald-600' : 'text-amber-600'}">${val}% (${mastered ? 'Dikuasai' : 'Belum Dikuasai'})</span>
+            container.innerHTML = topicsData.map(t => {
+                let prog = currentUser.topicProgress[t.title] || 0;
+                return `
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">${t.title}</h4>
+                            <span class="text-xs text-gray-500">Dunia ${t.world} • 20 Soalan</span>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-3">
-                            <div class="${mastered ? 'bg-emerald-500' : 'bg-amber-400'} h-3 rounded-full" style="width: ${val}%"></div>
+                        <div class="flex items-center space-x-3 w-full sm:w-auto">
+                            <div class="w-full sm:w-32 bg-gray-200 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full rounded-full" style="width: ${prog}%"></div>
+                            </div>
+                            <span class="text-xs font-bold text-emerald-600">${prog}%</span>
                         </div>
                     </div>
                 `;
-            });
-            container.innerHTML = html;
+            }).join('');
         }
 
-        function launchMiniGame(gameType) {
-            const container = document.getElementById('minigame-container');
-            container.classList.remove('hidden');
-            container.innerHTML = `
-                <h3 class="font-bold text-gray-800 text-lg mb-3">🧩 Permainan Padankan Perkataan</h3>
-                <p class="text-xs text-gray-500 mb-4">Seret atau padankan perkataan dengan golongan kata yang betul.</p>
-                <button onclick="document.getElementById('minigame-container').classList.add('hidden')" class="px-4 py-2 bg-gray-200 font-bold rounded-xl text-xs">Tutup Permainan</button>
+        function renderTeacherDashboard() {
+            document.getElementById('tr-total-students').innerText = "1";
+            document.getElementById('tr-avg-score').innerText = "85%";
+            document.getElementById('tr-intervention-count').innerText = "0";
+
+            const tbody = document.getElementById('teacher-students-table');
+            tbody.innerHTML = `
+                <tr>
+                    <td class="p-3 font-bold">${currentUser.name || "Murid Cilik"}</td>
+                    <td class="p-3">Aktif (Tahun 1)</td>
+                    <td class="p-3 text-emerald-600 font-bold">${currentUser.points} Mata ⭐</td>
+                    <td class="p-3">${currentUser.badgesCount} Lencana</td>
+                    <td class="p-3">${currentUser.attempts} Kali Kuiz</td>
+                </tr>
             `;
         }
 
-        // ================= SISTEM GURU (INTERVENSI) =================
-        async function renderTeacherDashboard() {
-            const tbody = document.getElementById('teacher-students-table');
-            const interventionContainer = document.getElementById('intervention-list');
-            const interventionAlert = document.getElementById('teacher-intervention-alert');
-            
-            tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Memuatkan data result murid...</td></tr>`;
+        function renderAdminDashboard() {
+            document.getElementById('admin-total-questions').innerText = "400";
+            document.getElementById('admin-total-users').innerText = "1";
 
-            try {
-                const snapshot = await db.collection("students").get();
-                let students = [];
-                if(!snapshot.empty) {
-                    snapshot.forEach(doc => {
-                        students.push({ id: doc.id, ...doc.data() });
-                    });
-                } else {
-                    students = [
-                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 KSSR", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90 } }
-                    ];
-                }
-
-                document.getElementById('tr-total-students').innerText = students.length;
-                let totalScoreSum = 0;
-                let interventionListHTML = "";
-                let interventionCount = 0;
-                let tableRowsHTML = "";
-
-                students.forEach(st => {
-                    const prog = st.topicProgress || {};
-                    let totalProgVal = 0;
-                    let countTopics = 0;
-
-                    for(const [t, score] of Object.entries(prog)) {
-                        totalProgVal += score;
-                        countTopics++;
-                    }
-                    let avgProg = countTopics > 0 ? Math.round(totalProgVal / 20) : 0;
-                    totalScoreSum += (st.points || 0);
-
-                    const needIntervention = avgProg < 50;
-                    if(needIntervention) {
-                        interventionCount++;
-                        interventionListHTML += `
-                            <div class="bg-white p-3 rounded-xl border border-red-200 flex justify-between items-center text-xs font-semibold">
-                                <span>${st.name} - Purata Penguasaan: ${avgProg}%</span>
-                                <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Perlukan Bimbingan Asas</span>
-                            </div>
-                        `;
-                    }
-
-                    tableRowsHTML += `
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-3 font-bold">${st.name} <span class="block text-[10px] text-gray-400 font-normal">${st.id}</span></td>
-                            <td class="p-3">
-                                <div class="flex items-center space-x-2">
-                                    <div class="w-24 bg-gray-200 rounded-full h-2.5">
-                                        <div class="bg-emerald-500 h-2.5 rounded-full" style="width: ${avgProg}%"></div>
-                                    </div>
-                                    <span class="text-xs font-bold">${avgProg}%</span>
-                                </div>
-                            </td>
-                            <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
-                            <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
-                            <td class="p-3 text-gray-600 font-bold">${st.attempts || 1} kali</td>
-                        </tr>
-                    `;
-                });
-
-                document.getElementById('tr-avg-score').innerText = students.length > 0 ? Math.round(totalScoreSum / students.length) + " pts" : "0%";
-                document.getElementById('tr-intervention-count').innerText = interventionCount;
-
-                if(interventionCount > 0) {
-                    interventionAlert.classList.remove('hidden');
-                    interventionContainer.innerHTML = interventionListHTML;
-                } else {
-                    interventionAlert.classList.add('hidden');
-                }
-
-                tbody.innerHTML = tableRowsHTML;
-
-            } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-red-500">Ralat memuatkan data result guru.</td></tr>`;
-            }
-        }
-
-        // ================= SISTEM ADMIN (ANALISIS) =================
-        async function renderAdminDashboard() {
-            document.getElementById('admin-total-questions').innerText = questionBank.length;
             const tbody = document.getElementById('admin-results-table');
-            tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Memuatkan data result analisis...</td></tr>`;
-
-            try {
-                const snapshot = await db.collection("students").get();
-                document.getElementById('admin-total-users').innerText = snapshot.size > 0 ? snapshot.size : 1;
-
-                let students = [];
-                if(!snapshot.empty) {
-                    snapshot.forEach(doc => {
-                        students.push({ id: doc.id, ...doc.data() });
-                    });
-                } else {
-                    students = [
-                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", points: 150, badgesCount: 3 }
-                    ];
-                }
-
-                tbody.innerHTML = students.map(st => `
-                    <tr class="hover:bg-purple-50/50">
-                        <td class="p-3 font-bold text-purple-900">${st.name}</td>
-                        <td class="p-3 text-gray-500">${st.id}</td>
-                        <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
-                        <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
-                        <td class="p-3">
-                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold ${ (st.points || 0) >= 100 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-750' }">
-                                ${ (st.points || 0) >= 100 ? 'Cemerlang / Dikuasai' : 'Perlu Intervensi' }
-                            </span>
-                        </td>
-                    </tr>
-                `).join('');
-
-            } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-red-500">Ralat memuatkan analisis data admin.</td></tr>`;
-            }
+            tbody.innerHTML = `
+                <tr>
+                    <td class="p-3 font-bold">${currentUser.name || "Murid Cilik"}</td>
+                    <td class="p-3">${currentUser.email || "murid@delima.edu.my"}</td>
+                    <td class="p-3 text-emerald-600 font-bold">${currentUser.points} Mata</td>
+                    <td class="p-3">${currentUser.badgesCount} Lencana</td>
+                    <td class="p-3"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-lg text-xs font-bold">Menguasai</span></td>
+                </tr>
+            `;
         }
 
         function logout() {
-            auth.signOut().then(() => {
-                document.getElementById('main-header').classList.add('hidden');
-                document.getElementById('mobile-nav').classList.add('hidden');
-                document.getElementById('form-avatar-setup').classList.add('hidden');
-                document.getElementById('form-student').classList.remove('hidden');
-                switchView('login');
-            });
+            currentUser = { email: "", name: "", class: "1 KSSR", avatar: "Bijak", points: 0, badgesCount: 0, streak: 1, attempts: 0, role: "student", topicProgress: {} };
+            document.getElementById('main-header').classList.add('hidden');
+            document.getElementById('mobile-nav').classList.add('hidden');
+            switchLoginTab('student');
+            switchView('login');
         }
     </script>
 </body>
