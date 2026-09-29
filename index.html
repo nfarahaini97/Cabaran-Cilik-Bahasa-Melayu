@@ -1038,28 +1038,31 @@
         }
 
         function switchView(viewName) {
-            ['login', 'dashboard', 'worlds', 'quiz', 'result', 'badges', 'progress', 'teacher', 'admin'].forEach(v => {
+const views = ['login', 'dashboard', 'worlds', 'quiz', 'result', 'badges', 'progress', 'teacher', 'admin'];
+            views.forEach(v => {
                 const el = document.getElementById(`view-${v}`);
-                if(el) el.classList.add('hidden');
+                if(el) {
+                    if(v === viewName) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                }
             });
-            const target = document.getElementById(`view-${viewName}`);
-            if(target) { target.classList.remove('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            window.scrollTo(0, 0);
         }
 
         function renderTopics() {
             const container = document.getElementById('topics-container');
+            if(!container) return;
             container.innerHTML = Object.keys(topicsData).map(key => {
-                const t = topicsData[key];
+                const topic = topicsData[key];
                 return `
-                    <div onclick="startQuiz('${key}')" class="pastel-card p-5 cursor-pointer hover:border-emerald-400 transition transform hover:-translate-y-1 space-y-3 bg-white">
-                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl">${t.icon}</div>
+                    <div onclick="startQuiz('${key}')" class="pastel-card p-5 cursor-pointer hover:border-emerald-400 transition transform hover:-translate-y-1 flex items-center space-x-4">
+                        <div class="bg-emerald-100 text-emerald-600 w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-inner">${topic.icon}</div>
                         <div>
-                            <h4 class="font-bold text-gray-800 text-base">${t.name}</h4>
-                            <p class="text-xs text-gray-500 mt-0.5">${t.desc}</p>
-                        </div>
-                        <div class="flex justify-between items-center pt-2 border-t border-gray-100 text-xs font-bold text-emerald-600">
-                            <span>${t.questions.length} Soalan</span>
-                            <span>Mula Kuiz <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                            <h3 class="font-bold text-gray-800 text-sm">${topic.name}</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">${topic.desc}</p>
                         </div>
                     </div>
                 `;
@@ -1081,78 +1084,85 @@
             document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada ${topic.questions.length}`;
             document.getElementById('quiz-current-score').innerText = quizScore;
             document.getElementById('quiz-question-text').innerText = q.question;
-            document.getElementById('quiz-feedback').classList.add('hidden');
-            document.getElementById('quiz-next-btn').classList.add('hidden');
-
-            const optContainer = document.getElementById('quiz-options-container');
-            optContainer.innerHTML = q.options.map(opt => `
-                <button type="button" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}', '${q.explanation.replace(/'/g, "\\'")}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
+            
+            const optionsContainer = document.getElementById('quiz-options-container');
+            optionsContainer.innerHTML = q.options.map(opt => `
+                <button onclick="checkAnswer('${opt.replace(/'/g, "\\'")}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-400 hover:bg-emerald-50 font-bold text-sm transition quiz-opt-btn">
                     ${opt}
                 </button>
             `).join('');
+            
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
         }
 
-        function checkAnswer(btnElement, selected, correct, explanation) {
-            const feedback = document.getElementById('quiz-feedback');
-            feedback.classList.remove('hidden');
-
-            document.querySelectorAll('.option-btn').forEach(b => {
-                b.disabled = true;
-                if (b.innerText.trim() === correct.trim()) {
-                    b.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
+        function checkAnswer(selectedOpt) {
+            const topic = topicsData[currentTopicKey];
+            const q = topic.questions[currentQuizIndex];
+            const feedbackEl = document.getElementById('quiz-feedback');
+            
+            const btns = document.querySelectorAll('.quiz-opt-btn');
+            btns.forEach(btn => {
+                btn.disabled = true;
+                if(btn.innerText.trim() === q.answer.trim()) {
+                    btn.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-100 font-bold text-sm transition";
+                } else if(btn.innerText.trim() === selectedOpt.trim()) {
+                    btn.className = "w-full text-left p-4 rounded-xl border-2 border-red-400 bg-red-50 font-bold text-sm transition";
                 }
             });
 
-            if(selected.trim() === correct.trim()) {
+            if(selectedOpt.trim() === q.answer.trim()) {
                 quizScore += 10;
                 playSound('correct');
-                btnElement.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1 shadow-sm";
-                feedback.innerHTML = `🎉 Betul!<br><span class="text-xs font-normal text-emerald-700">${explanation}</span>`;
+                feedbackEl.className = "p-4 rounded-2xl font-bold text-sm space-y-1 bg-emerald-50 text-emerald-800 border border-emerald-200";
+                feedbackEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Betul! ${q.explanation}`;
             } else {
                 playSound('wrong');
-                btnElement.classList.add('border-red-400', 'bg-red-50', 'text-red-900');
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1 shadow-sm";
-                feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b><br><span class="text-xs font-normal text-amber-700">${explanation}</span>`;
+                feedbackEl.className = "p-4 rounded-2xl font-bold text-sm space-y-1 bg-red-50 text-red-800 border border-red-200";
+                feedbackEl.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Kurang tepat. Jawapan betul ialah: <b>${q.answer}</b>. ${q.explanation}`;
             }
+            
+            feedbackEl.classList.remove('hidden');
+            document.getElementById('quiz-current-score').innerText = quizScore;
             document.getElementById('quiz-next-btn').classList.remove('hidden');
         }
 
         function nextQuizQuestion() {
-            const topic = topicsData[currentTopicKey];
             currentQuizIndex++;
+            const topic = topicsData[currentTopicKey];
             if(currentQuizIndex < topic.questions.length) {
                 loadQuizQuestion();
             } else {
-                const earnedPoints = quizScore;
-                currentUser.points += earnedPoints;
-                currentUser.badgesCount += 1;
-                updateHeaderUI();
-
-                document.getElementById('result-message').innerText = `Tahniah! Anda telah menamatkan kuiz ${topic.name}.`;
-                document.getElementById('res-score').innerText = `+${earnedPoints} Mata ⭐`;
-                switchView('result');
-                try { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); } catch(e) {}
-
-                if(currentUser.email) {
-                    db.collection("users").doc(currentUser.email).set({
-                        points: currentUser.points,
-                        badgesCount: currentUser.badgesCount
-                    }, { merge: true }).catch(() => {});
-                }
+                showResult();
             }
+        }
+
+        function showResult() {
+            switchView('result');
+            document.getElementById('res-score').innerText = `+${quizScore} Mata ⭐`;
+            currentUser.points += quizScore;
+            currentUser.badgesCount += 1;
+            updateHeaderUI();
+            
+            db.collection("users").doc(currentUser.email).set({
+                points: currentUser.points,
+                badgesCount: currentUser.badgesCount
+            }, { merge: true }).catch(() => {});
+            
+            try { confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } }); } catch(e) {}
         }
 
         function renderBadges() {
             const grid = document.getElementById('badges-grid');
+            if(!grid) return;
             const badges = [
-                { name: "Juara Bahasa", desc: "Selesaikan topik latihan bahasa", icon: "⭐" },
-                { name: "Pantas Bijak", desc: "Jawab kuiz dengan pantas", icon: "⚡" },
-                { name: "Bintang Cilik", desc: "Kumpul mata ganjaran tertinggi", icon: "🏆" }
+                { name: "Juara Bahasa", desc: "Selesaikan 1 topik kuiz", icon: "🏆" },
+                { name: "Pantas Bijak", desc: "Jawab dengan cemerlang", icon: "⚡" },
+                { name: "Bintang Cilik", desc: "Kumpul 100 mata", icon: "🌟" }
             ];
             grid.innerHTML = badges.map(b => `
-                <div class="pastel-card p-5 text-center space-y-2 bg-white">
-                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow-inner">${b.icon}</div>
+                <div class="pastel-card p-5 text-center space-y-2 bg-amber-50/30">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 mx-auto rounded-full flex items-center justify-center text-3xl shadow-inner">${b.icon}</div>
                     <h4 class="font-bold text-gray-800 text-sm">${b.name}</h4>
                     <p class="text-xs text-gray-500">${b.desc}</p>
                 </div>
@@ -1160,16 +1170,17 @@
         }
 
         function renderProgress() {
-            const container = document.getElementById('full-progress-list');
-            container.innerHTML = Object.keys(topicsData).map(key => {
-                const t = topicsData[key];
+            const list = document.getElementById('full-progress-list');
+            if(!list) return;
+            list.innerHTML = Object.keys(topicsData).map(key => {
+                const topic = topicsData[key];
                 return `
                     <div class="space-y-1">
-                        <div class="flex justify-between text-xs font-bold text-gray-700">
-                            <span>${t.name}</span>
-                            <span>${t.questions.length} Soalan</span>
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-gray-700">${topic.name}</span>
+                            <span class="text-emerald-600">Selesai</span>
                         </div>
-                        <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+                        <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
                             <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
                         </div>
                     </div>
@@ -1177,50 +1188,45 @@
             }).join('');
         }
 
-        async function loadTeacherData() {
-            const tbody = document.getElementById('teacher-students-table');
-            try {
-                const snapshot = await db.collection("users").where("role", "==", "student").get();
-                if(snapshot.empty) {
-                    tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Tiada data murid dijumpai dalam pangkalan data.</td></tr>`;
-                    return;
-                }
-                tbody.innerHTML = "";
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    tbody.innerHTML += `
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-3 font-bold text-gray-800 flex items-center space-x-2">
-                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${data.avatar || 'Bijak'}" class="w-7 h-7 bg-emerald-100 rounded-full">
-                                <span>${data.name}</span>
-                            </td>
-                            <td class="p-3 text-gray-500">${data.email}</td>
-                            <td class="p-3 font-bold text-emerald-600">${data.points || 0} ⭐</td>
-                            <td class="p-3 font-bold text-amber-600">${data.badgesCount || 0} 🏅</td>
-                        </tr>
-                    `;
-                });
-            } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Mod Luar Talian: Memaparkan akaun semasa sahaja.</td></tr>
-                <tr class="hover:bg-gray-50">
-                    <td class="p-3 font-bold text-gray-800 flex items-center space-x-2">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}" class="w-7 h-7 bg-emerald-100 rounded-full">
-                        <span>${currentUser.name}</span>
-                    </td>
-                    <td class="p-3 text-gray-500">${currentUser.email}</td>
-                    <td class="p-3 font-bold text-emerald-600">${currentUser.points} ⭐</td>
-                    <td class="p-3 font-bold text-amber-600">${currentUser.badgesCount} 🏅</td>
-                </tr>`;
-            }
+        function logout() {
+            auth.signOut().catch(() => {});
+            currentUser = { email: "", name: "Murid Cilik", points: 0, badgesCount: 0, avatar: "Bijak", role: "student" };
+            document.getElementById('main-header').classList.add('hidden');
+            document.getElementById('mobile-nav').classList.add('hidden');
+            switchLoginTab('student');
+            switchView('login');
         }
 
-        async function loadAdminData() {
-            try {
-                const snapshot = await db.collection("users").where("role", "==", "student").get();
-                document.getElementById('admin-total-students').innerText = snapshot.size;
-            } catch(e) {
-                document.getElementById('admin-total-students').innerText = "1";
-            }
+        function loadTeacherData() {
+            db.collection("users").where("role", "==", "student").get().then(snapshot => {
+                const tbody = document.getElementById('teacher-students-table');
+                if(!tbody) return;
+                let html = "";
+                snapshot.forEach(doc => {
+                    const d = doc.data();
+                    html += `<tr class="border-b border-gray-50">
+                        <td class="p-3 font-bold text-gray-800">${d.name || '-'}</td>
+                        <td class="p-3 text-gray-500">${d.email || '-'}</td>
+                        <td class="p-3 font-semibold text-amber-600">${d.points || 0} ⭐</td>
+                        <td class="p-3 font-semibold text-emerald-600">${d.badgesCount || 0} 🏅</td>
+                    </tr>`;
+                });
+                tbody.innerHTML = html || '<tr><td colspan="4" class="p-4 text-center text-gray-400">Tiada rekod murid lagi.</td></tr>';
+            }).catch(() => {
+                document.getElementById('teacher-students-table').innerHTML = `
+                    <tr><td class="p-3 font-bold text-gray-800">${currentUser.name}</td><td class="p-3 text-gray-500">${currentUser.email}</td><td class="p-3 font-semibold text-amber-600">${currentUser.points} ⭐</td><td class="p-3 font-semibold text-emerald-600">${currentUser.badgesCount} 🏅</td></tr>
+                `;
+            });
+        }
+
+        function loadAdminData() {
+            db.collection("users").get().then(snapshot => {
+                const totalEl = document.getElementById('admin-total-students');
+                if(totalEl) totalEl.innerText = snapshot.size;
+            }).catch(() => {
+                const totalEl = document.getElementById('admin-total-students');
+                if(totalEl) totalEl.innerText = "1";
+            });
         }
 
         function logout() {
