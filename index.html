@@ -21,7 +21,7 @@
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #F0Fdf4;
+            background-color: #F0FDF4;
             color: #1f2937;
         }
         h1, h2, h3, h4, .font-heading {
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <!-- Desktop Nav Menu (Hanya untuk Murid) -->
+            <!-- Desktop Nav Menu -->
             <nav id="nav-student-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                 <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
                 <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
@@ -98,7 +98,7 @@
                     <i class="fa-solid fa-rocket animate-bounce-short"></i>
                 </div>
                 <h1 class="text-2xl md:text-3xl font-bold text-emerald-600">CABARAN CILIK BAHASA MELAYU</h1>
-                <p class="text-xs md:text-sm text-gray-500 mt-1 italic">“Belajar Kata Nama Am, Kumpul Lencana, Jadi Juara!”</p>
+                <p class="text-xs md:text-sm text-gray-500 mt-1 italic">“Belajar Sambil Bermain, Menjadi Juara Bahasa!”</p>
             </div>
 
             <!-- Tab Pemilihan Peranan -->
@@ -119,28 +119,28 @@
                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
                     </svg>
-                    <span>Log Masuk dengan Google / Gmail</span>
+                    <span>Log Masuk dengan Google / DELIMa</span>
                 </button>
             </div>
 
             <!-- BORANG PEMILIHAN AVATAR -->
             <div id="form-avatar-setup" class="space-y-4 text-left hidden">
                 <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Sila pilih avatar kesukaanmu sebelum mula.
+                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Pilih avatar robot kesukaanmu sebelum mula!
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Pilih Avatar</label>
                     <div id="avatar-selector" class="grid grid-cols-4 gap-2"></div>
                 </div>
                 <button onclick="saveAvatarSelection()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
-                    Simpan & Mula Jawab Kuiz 🚀
+                    Simpan & Mula Bermain 🚀
                 </button>
             </div>
 
             <!-- BORANG GURU & ADMIN -->
             <div id="form-staff" class="space-y-4 text-left hidden">
                 <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID dan kata laluan staf.
+                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID dan kata laluan khusus staf.
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">ID Pengguna</label>
@@ -169,7 +169,7 @@
                 <div class="space-y-2 text-center md:text-left mb-4 md:mb-0">
                     <span class="bg-white/25 px-3 py-1 rounded-full text-xs font-bold tracking-wider">TAHUN 1 KSSR</span>
                     <h2 class="text-2xl md:text-4xl font-bold" id="dash-welcome">Hai, Murid! 👋</h2>
-                    <p class="text-emerald-50 text-sm">Jom jawab 20 soalan kuiz Kata Nama Am hari ini!</p>
+                    <p class="text-emerald-50 text-sm">Terokai dunia pembelajaran bahasa Melayu dan kumpul mata ganjaranmu!</p>
                 </div>
                 <div class="flex space-x-3 bg-white/10 backdrop-blur p-3 rounded-2xl border border-white/25">
                     <div class="text-center px-3 border-r border-white/20">
@@ -183,27 +183,31 @@
                 </div>
             </div>
 
-            <!-- Kad Terus ke Kuiz Kata Nama Am -->
-            <div class="pastel-card bg-emerald-50 border-emerald-200 p-6 flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div class="bg-emerald-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow">📚</div>
+            <!-- Kad Menu Pantas Dunia Pembelajaran -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div onclick="switchView('worlds')" class="pastel-card p-6 cursor-pointer hover:border-emerald-400 transition transform hover:-translate-y-1 flex items-center space-x-4 bg-emerald-50/50">
+                    <div class="bg-emerald-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow">🌍</div>
                     <div>
-                        <h3 class="font-bold text-emerald-900 text-lg">Topik Khas: Kata Nama Am (20 Soalan)</h3>
-                        <p class="text-xs text-emerald-700 mt-0.5">Latihan lengkap soalan pilihan anda berserta pilihan jawapan interaktif.</p>
+                        <h3 class="font-bold text-emerald-900 text-lg">Dunia Pembelajaran</h3>
+                        <p class="text-xs text-gray-500 mt-0.5">Pilih topik kuiz dan jawab soalan latihan.</p>
                     </div>
                 </div>
-                <button onclick="startSpecificQuiz()" class="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg text-sm transition">
-                    Mula Kuiz Sekarang 🎯
-                </button>
+                <div onclick="switchView('badges')" class="pastel-card p-6 cursor-pointer hover:border-amber-400 transition transform hover:-translate-y-1 flex items-center space-x-4 bg-amber-50/50">
+                    <div class="bg-amber-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow">🏆</div>
+                    <div>
+                        <h3 class="font-bold text-amber-900 text-lg">Koleksi Lencana</h3>
+                        <p class="text-xs text-gray-500 mt-0.5">Semak lencana pencapaian hebat yang telah anda menangi.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- VIEW 3: PILIH TOPIK -->
+        <!-- VIEW 3: PILIH TOPIK / DUNIA -->
         <div id="view-worlds" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Senarai Topik Latihan 📚</h2>
-                    <p class="text-xs text-gray-500">Pilih tajuk untuk menjawab kuiz.</p>
+                    <h2 class="text-2xl font-bold text-gray-800">Dunia Pembelajaran 🌍</h2>
+                    <p class="text-xs text-gray-500">Pilih topik untuk mula menjawab soalan kuiz.</p>
                 </div>
                 <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
             </div>
@@ -215,7 +219,7 @@
             <div class="pastel-card p-6 md:p-8 space-y-6">
                 <div class="flex justify-between items-center border-b border-gray-100 pb-4">
                     <div>
-                        <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Kata Nama Am</span>
+                        <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Topik</span>
                         <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 20</h3>
                     </div>
                     <div class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">
@@ -240,16 +244,17 @@
             <div class="w-24 h-24 bg-amber-100 text-amber-500 mx-auto rounded-full flex items-center justify-center text-4xl shadow-inner animate-bounce-short">🏆</div>
             <div>
                 <h2 class="text-2xl font-bold text-gray-800">Tahniah, Hebat! 🎉</h2>
-                <p id="result-message" class="text-sm text-gray-600 mt-1">Kamu telah berjaya menjawab kesemua soalan Kata Nama Am!</p>
+                <p id="result-message" class="text-sm text-gray-600 mt-1">Kamu telah berjaya melengkapkan kuiz dengan cemerlang!</p>
             </div>
             <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
                 <div class="flex justify-between text-sm font-semibold">
-                    <span class="text-gray-500">Markah Diperolehi:</span>
-                    <span id="res-score" class="text-emerald-600 font-bold">+200 Mata ⭐</span>
+                    <span class="text-gray-500">Mata Diperolehi:</span>
+                    <span id="res-score" class="text-emerald-600 font-bold">+0 Mata ⭐</span>
                 </div>
             </div>
             <div class="flex space-x-3 pt-2">
                 <button onclick="switchView('dashboard')" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">Utama</button>
+                <button onclick="switchView('worlds')" class="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm">Pilih Topik Lain</button>
             </div>
         </div>
 
@@ -258,7 +263,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">Lencana Saya 🏅</h2>
-                    <p class="text-xs text-gray-500">Koleksi lencana kejayaan.</p>
+                    <p class="text-xs text-gray-500">Koleksi lencana kejayaan yang telah dibuka.</p>
                 </div>
                 <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 font-bold rounded-xl text-xs">Kembali</button>
             </div>
@@ -270,6 +275,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">Kemajuan Pembelajaran 📊</h2>
+                    <p class="text-xs text-gray-500">Prestasi penguasaan setiap topik.</p>
                 </div>
                 <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 font-bold rounded-xl text-xs">Kembali</button>
             </div>
@@ -279,12 +285,22 @@
         <!-- VIEW 8: GURU -->
         <div id="view-teacher" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
+                <div>
+                    <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
+                    <p class="text-xs text-gray-500">Pantau aktiviti dan pencapaian murid.</p>
+                </div>
                 <button onclick="logout()" class="px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl text-xs">Log Keluar</button>
             </div>
             <div class="pastel-card p-6">
                 <table class="w-full text-left text-sm">
-                    <thead><tr class="bg-gray-50 text-gray-500"><th class="p-3">Nama Murid</th><th class="p-3">Markah</th></tr></thead>
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-500 border-b border-gray-100">
+                            <th class="p-3">Nama Murid</th>
+                            <th class="p-3">Emel</th>
+                            <th class="p-3">Jumlah Mata</th>
+                            <th class="p-3">Lencana</th>
+                        </tr>
+                    </thead>
                     <tbody id="teacher-students-table" class="divide-y divide-gray-100"></tbody>
                 </table>
             </div>
@@ -293,11 +309,24 @@
         <!-- VIEW 9: ADMIN -->
         <div id="view-admin" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
+                <div>
+                    <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
+                    <p class="text-xs text-gray-500">Pengurusan sistem aplikasi.</p>
+                </div>
                 <button onclick="logout()" class="px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl text-xs">Log Keluar</button>
             </div>
-            <div class="pastel-card p-6">
-                <p>Jumlah Soalan Aktif: <b>20 Soalan Kata Nama Am</b></p>
+            <div class="pastel-card p-6 space-y-4">
+                <h3 class="font-bold text-gray-800 text-base">Statistik Sistem</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-center">
+                        <span class="block text-2xl font-bold text-purple-700" id="admin-total-students">0</span>
+                        <span class="text-xs text-gray-500">Jumlah Murid Berdaftar</span>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-center">
+                        <span class="block text-2xl font-bold text-emerald-700">10</span>
+                        <span class="text-xs text-gray-500">Jumlah Topik Pembelajaran</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -338,136 +367,562 @@
             }
         }
 
-        // 20 SOALAN SEBENAR KATA NAMA AM YANG ANDA BERIKAN
-        const kataNamaAmQuestions = [
-            {
-                question: "1. Apakah kata nama am bagi orang yang mengajar murid?",
-                options: ["guru", "sekolah", "buku"],
-                answer: "guru",
-                explanation: "'guru' adalah kata nama am bagi orang yang mengajar murid."
+        // BANK SOALAN (20 TOPIK LENGKAP MASING-MASING 20 SOALAN)
+        const topicsData = {
+            "kata-nama-am": {
+                name: "Kata Nama Am",
+                desc: "Uji kefahaman tentang kata nama am Tahun 1.",
+                icon: "📚",
+                questions: [
+                    { question: "1. Apakah kata nama am bagi orang yang mengajar murid?", options: ["guru", "sekolah", "buku"], answer: "guru", explanation: "'guru' adalah kata nama am bagi orang yang mengajar murid." },
+                    { question: "2. Ali membaca sebuah ___.", options: ["buku", "makan", "cantik"], answer: "buku", explanation: "'buku' ialah kata nama am yang dibaca oleh Ali." },
+                    { question: "3. Ibu membeli ___ di pasar.", options: ["ikan", "berlari", "merah"], answer: "ikan", explanation: "'ikan' ialah kata nama am benda/haiwan yang dibeli di pasar." },
+                    { question: "4. ___ itu sangat besar.", options: ["rumah", "tidur", "manis"], answer: "rumah", explanation: "'rumah' adalah kata nama am binaan." },
+                    { question: "5. Apakah kata nama am bagi tempat murid belajar?", options: ["sekolah", "guru", "pensel"], answer: "sekolah", explanation: "'sekolah' ialah kata nama am bagi tempat belajar." },
+                    { question: "6. Adik bermain dengan ___.", options: ["bola", "cantik", "berlari"], answer: "bola", explanation: "'bola' ialah kata nama am alat permainan." },
+                    { question: "7. Ayah membaca ___ pada waktu pagi.", options: ["surat khabar", "berjalan", "tinggi"], answer: "surat khabar", explanation: "'surat khabar' ialah kata nama am bahan bacaan." },
+                    { question: "8. Kakak menggunakan ___ untuk menulis.", options: ["pensel", "meja", "makan"], answer: "pensel", explanation: "'pensel' ialah alat tulis (kata nama am)." },
+                    { question: "9. ___ itu mempunyai empat kaki.", options: ["kerusi", "membaca", "biru"], answer: "kerusi", explanation: "'kerusi' ialah kata nama am perabot." },
+                    { question: "10. Ibu memasak di ___.", options: ["dapur", "cantik", "menyanyi"], answer: "dapur", explanation: "'dapur' ialah kata nama am ruang di dalam rumah." },
+                    { question: "11. Apakah kata nama am bagi haiwan yang berbunyi “meow”?", options: ["kucing", "pokok", "kereta"], answer: "kucing", explanation: "'kucing' ialah haiwan (kata nama am)." },
+                    { question: "12. Adik minum susu menggunakan ___.", options: ["cawan", "tidur", "besar"], answer: "cawan", explanation: "'cawan' ialah kata nama am bekas air." },
+                    { question: "13. ___ digunakan untuk memadam tulisan pensel.", options: ["pemadam", "buku", "berjalan"], answer: "pemadam", explanation: "'pemadam' ialah kata nama am alat tulis." },
+                    { question: "14. Ayah memandu ___.", options: ["kereta", "membaca", "merah"], answer: "kereta", explanation: "'kereta' ialah kenderaan (kata nama am)." },
+                    { question: "15. Ibu membeli sayur di ___.", options: ["pasar", "sekolah", "pensel"], answer: "pasar", explanation: "'pasar' ialah tempat (kata nama am)." },
+                    { question: "16. ___ tumbuh di dalam tanah.", options: ["pokok", "cantik", "berlari"], answer: "pokok", explanation: "'pokok' ialah tumbuhan (kata nama am)." },
+                    { question: "17. Murid duduk di atas ___.", options: ["kerusi", "buku", "makan"], answer: "kerusi", explanation: "'kerusi' tempat duduk." },
+                    { question: "18. Apakah kata nama am bagi benda yang menunjukkan masa?", options: ["jam", "rumah", "guru"], answer: "jam", explanation: "'jam' menunjukkan masa." },
+                    { question: "19. Adik memakai ___ di kaki.", options: ["kasut", "buku", "meja"], answer: "kasut", explanation: "'kasut' dipakai di kaki." },
+                    { question: "20. Burung membuat sarang di atas ___.", options: ["pokok", "pensel", "sekolah"], answer: "pokok", explanation: "Burung membuat sarang di atas 'pokok'." }
+                ]
             },
-            {
-                question: "2. Ali membaca sebuah ___.",
-                options: ["buku", "makan", "cantik"],
-                answer: "buku",
-                explanation: "'buku' ialah kata nama am yang dibaca oleh Ali."
+            "kata-nama-khas": {
+                name: "Kata Nama Khas",
+                desc: "Kenal pasti nama khas orang, haiwan dan tempat.",
+                icon: "🌟",
+                questions: [
+                    { question: "1. Nama khas bagi negara tempat kita tinggal ialah ___.", options: ["Malaysia", "negara", "sekolah"], answer: "Malaysia", explanation: "'Malaysia' ialah nama khas bagi sebuah negara." },
+                    { question: "2. Nama khas bagi ibu negara Malaysia ialah ___.", options: ["Kuala Lumpur", "bandar", "sekolah"], answer: "Kuala Lumpur", explanation: "'Kuala Lumpur' ialah nama khas ibu negara." },
+                    { question: "3. ___ ialah nama khas bagi seorang murid.", options: ["Aisy", "murid", "kanak-kanak"], answer: "Aisy", explanation: "'Aisy' ialah nama khas orang." },
+                    { question: "4. Nama khas bagi sebuah negeri di Malaysia ialah ___.", options: ["Selangor", "negeri", "kampung"], answer: "Selangor", explanation: "'Selangor' ialah nama khas negeri." },
+                    { question: "5. ___ ialah nama khas bagi seorang guru.", options: ["Cikgu Farah", "guru", "cikgu"], answer: "Cikgu Farah", explanation: "'Cikgu Farah' ialah nama khas guru." },
+                    { question: "6. Nama khas bagi sekolah ialah ___.", options: ["Sekolah Kebangsaan Mutiara", "sekolah", "kelas"], answer: "Sekolah Kebangsaan Mutiara", explanation: "Nama khas sekolah." },
+                    { question: "7. ___ ialah nama khas bagi seekor kucing.", options: ["Oyen", "kucing", "haiwan"], answer: "Oyen", explanation: "'Oyen' ialah nama khas haiwan." },
+                    { question: "8. Nama khas bagi negeri yang terkenal dengan Menara Jam ialah ___.", options: ["Pulau Pinang", "negeri", "bandar"], answer: "Pulau Pinang", explanation: "'Pulau Pinang' ialah nama khas negeri." },
+                    { question: "9. ___ ialah nama khas bagi sebuah sungai.", options: ["Sungai Klang", "sungai", "air"], answer: "Sungai Klang", explanation: "'Sungai Klang' ialah nama khas sungai." },
+                    { question: "10. Nama khas bagi sebuah bandar ialah ___.", options: ["Shah Alam", "bandar", "tempat"], answer: "Shah Alam", explanation: "'Shah Alam' ialah nama khas bandar." },
+                    { question: "11. ___ ialah nama khas bagi sebuah taman.", options: ["Taman Tasik Shah Alam", "taman", "bunga"], answer: "Taman Tasik Shah Alam", explanation: "Nama khas taman." },
+                    { question: "12. Nama khas bagi hari pertama dalam seminggu persekolahan ialah ___.", options: ["Isnin", "hari", "minggu"], answer: "Isnin", explanation: "'Isnin' ialah nama khas hari." },
+                    { question: "13. ___ ialah nama khas bagi bulan selepas Januari.", options: ["Februari", "bulan", "tahun"], answer: "Februari", explanation: "'Februari' ialah nama khas bulan." },
+                    { question: "14. Nama khas bagi sebuah negeri di pantai timur ialah ___.", options: ["Kelantan", "negeri", "kampung"], answer: "Kelantan", explanation: "'Kelantan' ialah nama khas negeri." },
+                    { question: "15. ___ ialah nama khas bagi sebuah zoo.", options: ["Zoo Negara", "zoo", "haiwan"], answer: "Zoo Negara", explanation: "'Zoo Negara' ialah nama khas tempat." },
+                    { question: "16. Nama khas bagi sebuah gunung ialah ___.", options: ["Gunung Kinabalu", "gunung", "bukit"], answer: "Gunung Kinabalu", explanation: "'Gunung Kinabalu' ialah nama khas gunung." },
+                    { question: "17. ___ ialah nama khas bagi sebuah pulau.", options: ["Pulau Langkawi", "pulau", "laut"], answer: "Pulau Langkawi", explanation: "'Pulau Langkawi' ialah nama khas pulau." },
+                    { question: "18. Nama khas bagi seorang murid perempuan ialah ___.", options: ["Siti", "murid", "budak"], answer: "Siti", explanation: "'Siti' ialah nama khas." },
+                    { question: "19. ___ ialah nama khas bagi sebuah sekolah.", options: ["Sekolah Kebangsaan Damai", "sekolah", "kelas"], answer: "Sekolah Kebangsaan Damai", explanation: "Nama khas sekolah." },
+                    { question: "20. Nama khas mesti ditulis dengan huruf ___.", options: ["huruf besar", "huruf kecil", "nombor"], answer: "huruf besar", explanation: "Kata nama khas dimulakan dengan huruf besar." }
+                ]
             },
-            {
-                question: "3. Ibu membeli ___ di pasar.",
-                options: ["ikan", "berlari", "merah"],
-                answer: "ikan",
-                explanation: "'ikan' ialah kata nama am benda/haiwan yang dibeli di pasar."
+            "kata-ganti-nama": {
+                name: "Kata Ganti Nama",
+                desc: "Kenal pasti kata ganti nama diri dengan tepat.",
+                icon: "👤",
+                questions: [
+                    { question: "1. ___ sedang membaca buku.", options: ["Saya", "Buku", "Mereka"], answer: "Saya", explanation: "'Saya' merujuk kepada diri sendiri." },
+                    { question: "2. Ali berkata, “___ hendak bermain bola.”", options: ["Saya", "Kami", "Mereka"], answer: "Saya", explanation: "Ali merujuk dirinya sebagai 'Saya'." },
+                    { question: "3. Aisy dan Siti pergi ke kantin. ___ membeli makanan.", options: ["Mereka", "Dia", "Saya"], answer: "Mereka", explanation: "'Mereka' digunakan untuk orang ramai (dua orang atau lebih)." },
+                    { question: "4. Abu ialah murid yang rajin. ___ selalu menyiapkan kerja sekolah.", options: ["Dia", "Mereka", "Kami"], answer: "Dia", explanation: "'Dia' merujuk kepada orang ketiga (Abu)." },
+                    { question: "5. ___ hendak pergi ke perpustakaan bersama-sama.", options: ["Kami", "Dia", "Kamu"], answer: "Kami", explanation: "'Kami' merujuk kepada penutur bersama kawan-kawan." },
+                    { question: "6. “Adakah ___ sudah makan?” tanya ibu kepada adik.", options: ["kamu", "saya", "mereka"], answer: "kamu", explanation: "'kamu' merujuk kepada pendengar." },
+                    { question: "7. ___ sedang membaca buku itu. (merujuk kepada perempuan)", options: ["Dia", "Mereka", "Kami"], answer: "Dia", explanation: "'Dia' digunakan untuk merujuk orang ketiga perempuan." },
+                    { question: "8. “___ akan membantu cikgu,” kata Amir dan Danial.", options: ["Kami", "Dia", "Saya"], answer: "Kami", explanation: "'Kami' merujuk kepada diri penutur dan rakan." },
+                    { question: "9. ___ ialah sahabat saya. (seorang lelaki)", options: ["Dia", "Mereka", "Kami"], answer: "Dia", explanation: "'Dia' merujuk kepada sahabat lelaki." },
+                    { question: "10. “___ perlu menjaga kebersihan kelas,” kata guru kepada murid-murid.", options: ["Kamu", "Saya", "Dia"], answer: "Kamu", explanation: "'Kamu' ditujukan kepada murid-murid." },
+                    { question: "11. ___ sedang bermain di taman. (ramai kanak-kanak)", options: ["Mereka", "Dia", "Saya"], answer: "Mereka", explanation: "'Mereka' merujuk ramai orang." },
+                    { question: "12. “___ suka makan nasi,” kata Aisy.", options: ["Saya", "Mereka", "Kamu"], answer: "Saya", explanation: "Aisy menggunakan 'Saya'." },
+                    { question: "13. ___ akan pergi ke sekolah bersama abang. (penutur)", options: ["Saya", "Dia", "Mereka"], answer: "Saya", explanation: "Merujuk diri sendiri." },
+                    { question: "14. “___ jangan bising,” kata guru kepada murid.", options: ["Kamu", "Saya", "Dia"], answer: "Kamu", explanation: "Arahan kepada pendengar." },
+                    { question: "15. Ali dan Abu ialah adik-beradik. ___ tinggal di Shah Alam.", options: ["Mereka", "Dia", "Saya"], answer: "Mereka", explanation: "Merujuk dua orang beradik." },
+                    { question: "16. Ibu berkata kepada saya, “___ perlu belajar bersungguh-sungguh.”", options: ["Kamu", "Mereka", "Dia"], answer: "Kamu", explanation: "Ibu bercakap kepada saya (kamu)." },
+                    { question: "17. ___ sedang makan nasi. (seorang perempuan)", options: ["Dia", "Mereka", "Kami"], answer: "Dia", explanation: "Merujuk perempuan tunggal." },
+                    { question: "18. “___ akan datang esok,” kata ayah dan ibu.", options: ["Kami", "Dia", "Kamu"], answer: "Kami", explanation: "Ayah dan ibu merujuk diri mereka sebagai 'Kami'." },
+                    { question: "19. ___ ialah murid Tahun 1. (penutur)", options: ["Saya", "Mereka", "Dia"], answer: "Saya", explanation: "Merujuk diri sendiri." },
+                    { question: "20. ___ sedang bermain bola di padang. (Ali dan Amir)", options: ["Mereka", "Dia", "Saya"], answer: "Mereka", explanation: "Merujuk Ali dan Amir." }
+                ]
             },
-            {
-                question: "4. ___ itu sangat besar.",
-                options: ["rumah", "tidur", "manis"],
-                answer: "rumah",
-                explanation: "'rumah' adalah kata nama am binaan."
+            "penjodoh-bilangan": {
+                name: "Penjodoh Bilangan",
+                desc: "Uji penggunaan penjodoh bilangan yang betul.",
+                icon: "📦",
+                questions: [
+                    { question: "1. Sebiji ___.", options: ["epal", "pensel", "orang"], answer: "epal", explanation: "Sebiji epal." },
+                    { question: "2. Sebatang ___.", options: ["pensel", "buku", "ikan"], answer: "pensel", explanation: "Sebatang pensel." },
+                    { question: "3. Sebuah ___.", options: ["rumah", "kucing", "bunga"], answer: "rumah", explanation: "Sebuah rumah." },
+                    { question: "4. Seekor ___.", options: ["kucing", "buku", "rumah"], answer: "kucing", explanation: "Seekor kucing." },
+                    { question: "5. Seorang ___.", options: ["guru", "pensel", "kereta"], answer: "guru", explanation: "Seorang guru." },
+                    { question: "6. Sebuah ___.", options: ["kereta", "ayam", "bunga"], answer: "kereta", explanation: "Sebuah kereta." },
+                    { question: "7. Sekuntum ___.", options: ["bunga", "buku", "pensel"], answer: "bunga", explanation: "Sekuntum bunga." },
+                    { question: "8. Sebuah ___.", options: ["sekolah", "burung", "epal"], answer: "sekolah", explanation: "Sebuah sekolah." },
+                    { question: "9. Sehelai ___.", options: ["baju", "pensel", "rumah"], answer: "baju", explanation: "Sehelai baju." },
+                    { question: "10. Sebuah ___.", options: ["basikal", "kucing", "bunga"], answer: "basikal", explanation: "Sebuah basikal." },
+                    { question: "11. Seekor ___.", options: ["ayam", "meja", "buku"], answer: "ayam", explanation: "Seekor ayam." },
+                    { question: "12. Sebatang ___.", options: ["pokok", "rumah", "kereta"], answer: "pokok", explanation: "Sebatang pokok." },
+                    { question: "13. Sebilah ___.", options: ["pisau", "buku", "bunga"], answer: "pisau", explanation: "Sebilah pisau." },
+                    { question: "14. Sebuah ___.", options: ["kapal", "burung", "pensel"], answer: "kapal", explanation: "Sebuah kapal." },
+                    { question: "15. Seutas ___.", options: ["tali", "rumah", "buku"], answer: "tali", explanation: "Seutas tali." },
+                    { question: "16. Sebiji ___.", options: ["telur", "baju", "meja"], answer: "telur", explanation: "Sebiji telur." },
+                    { question: "17. Sebentuk ___.", options: ["cincin", "buku", "pokok"], answer: "cincin", explanation: "Sebentuk cincin." },
+                    { question: "18. Sebuah ___.", options: ["komputer", "ikan", "bunga"], answer: "komputer", explanation: "Sebuah komputer." },
+                    { question: "19. Seorang ___.", options: ["murid", "buku", "kereta"], answer: "murid", explanation: "Seorang murid." },
+                    { question: "20. Sebakul ___.", options: ["buah", "pensel", "rumah"], answer: "buah", explanation: "Sebakul buah." }
+                ]
             },
-            {
-                question: "5. Apakah kata nama am bagi tempat murid belajar?",
-                options: ["sekolah", "guru", "pensel"],
-                answer: "sekolah",
-                explanation: "'sekolah' ialah kata nama am bagi tempat belajar."
+            "kata-kerja": {
+                name: "Kata Kerja",
+                desc: "Kenal pasti perlakuan atau perbuatan harian.",
+                icon: "🏃‍♂️",
+                questions: [
+                    { question: "1. Ali sedang ___ bola.", options: ["bermain", "cantik", "meja"], answer: "bermain", explanation: "'bermain' ialah kata kerja." },
+                    { question: "2. Ibu sedang ___ nasi.", options: ["memasak", "merah", "buku"], answer: "memasak", explanation: "'memasak' ialah perbuatan." },
+                    { question: "3. Adik ___ susu.", options: ["minum", "besar", "rumah"], answer: "minum", explanation: "'minum' ialah perbuatan." },
+                    { question: "4. Ayah ___ kereta.", options: ["memandu", "biru", "tinggi"], answer: "memandu", explanation: "'memandu' ialah perbuatan." },
+                    { question: "5. Siti ___ buku.", options: ["membaca", "cantik", "pensel"], answer: "membaca", explanation: "'membaca' ialah perbuatan." },
+                    { question: "6. Murid-murid ___ di dalam kelas.", options: ["belajar", "merah", "meja"], answer: "belajar", explanation: "'belajar' ialah perbuatan." },
+                    { question: "7. Kakak ___ lagu.", options: ["menyanyi", "panjang", "sekolah"], answer: "menyanyi", explanation: "'menyanyi' ialah perbuatan." },
+                    { question: "8. Adik ___ di atas katil.", options: ["tidur", "putih", "bantal"], answer: "tidur", explanation: "'tidur' ialah perbuatan." },
+                    { question: "9. Ali ___ dengan cepat.", options: ["berlari", "tinggi", "rumah"], answer: "berlari", explanation: "'berlari' ialah perbuatan." },
+                    { question: "10. Ibu ___ baju.", options: ["mencuci", "biru", "cantik"], answer: "mencuci", explanation: "'mencuci' ialah perbuatan." },
+                    { question: "11. Ayah ___ surat khabar.", options: ["membaca", "besar", "kereta"], answer: "membaca", explanation: "'membaca' ialah perbuatan." },
+                    { question: "12. Adik ___ tangan sebelum makan.", options: ["membasuh", "panjang", "merah"], answer: "membasuh", explanation: "'membasuh' ialah perbuatan." },
+                    { question: "13. Aisy ___ gambar.", options: ["melukis", "cantik", "meja"], answer: "melukis", explanation: "'melukis' ialah perbuatan." },
+                    { question: "14. Murid ___ soalan guru.", options: ["menjawab", "biru", "buku"], answer: "menjawab", explanation: "'menjawab' ialah perbuatan." },
+                    { question: "15. Abang ___ basikal.", options: ["menunggang", "kecil", "rumah"], answer: "menunggang", explanation: "'menunggang' ialah perbuatan." },
+                    { question: "16. Ibu ___ bunga di taman.", options: ["menyiram", "cantik", "hijau"], answer: "menyiram", explanation: "'menyiram' ialah perbuatan." },
+                    { question: "17. Ali ___ bola kepada rakannya.", options: ["menendang", "besar", "merah"], answer: "menendang", explanation: "'menendang' ialah perbuatan." },
+                    { question: "18. Siti ___ pintu.", options: ["membuka", "tinggi", "biru"], answer: "membuka", explanation: "'membuka' ialah perbuatan." },
+                    { question: "19. Ayah ___ buku di atas meja.", options: ["meletakkan", "cantik", "panjang"], answer: "meletakkan", explanation: "'meletakkan' ialah perbuatan." },
+                    { question: "20. Murid-murid ___ tangan sebelum masuk kelas.", options: ["berbaris", "manis", "meja"], answer: "berbaris", explanation: "'berbaris' ialah perbuatan." }
+                ]
             },
-            {
-                question: "6. Adik bermain dengan ___.",
-                options: ["bola", "cantik", "berlari"],
-                answer: "bola",
-                explanation: "'bola' ialah kata nama am alat permainan."
+            "kata-adjektif": {
+                name: "Kata Adjektif",
+                desc: "Kenal pasti sifat atau keadaan sesuatu.",
+                icon: "🎨",
+                questions: [
+                    { question: "1. Rumah itu sangat ___.", options: ["besar", "berlari", "buku"], answer: "besar", explanation: "'besar' ialah kata adjektif saiz." },
+                    { question: "2. Bunga itu berwarna ___.", options: ["merah", "membaca", "meja"], answer: "merah", explanation: "'merah' ialah kata adjektif warna." },
+                    { question: "3. Gula itu rasanya ___.", options: ["manis", "berlari", "buku"], answer: "manis", explanation: "'manis' ialah kata adjektif rasa." },
+                    { question: "4. Air limau itu sangat ___.", options: ["masam", "tidur", "sekolah"], answer: "masam", explanation: "'masam' ialah kata adjektif rasa." },
+                    { question: "5. Batu itu sangat ___.", options: ["keras", "menyanyi", "rumah"], answer: "keras", explanation: "'keras' ialah kata adjektif sifatan." },
+                    { question: "6. Kapas itu sangat ___.", options: ["lembut", "berlari", "pensel"], answer: "lembut", explanation: "'lembut' ialah kata adjektif sifatan." },
+                    { question: "7. Adik kelihatan ___ hari ini.", options: ["gembira", "meja", "makan"], answer: "gembira", explanation: "'gembira' ialah kata adjektif perasaan." },
+                    { question: "8. Beg itu sangat ___.", options: ["berat", "menyanyi", "buku"], answer: "berat", explanation: "'berat' ialah kata adjektif ukuran berat." },
+                    { question: "9. Bulu arnab itu ___.", options: ["lembut", "berlari", "sekolah"], answer: "lembut", explanation: "'lembut' ialah sifatan bulu." },
+                    { question: "10. Jalan itu sangat ___.", options: ["panjang", "makan", "guru"], answer: "panjang", explanation: "'panjang' ialah kata adjektif bentuk." },
+                    { question: "11. Pokok itu sangat ___.", options: ["tinggi", "membaca", "pensel"], answer: "tinggi", explanation: "'tinggi' ialah kata adjektif ukuran." },
+                    { question: "12. Semut itu sangat ___.", options: ["kecil", "menyanyi", "rumah"], answer: "kecil", explanation: "'kecil' ialah kata adjektif saiz." },
+                    { question: "13. Air itu sangat ___.", options: ["sejuk", "berlari", "meja"], answer: "sejuk", explanation: "'sejuk' ialah kata adjektif suhu." },
+                    { question: "14. Api itu sangat ___.", options: ["panas", "buku", "tidur"], answer: "panas", explanation: "'panas' ialah kata adjektif suhu." },
+                    { question: "15. Bilik itu ___ dan kemas.", options: ["bersih", "membaca", "kerusi"], answer: "bersih", explanation: "'bersih' ialah kata adjektif keaadan." },
+                    { question: "16. Adik berasa ___ kerana kehilangan mainan.", options: ["sedih", "meja", "makan"], answer: "sedih", explanation: "'sedih' ialah kata adjektif perasaan." },
+                    { question: "17. Suara penyanyi itu sangat ___.", options: ["merdu", "berlari", "buku"], answer: "merdu", explanation: "'merdu' ialah sifat suara." },
+                    { question: "18. Air kopi itu ___.", options: ["pahit", "tidur", "sekolah"], answer: "pahit", explanation: "'pahit' ialah kata adjektif rasa." },
+                    { question: "19. Kotak itu sangat ___.", options: ["ringan", "menyanyi", "pensel"], answer: "ringan", explanation: "'ringan' ialah lawan berat." },
+                    { question: "20. Langit kelihatan ___ pada hari yang cerah.", options: ["biru", "makan", "buku"], answer: "biru", explanation: "'biru' ialah warna langit." }
+                ]
             },
-            {
-                question: "7. Ayah membaca ___ pada waktu pagi.",
-                options: ["surat khabar", "berjalan", "tinggi"],
-                answer: "surat khabar",
-                explanation: "'surat khabar' ialah kata nama am bahan bacaan."
+            "kata-hubung": {
+                name: "Kata Hubung",
+                desc: "Uji penggunaan kata hubung (dan, atau, kerana, dll).",
+                icon: "🔗",
+                questions: [
+                    { question: "1. Ali ___ Abu bermain bola.", options: ["dan", "di", "siapa"], answer: "dan", explanation: "'dan' menggabungkan dua subjek." },
+                    { question: "2. Saya suka nasi ___ ayam.", options: ["dan", "ke", "kerana"], answer: "dan", explanation: "'dan' menyambung pilihan makanan." },
+                    { question: "3. Ibu memasak ___ ayah membaca surat khabar.", options: ["manakala", "di", "siapa"], answer: "manakala", explanation: "'manakala' menyatakan dua perbuatan berlaku serentak." },
+                    { question: "4. Saya tidak pergi ke sekolah ___ saya sakit.", options: ["kerana", "dan", "atau"], answer: "kerana", explanation: "'kerana' menunjukkan sebab." },
+                    { question: "5. Kamu mahu susu ___ jus?", options: ["atau", "dan", "kerana"], answer: "atau", explanation: "'atau' menunjukkan pilihan." },
+                    { question: "6. Ali makan nasi ___ minum air.", options: ["lalu", "siapa", "di"], answer: "lalu", explanation: "'lalu' menunjukkan perbuatan berurutan." },
+                    { question: "7. Adik menangis ___ terjatuh.", options: ["kerana", "dan", "atau"], answer: "kerana", explanation: "'kerana' menyatakan sebab." },
+                    { question: "8. Saya membawa pensel ___ pemadam.", options: ["dan", "kerana", "tetapi"], answer: "dan", explanation: "'dan' menggabungkan objek." },
+                    { question: "9. Kakak mahu membaca ___ menonton televisyen?", options: ["atau", "dan", "kerana"], answer: "atau", explanation: "'atau' untuk pilihan." },
+                    { question: "10. Hari hujan, ___ kami bermain di dalam rumah.", options: ["lalu", "siapa", "ke"], answer: "lalu", explanation: "'lalu' menunjukkan tindakan susulan." },
+                    { question: "11. Ali kecil ___ adiknya lebih kecil.", options: ["tetapi", "dan", "kerana"], answer: "tetapi", explanation: "'tetapi' menunjukkan pertentangan." },
+                    { question: "12. Saya mahu pergi ke taman ___ hari tidak hujan.", options: ["jika", "dan", "siapa"], answer: "jika", explanation: "'jika' menunjukkan syarat." },
+                    { question: "13. Ibu membeli ikan ___ sayur.", options: ["dan", "tetapi", "kerana"], answer: "dan", explanation: "'dan' menyambung barang." },
+                    { question: "14. Adik tidur ___ abang bermain.", options: ["manakala", "atau", "siapa"], answer: "manakala", explanation: "'manakala' menyatakan perbuatan berbeza serentak." },
+                    { question: "15. Kami tidak bermain di padang ___ hujan.", options: ["kerana", "dan", "atau"], answer: "kerana", explanation: "'kerana' menyatakan sebab." },
+                    { question: "16. Kamu mahu pensel merah ___ biru?", options: ["atau", "dan", "kerana"], answer: "atau", explanation: "'atau' pilihan warna." },
+                    { question: "17. Ali rajin ___ adiknya malas.", options: ["tetapi", "dan", "kerana"], answer: "tetapi", explanation: "'tetapi' menunjukkan perbezaan sifat." },
+                    { question: "18. Saya belajar bersungguh-sungguh ___ mahu berjaya.", options: ["kerana", "atau", "tetapi"], answer: "kerana", explanation: "'kerana' menunjukkan sebab." },
+                    { question: "19. Ibu menyapu lantai ___ kakak mengemas bilik.", options: ["manakala", "atau", "siapa"], answer: "manakala", explanation: "'manakala' perbuatan serentak." },
+                    { question: "20. Ayah membeli roti ___ susu.", options: ["dan", "kerana", "tetapi"], answer: "dan", explanation: "'dan' menyambung objek." }
+                ]
             },
-            {
-                question: "8. Kakak menggunakan ___ untuk menulis.",
-                options: ["pensel", "meja", "makan"],
-                answer: "pensel",
-                explanation: "'pensel' ialah alat tulis (kata nama am)."
+            "kata-sendi-nama": {
+                name: "Kata Sendi Nama",
+                desc: "Kenal pasti kata sendi (di, ke, dari, daripada, dll).",
+                icon: "📍",
+                questions: [
+                    { question: "1. Buku itu ada ___ atas meja.", options: ["di", "ke", "dari"], answer: "di", explanation: "'di' digunakan untuk tempat." },
+                    { question: "2. Ali pergi ___ sekolah.", options: ["ke", "di", "daripada"], answer: "ke", explanation: "'ke' menunjukkan arah tempat." },
+                    { question: "3. Saya datang ___ rumah nenek.", options: ["dari", "di", "ke"], answer: "dari", explanation: "'dari' menunjukkan arah asal tempat." },
+                    { question: "4. Hadiah ini ___ ibu.", options: ["daripada", "di", "ke"], answer: "daripada", explanation: "'daripada' untuk sumber atau pemberi." },
+                    { question: "5. Ayah bekerja ___ Kuala Lumpur.", options: ["di", "ke", "daripada"], answer: "di", explanation: "'di' menunjukkan tempat." },
+                    { question: "6. Kami akan pergi ___ taman.", options: ["ke", "di", "dari"], answer: "ke", explanation: "'ke' arah tempat." },
+                    { question: "7. Ali mengambil buku ___ dalam beg.", options: ["dari", "ke", "daripada"], answer: "dari", explanation: "'dari' arah tempat." },
+                    { question: "8. Saya menerima hadiah ___ cikgu.", options: ["daripada", "di", "ke"], answer: "daripada", explanation: "'daripada' sumber (orang)." },
+                    { question: "9. Bola itu berada ___ bawah meja.", options: ["di", "ke", "dari"], answer: "di", explanation: "'di' tempat kedudukan." },
+                    { question: "10. Kami pulang ___ sekolah pada pukul satu.", options: ["dari", "ke", "di"], answer: "dari", explanation: "'dari' tempat asal." },
+                    { question: "11. Kakak pergi ___ kedai.", options: ["ke", "di", "daripada"], answer: "ke", explanation: "'ke' arah tempat." },
+                    { question: "12. Ibu membeli buah ___ pasar.", options: ["dari", "ke", "di"], answer: "dari", explanation: "'dari' punca tempat." },
+                    { question: "13. Surat itu ___ ayah.", options: ["daripada", "ke", "di"], answer: "daripada", explanation: "'daripada' pengirim surat." },
+                    { question: "14. Murid-murid berkumpul ___ dewan.", options: ["di", "ke", "daripada"], answer: "di", explanation: "'di' lokasi dewan." },
+                    { question: "15. Mereka berjalan ___ sekolah.", options: ["ke", "di", "daripada"], answer: "ke", explanation: "'ke' destinasi." },
+                    { question: "16. Saya berasal ___ Selangor.", options: ["dari", "di", "ke"], answer: "dari", explanation: "'dari' tempat asal." },
+                    { question: "17. Hadiah itu diberikan ___ guru.", options: ["daripada", "ke", "di"], answer: "daripada", explanation: "'daripada' pemberi." },
+                    { question: "18. Ayah pergi ___ pejabat.", options: ["ke", "di", "dari"], answer: "ke", explanation: "'ke' arah pejabat." },
+                    { question: "19. Kucing tidur ___ bawah kerusi.", options: ["di", "ke", "daripada"], answer: "di", explanation: "'di' lokasi." },
+                    { question: "20. Saya mendapat buku ___ kakak.", options: ["daripada", "di", "ke"], answer: "daripada", explanation: "'daripada' punca pemberi." }
+                ]
             },
-            {
-                question: "9. ___ itu mempunyai empat kaki.",
-                options: ["kerusi", "membaca", "biru"],
-                answer: "kerusi",
-                explanation: "'kerusi' ialah kata nama am perabot."
+            "kata-tanya": {
+                name: "Kata Tanya",
+                desc: "Uji penggunaan kata tanya (siapa, apa, bila, di mana, dll).",
+                icon: "❓",
+                questions: [
+                    { question: "1. ___ nama kamu?", options: ["Siapa", "Apa", "Bila"], answer: "Siapa", explanation: "'Siapa' untuk nama orang." },
+                    { question: "2. ___ nama kamu?", options: ["Apa", "Siapa", "Mana"], answer: "Apa", explanation: "'Apa' untuk benda/perkara." },
+                    { question: "3. ___ kamu tinggal?", options: ["Di mana", "Siapa", "Bila"], answer: "Di mana", explanation: "'Di mana' untuk tempat." },
+                    { question: "4. ___ kamu pergi ke sekolah?", options: ["Bagaimana", "Siapa", "Apa"], answer: "Bagaimana", explanation: "'Bagaimana' untuk cara." },
+                    { question: "5. ___ hari kamu lahir?", options: ["Bila", "Siapa", "Apa"], answer: "Bila", explanation: "'Bila' untuk masa/hari." },
+                    { question: "6. ___ yang sedang membaca buku?", options: ["Siapa", "Apa", "Mana"], answer: "Siapa", explanation: "'Siapa' untuk subjek orang." },
+                    { question: "7. ___ warna kegemaran kamu?", options: ["Apa", "Siapa", "Bila"], answer: "Apa", explanation: "'Apa' untuk warna." },
+                    { question: "8. ___ kamu datang lewat?", options: ["Mengapa", "Siapa", "Mana"], answer: "Mengapa", explanation: "'Mengapa' untuk sebab." },
+                    { question: "9. ___ kamu membeli pensel itu?", options: ["Di mana", "Siapa", "Bila"], answer: "Di mana", explanation: "'Di mana' untuk lokasi." },
+                    { question: "10. ___ cara membuat kek ini?", options: ["Bagaimana", "Siapa", "Apa"], answer: "Bagaimana", explanation: "'Bagaimana' untuk cara." },
+                    { question: "11. ___ yang datang ke rumah kamu?", options: ["Siapa", "Apa", "Bila"], answer: "Siapa", explanation: "'Siapa' untuk orang." },
+                    { question: "12. ___ kamu menangis?", options: ["Mengapa", "Mana", "Siapa"], answer: "Mengapa", explanation: "'Mengapa' untuk sebab." },
+                    { question: "13. ___ buku kamu?", options: ["Mana", "Siapa", "Bila"], answer: "Mana", explanation: "'Mana' untuk kedudukan benda." },
+                    { question: "14. ___ kamu akan pergi bercuti?", options: ["Bila", "Apa", "Siapa"], answer: "Bila", explanation: "'Bila' untuk masa." },
+                    { question: "15. ___ makanan kegemaran kamu?", options: ["Apa", "Siapa", "Di mana"], answer: "Apa", explanation: "'Apa' untuk makanan." },
+                    { question: "16. ___ kamu pergi ke sekolah?", options: ["Bagaimana", "Siapa", "Mana"], answer: "Bagaimana", explanation: "'Bagaimana' untuk cara pengangkutan." },
+                    { question: "17. ___ rumah kamu?", options: ["Di mana", "Siapa", "Bila"], answer: "Di mana", explanation: "'Di mana' lokasi rumah." },
+                    { question: "18. ___ yang mengetuk pintu?", options: ["Siapa", "Apa", "Mengapa"], answer: "Siapa", explanation: "'Siapa' orang yang mengetuk." },
+                    { question: "19. ___ kamu tidak hadir ke sekolah?", options: ["Mengapa", "Mana", "Apa"], answer: "Mengapa", explanation: "'Mengapa' sebab ketidakhadiran." },
+                    { question: "20. ___ kamu mahu makan?", options: ["Apa", "Siapa", "Bila"], answer: "Apa", explanation: "'Apa' pilihan makanan." }
+                ]
             },
-            {
-                question: "10. Ibu memasak di ___.",
-                options: ["dapur", "cantik", "menyanyi"],
-                answer: "dapur",
-                explanation: "'dapur' ialah kata nama am ruang di dalam rumah."
+            "kata-perintah": {
+                name: "Kata Perintah",
+                desc: "Uji ayat perintah, larangan dan silaan.",
+                icon: "🛑",
+                questions: [
+                    { question: "1. ___ pintu itu!", options: ["Bukalah", "Siapakah", "Wah"], answer: "Bukalah", explanation: "Ayat silaan/permintaan." },
+                    { question: "2. ___ buku kamu!", options: ["Bacalah", "Mengapa", "Aduh"], answer: "Bacalah", explanation: "Ayat suruhan." },
+                    { question: "3. ___ dengan senyap!", options: ["Duduklah", "Siapa", "Wah"], answer: "Duduklah", explanation: "Ayat suruhan." },
+                    { question: "4. ___ tangan sebelum makan!", options: ["Basuhlah", "Apakah", "Amboi"], answer: "Basuhlah", explanation: "Ayat suruhan." },
+                    { question: "5. ___ barisan dengan betul!", options: ["Beraturlah", "Siapakah", "Wah"], answer: "Beraturlah", explanation: "Ayat suruhan." },
+                    { question: "6. ___ bola itu!", options: ["Tendanglah", "Mengapa", "Aduh"], answer: "Tendanglah", explanation: "Ayat suruhan." },
+                    { question: "7. ___ sampah ke dalam tong!", options: ["Buanglah", "Siapa", "Wah"], answer: "Buanglah", explanation: "Ayat suruhan." },
+                    { question: "8. ___ buku di atas meja!", options: ["Letakkan", "Apakah", "Aduh"], answer: "Letakkan", explanation: "Ayat suruhan." },
+                    { question: "9. ___ suara kamu!", options: ["Perlahankan", "Siapakah", "Wah"], answer: "Perlahankan", explanation: "Ayat suruhan." },
+                    { question: "10. ___ pintu sebelum keluar!", options: ["Tutupkan", "Mengapa", "Amboi"], answer: "Tutupkan", explanation: "Ayat suruhan." },
+                    { question: "11. ___ dengan berhati-hati!", options: ["Berjalanlah", "Siapa", "Aduh"], answer: "Berjalanlah", explanation: "Ayat suruhan." },
+                    { question: "12. ___ kerja sekolah kamu!", options: ["Siapkan", "Apakah", "Wah"], answer: "Siapkan", explanation: "Ayat suruhan." },
+                    { question: "13. ___ kepada guru!", options: ["Dengarlah", "Mengapa", "Siapakah"], answer: "Dengarlah", explanation: "Ayat suruhan." },
+                    { question: "14. ___ tangan kamu!", options: ["Angkatlah", "Siapa", "Aduh"], answer: "Angkatlah", explanation: "Ayat suruhan." },
+                    { question: "15. ___ makanan itu!", options: ["Makanlah", "Apakah", "Wah"], answer: "Makanlah", explanation: "Ayat silaan." },
+                    { question: "16. ___ air secukupnya!", options: ["Minumlah", "Mengapa", "Siapakah"], answer: "Minumlah", explanation: "Ayat silaan." },
+                    { question: "17. ___ tempat duduk kamu!", options: ["Kemaslah", "Wah", "Apa"], answer: "Kemaslah", explanation: "Ayat suruhan." },
+                    { question: "18. ___ di dalam kelas!", options: ["Jangan berlari", "Siapakah", "Aduh"], answer: "Jangan berlari", explanation: "Ayat larangan." },
+                    { question: "19. ___ bising!", options: ["Jangan", "Siapa", "Wah"], answer: "Jangan", explanation: "Ayat larangan." },
+                    { question: "20. ___ dahulu sebelum menjawab!", options: ["Fikirlah", "Mengapa", "Aduh"], answer: "Fikirlah", explanation: "Ayat suruhan." }
+                ]
+            };
+        "kata-seru": {
+                name: "Topik 11: Kata Seru",
+                desc: "Uji kefahaman mengenai penggunaan kata seru.",
+                icon: "😲",
+                questions: [
+                    { question: "1. ___, cantiknya bunga itu!", options: ["Wah", "Siapa", "Mengapa"], answer: "Wah", explanation: "'Wah' digunakan untuk menyatakan rasa kagum." },
+                    { question: "2. ___, sakitnya kaki saya!", options: ["Aduh", "Apa", "Bila"], answer: "Aduh", explanation: "'Aduh' digunakan untuk menyatakan rasa sakit." },
+                    { question: "3. ___, besarnya rumah itu!", options: ["Amboi", "Siapa", "Mana"], answer: "Amboi", explanation: "'Amboi' digunakan untuk menyatakan perasaan hairan atau kagum." },
+                    { question: "4. ___, kamu sudah sampai!", options: ["Oh", "Apa", "Mengapa"], answer: "Oh", explanation: "'Oh' menyatakan rasa terkejut atau kehairanan." },
+                    { question: "5. ___, pandainya murid itu!", options: ["Wah", "Siapa", "Bila"], answer: "Wah", explanation: "'Wah' menyatakan rasa kagum." },
+                    { question: "6. ___, sedapnya makanan ini!", options: ["Amboi", "Mana", "Siapa"], answer: "Amboi", explanation: "'Amboi' menyatakan rasa kagum terhadap makanan." },
+                    { question: "7. ___, sakitnya tangan saya!", options: ["Aduh", "Apa", "Bila"], answer: "Aduh", explanation: "'Aduh' menyatakan rasa sakit." },
+                    { question: "8. ___, cantiknya baju kamu!", options: ["Wah", "Mengapa", "Siapa"], answer: "Wah", explanation: "'Wah' menyatakan rasa kagum." },
+                    { question: "9. ___, terkejut saya!", options: ["Oh", "Apa", "Mana"], answer: "Oh", explanation: "'Oh' menyatakan rasa terkejut." },
+                    { question: "10. ___, rajinnya kamu!", options: ["Amboi", "Siapa", "Bila"], answer: "Amboi", explanation: "'Amboi' menyatakan rasa kagum." },
+                    { question: "11. ___, jatuhnya buku saya!", options: ["Aduh", "Apa", "Siapa"], answer: "Aduh", explanation: "'Aduh' menyatakan rasa kesal atau sakit." },
+                    { question: "12. ___, indahnya pemandangan ini!", options: ["Wah", "Mengapa", "Bila"], answer: "Wah", explanation: "'Wah' menyatakan rasa kagum." },
+                    { question: "13. ___, saya terlupa membawa pensel!", options: ["Aduh", "Siapa", "Mana"], answer: "Aduh", explanation: "'Aduh' menyatakan rasa kesal." },
+                    { question: "14. ___, tingginya pokok itu!", options: ["Amboi", "Apa", "Bila"], answer: "Amboi", explanation: "'Amboi' menyatakan rasa kagum." },
+                    { question: "15. ___, kamu rupanya!", options: ["Oh", "Siapa", "Mengapa"], answer: "Oh", explanation: "'Oh' menyatakan rasa terkejut apabila bertemu." },
+                    { question: "16. ___, hebatnya persembahan itu!", options: ["Wah", "Mana", "Siapa"], answer: "Wah", explanation: "'Wah' menyatakan rasa kagum." },
+                    { question: "17. ___, panasnya cuaca hari ini!", options: ["Aduh", "Apa", "Bila"], answer: "Aduh", explanation: "'Aduh' menyatakan rasa tidak selesa atau kesal." },
+                    { question: "18. ___, cantiknya lukisan kamu!", options: ["Wah", "Siapa", "Mengapa"], answer: "Wah", explanation: "'Wah' menyatakan rasa kagum." },
+                    { question: "19. ___, baiknya hati kamu!", options: ["Amboi", "Mana", "Apa"], answer: "Amboi", explanation: "'Amboi' menyatakan rasa kagum." },
+                    { question: "20. ___, saya baru teringat!", options: ["Oh", "Siapa", "Bila"], answer: "Oh", explanation: "'Oh' menyatakan kesedaran tiba-tiba." }
+                ]
             },
-            {
-                question: "11. Apakah kata nama am bagi haiwan yang berbunyi “meow”?",
-                options: ["kucing", "pokok", "kereta"],
-                answer: "kucing",
-                explanation: "'kucing' ialah haiwan (kata nama am)."
+            "kata-berimbuhan": {
+                name: "Topik 12: Kata Berimbuhan",
+                desc: "Kenal pasti kata kerja berimbuhan awalan yang betul.",
+                icon: "✍️",
+                questions: [
+                    { question: "1. Ali sedang ___ buku.", options: ["membaca", "meja", "cantik"], answer: "membaca", explanation: "'membaca' ialah kata berimbuhan awalan mem-." },
+                    { question: "2. Ibu sedang ___ nasi.", options: ["memasak", "rumah", "merah"], answer: "memasak", explanation: "'memasak' ialah perbuatan memasak." },
+                    { question: "3. Ayah ___ kereta ke pejabat.", options: ["memandu", "buku", "besar"], answer: "memandu", explanation: "'memandu' ialah perbuatan memandu." },
+                    { question: "4. Kakak suka ___ bunga.", options: ["menanam", "cantik", "taman"], answer: "menanam", explanation: "'menanam' perbuatan menanam bunga." },
+                    { question: "5. Adik sedang ___ gambar.", options: ["melukis", "pensel", "biru"], answer: "melukis", explanation: "'melukis' perbuatan melukis gambar." },
+                    { question: "6. Murid-murid ___ di dalam kelas.", options: ["belajar", "sekolah", "rajin"], answer: "belajar", explanation: "'belajar' perbuatan belajar." },
+                    { question: "7. Ibu ___ pakaian di ampaian.", options: ["menjemur", "bersih", "baju"], answer: "menjemur", explanation: "'menjemur' perbuatan menyidai pakaian." },
+                    { question: "8. Kakak ___ rambutnya.", options: ["menyikat", "panjang", "rambut"], answer: "menyikat", explanation: "'menyikat' perbuatan menyikat rambut." },
+                    { question: "9. Ayah ___ pokok di halaman rumah.", options: ["menanam", "hijau", "pokok"], answer: "menanam", explanation: "'menanam' pokok." },
+                    { question: "10. Siti sedang ___ surat kepada nenek.", options: ["menulis", "surat", "baik"], answer: "menulis", explanation: "'menulis' surat." },
+                    { question: "11. Ali ___ bola ke arah gol.", options: ["menendang", "bulat", "padang"], answer: "menendang", explanation: "'menendang' bola." },
+                    { question: "12. Ibu ___ lantai rumah.", options: ["menyapu", "bersih", "penyapu"], answer: "menyapu", explanation: "'menyapu' lantai." },
+                    { question: "13. Abang ___ basikal di taman.", options: ["menunggang", "taman", "laju"], answer: "menunggang", explanation: "'menunggang' basikal." },
+                    { question: "14. Adik ___ air dengan perlahan.", options: ["meminum", "sejuk", "cawan"], answer: "meminum", explanation: "'meminum' air." },
+                    { question: "15. Cikgu sedang ___ murid membaca.", options: ["mengajar", "guru", "pandai"], answer: "mengajar", explanation: "'mengajar' murid." },
+                    { question: "16. Ibu ___ ikan untuk makan tengah hari.", options: ["membeli", "pasar", "segar"], answer: "membeli", explanation: "'membeli' ikan." },
+                    { question: "17. Ayah ___ pintu sebelum tidur.", options: ["mengunci", "rumah", "malam"], answer: "mengunci", explanation: "'mengunci' pintu." },
+                    { question: "18. Siti ___ adiknya yang menangis.", options: ["memujuk", "sedih", "bayi"], answer: "memujuk", explanation: "'memujuk' adik." },
+                    { question: "19. Kami ___ pokok bunga setiap pagi.", options: ["menyiram", "bunga", "cantik"], answer: "menyiram", explanation: "'menyiram' pokok bunga." },
+                    { question: "20. Murid-murid ___ sampah ke dalam tong.", options: ["membuang", "bersih", "tong"], answer: "membuang", explanation: "'membuang' sampah." }
+                ]
             },
-            {
-                question: "12. Adik minum susu menggunakan ___.",
-                options: ["cawan", "tidur", "besar"],
-                answer: "cawan",
-                explanation: "'cawan' ialah kata nama am bekas air."
+            "kata-majmuk": {
+                name: "Topik 13: Kata Majmuk",
+                desc: "Uji ejaan dan penggunaan kata majmuk yang betul.",
+                icon: "🧩",
+                questions: [
+                    { question: "1. Apakah kata majmuk yang betul?", options: ["kereta api", "keretaapi", "kereta-kereta"], answer: "kereta api", explanation: "'kereta api' dieja terpisah." },
+                    { question: "2. Ayah membaca ___ pada waktu pagi.", options: ["surat khabar", "suratkhabar", "surat-surat"], answer: "surat khabar", explanation: "'surat khabar' ialah kata majmuk mantap/terpisah." },
+                    { question: "3. Ibu membeli ___ di pasar.", options: ["buah tangan", "buah-tangan", "buahbuahan"], answer: "buah tangan", explanation: "'buah tangan' bermaksud hadiah." },
+                    { question: "4. Ali bermain ___ di padang.", options: ["bola sepak", "bolasepak", "bola-bola"], answer: "bola sepak", explanation: "'bola sepak' permainan popular." },
+                    { question: "5. Kami pergi ke ___ pada hujung minggu.", options: ["rumah sakit", "rumahsakit", "rumah-rumah"], answer: "rumah sakit", explanation: "Hospital juga disebut rumah sakit." },
+                    { question: "6. Ayah menaiki ___ ke Kuala Lumpur.", options: ["kereta api", "keretaapi", "kereta-kereta"], answer: "kereta api", explanation: "Pengangkutan rel." },
+                    { question: "7. Ibu membeli ___ untuk adik.", options: ["jam tangan", "jamtangan", "jam-jam"], answer: "jam tangan", explanation: "Jam yang dipakai di tangan." },
+                    { question: "8. Kakak memakai ___ berwarna hitam.", options: ["kasut kaki", "kasutkaki", "kasut-kasut"], answer: "kasut kaki", explanation: "Pilihan kata majmuk yang sesuai." },
+                    { question: "9. Murid-murid bermain di ___. lokasinya:", options: ["padang bola", "padangbola", "padang-padang"], answer: "padang bola", explanation: "Padang tempat bermain bola." },
+                    { question: "10. Ayah pergi ke ___ untuk membaiki kereta.", options: ["kedai makan", "kedaimakan", "kedai-kedai"], answer: "kedai makan", explanation: "Kedai rujukan." },
+                    { question: "11. Kakak membawa ___ ke sekolah.", options: ["beg tangan", "begtangan", "beg-beg"], answer: "beg tangan", explanation: "Beg sandang/tangan." },
+                    { question: "12. Saya melihat ___ di atas meja.", options: ["jam tangan", "jamtangan", "jam-jam"], answer: "jam tangan", explanation: "Jam tangan di atas meja." },
+                    { question: "13. Ibu menyediakan ___ untuk sarapan.", options: ["nasi lemak", "nasilemak", "nasi-nasi"], answer: "nasi lemak", explanation: "Nasi lemak makanan tradisi." },
+                    { question: "14. Adik bermain ___ di ruang tamu.", options: ["kereta api", "keretaapi", "kereta-kereta"], answer: "kereta api", explanation: "Mainan kereta api." },
+                    { question: "15. Ayah memakai ___ ketika bekerja.", options: ["kasut kaki", "kasutkaki", "kasut-kasut"], answer: "kasut kaki", explanation: "Kasut kerja." },
+                    { question: "16. Kami membaca ___ di dalam kelas.", options: ["buku cerita", "bukucerita", "buku-buku"], answer: "buku cerita", explanation: "Buku bacaan cerita." },
+                    { question: "17. Ibu menggunakan ___ untuk memasak.", options: ["periuk nasi", "periuknasi", "periuk-periuk"], answer: "periuk nasi", explanation: "Alat memasak nasi." },
+                    { question: "18. Abang bermain ___ bersama kawan-kawan.", options: ["bola sepak", "bolasepak", "bola-bola"], answer: "bola sepak", explanation: "Permainan bola sepak." },
+                    { question: "19. Saya membeli ___ untuk diberikan kepada nenek.", options: ["buah tangan", "buah-tangan", "buahbuahan"], answer: "buah tangan", explanation: "Hadiah lawatan." },
+                    { question: "20. Ayah membaca ___ di rumah.", options: ["surat khabar", "suratkhabar", "surat-surat"], answer: "surat khabar", explanation: "Bahan bacaan akhbar." }
+                ]
             },
-            {
-                question: "13. ___ digunakan untuk memadam tulisan pensel.",
-                options: ["pemadam", "buku", "berjalan"],
-                answer: "pemadam",
-                explanation: "'pemadam' ialah kata nama am alat tulis."
+            "kata-ganda": {
+                name: "Topik 14: Kata Ganda",
+                desc: "Uji pemilihan dan ejaan kata ganda yang tepat.",
+                icon: "👥",
+                questions: [
+                    { question: "1. Pilih kata ganda yang betul.", options: ["buku-buku", "bukubuku", "buku buku"], answer: "buku-buku", explanation: "Kata ganda menggunakan tanda sempang (-)." },
+                    { question: "2. Banyak ___ terdapat di dalam bakul.", options: ["buah-buahan", "buahbuahan", "buah-buah"], answer: "buah-buahan", explanation: "Kata ganda berentak/penuh bagi buah." },
+                    { question: "3. Murid-murid sedang berbaris. Apakah kata ganda dalam ayat tersebut?", options: ["murid-murid", "murid", "berbaris"], answer: "murid-murid", explanation: "'murid-murid' ialah kata ganda penuh." },
+                    { question: "4. Ibu membeli ___ di pasar.", options: ["sayur-sayuran", "sayursayuran", "sayur-sayur"], answer: "sayur-sayuran", explanation: "Pelbagai jenis sayur." },
+                    { question: "5. Banyak ___ di taman itu.", options: ["bunga-bunga", "bungabunga", "bunga bunga"], answer: "bunga-bunga", explanation: "Kata ganda bunga." },
+                    { question: "6. Adik bermain dengan ___.", options: ["mainan-mainan", "mainanmainan", "mainanan"], answer: "mainan-mainan", explanation: "Alat mainan." },
+                    { question: "7. ___ itu sangat cantik.", options: ["rama-rama", "ramarama", "rama rama"], answer: "rama-rama", explanation: "Serangga rama-rama." },
+                    { question: "8. Saya melihat ___ di langit.", options: ["burung-burung", "burungburung", "burung"], answer: "burung-burung", explanation: "Sekumpulan burung." },
+                    { question: "9. Ayah menanam ___ di halaman.", options: ["pokok-pokok", "pokokpokok", "pokok"], answer: "pokok-pokok", explanation: "Beberapa batang pokok." },
+                    { question: "10. Banyak ___ berlari di padang.", options: ["kanak-kanak", "kanakkanak", "kanak"], answer: "kanak-kanak", explanation: "Golongan kanak-kanak." },
+                    { question: "11. Ibu membeli ___ untuk keluarga.", options: ["kuih-muih", "kuihmuih", "kuih"], answer: "kuih-muih", explanation: "Kata ganda berentak kuih." },
+                    { question: "12. ___ itu sangat sibuk pada waktu pagi.", options: ["murid-murid", "muridmurid", "murid"], answer: "murid-murid", explanation: "Ramai murid." },
+                    { question: "13. Saya menyusun ___ di atas rak.", options: ["buku-buku", "bukubuku", "buku"], answer: "buku-buku", explanation: "Buku yang banyak." },
+                    { question: "14. Banyak ___ terdapat di dalam akuarium.", options: ["ikan-ikan", "ikanikan", "ikan"], answer: "ikan-ikan", explanation: "Beberapa ekor ikan." },
+                    { question: "15. ___ sedang bermain di taman.", options: ["kanak-kanak", "kanakkanak", "kanak"], answer: "kanak-kanak", explanation: "Budak-budak bermain." },
+                    { question: "16. Ayah membeli ___ untuk dimasak.", options: ["sayur-sayuran", "sayursayuran", "sayur"], answer: "sayur-sayuran", explanation: "Pelbagai sayur." },
+                    { question: "17. Saya melihat ___ berterbangan.", options: ["rama-rama", "ramarama", "rama"], answer: "rama-rama", explanation: "Rama-rama terbang." },
+                    { question: "18. Banyak ___ tumbuh di taman.", options: ["pokok-pokok", "pokokpokok", "pokok"], answer: "pokok-pokok", explanation: "Tumbuh-tumbuhan pokok." },
+                    { question: "19. Ibu menyediakan pelbagai ___.", options: ["kuih-muih", "kuihmuih", "kuih"], answer: "kuih-muih", explanation: "Aneka kuih." },
+                    { question: "20. ___ di sekolah perlu menjaga kebersihan.", options: ["murid-murid", "muridmurid", "murid"], answer: "murid-murid", explanation: "Semua murid sekolah." }
+                ]
             },
-            {
-                question: "14. Ayah memandu ___.",
-                options: ["kereta", "membaca", "merah"],
-                answer: "kereta",
-                explanation: "'kereta' ialah kenderaan (kata nama am)."
+            "ayat-penyata": {
+                name: "Topik 15: Ayat Penyata",
+                desc: "Uji pengecaman ayat penyata yang menyampaikan maklumat.",
+                icon: "📝",
+                questions: [
+                    { question: "1. Pilih ayat penyata yang betul.", options: ["Ali membaca buku.", "Siapakah Ali?", "Bacalah buku itu!"], answer: "Ali membaca buku.", explanation: "Ayat penyata menyatakan sesuatu kenyataan." },
+                    { question: "2. Pilih ayat penyata.", options: ["Ibu memasak nasi.", "Adakah ibu memasak?", "Masaklah nasi!"], answer: "Ibu memasak nasi.", explanation: "Memberi maklumat tentang ibu." },
+                    { question: "3. Ayah pergi ke pejabat. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "perintah"], answer: "penyata", function: "Memberi keterangan.", explanation: "Ayat penyata menyampaikan berita." },
+                    { question: "4. Pilih ayat penyata.", options: ["Siti bermain bola.", "Siapa bermain bola?", "Mainlah bola!"], answer: "Siti bermain bola.", explanation: "Kenyataan fakta." },
+                    { question: "5. Pilih ayat penyata.", options: ["Rumah itu besar.", "Adakah rumah itu besar?", "Lihatlah rumah itu!"], answer: "Rumah itu besar.", explanation: "Penyataan sifat rumah." },
+                    { question: "6. Adik sedang tidur. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "seruan"], answer: "penyata", explanation: "Menyatakan keadaan adik." },
+                    { question: "7. Pilih ayat penyata.", options: ["Burung itu terbang tinggi.", "Mengapa burung itu terbang?", "Terbanglah tinggi!"], answer: "Burung itu terbang tinggi.", explanation: "Kenyataan aktiviti burung." },
+                    { question: "8. Pilih ayat penyata.", options: ["Kakak membaca buku.", "Apakah yang dibaca kakak?", "Bacalah buku itu!"], answer: "Kakak membaca buku.", explanation: "Penyataan perbuatan kakak." },
+                    { question: "9. Ibu membeli sayur di pasar. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "perintah"], answer: "penyata", explanation: "Kenyataan aktiviti ibu." },
+                    { question: "10. Pilih ayat penyata.", options: ["Saya suka makan nasi.", "Apakah makanan kegemaran kamu?", "Makanlah nasi!"], answer: "Saya suka makan nasi.", explanation: "Penyataan kegemaran diri." },
+                    { question: "11. Pilih ayat penyata.", options: ["Kami bermain di taman.", "Di manakah kamu bermain?", "Bermainlah di taman!"], answer: "Kami bermain di taman.", explanation: "Kenyataan lokasi aktiviti." },
+                    { question: "12. Pokok itu tinggi. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "perintah"], answer: "penyata", explanation: "Penyataan ketinggian pokok." },
+                    { question: "13. Pilih ayat penyata.", options: ["Ali mempunyai seekor kucing.", "Siapakah yang mempunyai kucing?", "Jagalah kucing itu!"], answer: "Ali mempunyai seekor kucing.", explanation: "Kenyataan pemilikan." },
+                    { question: "14. Pilih ayat penyata.", options: ["Hari ini hari Isnin.", "Hari apakah hari ini?", "Ingatlah hari ini!"], answer: "Hari ini hari Isnin.", explanation: "Kenyataan maklumat hari." },
+                    { question: "15. Ayah mencuci kereta. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "seruan"], answer: "penyata", explanation: "Penyataan kerja ayah." },
+                    { question: "16. Pilih ayat penyata.", options: ["Adik minum susu.", "Apakah yang diminum adik?", "Minumlah susu!"], answer: "Adik minum susu.", explanation: "Kenyataan perbuatan adik." },
+                    { question: "17. Pilih ayat penyata.", options: ["Sekolah saya sangat bersih.", "Adakah sekolah kamu bersih?", "Jagalah sekolah!"], answer: "Sekolah saya sangat bersih.", explanation: "Kenyataan keadaan sekolah." },
+                    { question: "18. Saya tinggal di Shah Alam. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "perintah"], answer: "penyata", explanation: "Kenyataan tempat tinggal." },
+                    { question: "19. Pilih ayat penyata.", options: ["Kakak menyiram pokok.", "Mengapa kakak menyiram pokok?", "Siramlah pokok itu!"], answer: "Kakak menyiram pokok.", explanation: "Kenyataan perbuatan menyiram." },
+                    { question: "20. Ali dan Abu bermain bola. Ayat ini ialah ayat ___.", options: ["penyata", "tanya", "seruan"], answer: "penyata", explanation: "Kenyataan aktiviti sukan." }
+                ]
             },
-            {
-                question: "15. Ibu membeli sayur di ___.",
-                options: ["pasar", "sekolah", "pensel"],
-                answer: "pasar",
-                explanation: "'pasar' ialah tempat (kata nama am)."
+            "ayat-tanya": {
+                name: "Topik 16: Ayat Tanya",
+                desc: "Uji pengecaman ayat tanya yang betul.",
+                icon: "❓",
+                questions: [
+                    { question: "1. Pilih ayat tanya yang betul.", options: ["Siapakah nama kamu?", "Nama saya Aisy.", "Bacalah buku itu!"], answer: "Siapakah nama kamu?", explanation: "Menggunakan tanda soal dan kata tanya." },
+                    { question: "2. ___ kamu tinggal?", options: ["Di manakah", "Apakah", "Wah"], answer: "Di manakah", explanation: "Menanyakan tempat tinggal." },
+                    { question: "3. Pilih ayat tanya.", options: ["Apakah makanan kegemaran kamu?", "Saya suka nasi.", "Makanlah nasi!"], answer: "Apakah makanan kegemaran kamu?", question: "Ayat tanya menggunakan 'Apakah'." },
+                    { question: "4. ___ kamu datang lewat?", options: ["Mengapakah", "Siapakah", "Wah"], answer: "Mengapakah", explanation: "Menanyakan sebab." },
+                    { question: "5. Pilih ayat tanya.", options: ["Bilakah kamu pulang?", "Saya pulang petang.", "Pulanglah sekarang!"], answer: "Bilakah kamu pulang?", explanation: "Menanyakan masa." },
+                    { question: "6. ___ nama guru kamu?", options: ["Apakah", "Di manakah", "Aduh"], answer: "Apakah", explanation: "Menanyakan nama guru." },
+                    { question: "7. Pilih ayat tanya.", options: ["Siapakah yang mengetuk pintu?", "Ali mengetuk pintu.", "Bukalah pintu!"], answer: "Siapakah yang mengetuk pintu?", explanation: "Menanyakan pelaku." },
+                    { question: "8. ___ kamu pergi ke sekolah?", options: ["Bagaimanakah", "Siapakah", "Wah"], answer: "Bagaimanakah", explanation: "Menanyakan cara." },
+                    { question: "9. Pilih ayat tanya.", options: ["Di manakah buku saya?", "Buku saya di atas meja.", "Letakkan buku di meja!"], answer: "Di manakah buku saya?", explanation: "Menanyakan lokasi buku." },
+                    { question: "10. ___ harga pensel ini?", options: ["Berapakah", "Siapakah", "Aduh"], answer: "Berapakah", explanation: "Menanyakan harga/jumlah." },
+                    { question: "11. Pilih ayat tanya.", options: ["Mengapa adik menangis?", "Adik sedang menangis.", "Jangan menangis!"], answer: "Mengapa adik menangis?", explanation: "Menanyakan sebab." },
+                    { question: "12. ___ kamu akan datang?", options: ["Bilakah", "Apakah", "Wah"], answer: "Bilakah", explanation: "Menanyakan masa." },
+                    { question: "13. Pilih ayat tanya.", options: ["Apakah warna baju kamu?", "Baju saya berwarna biru.", "Pakailah baju itu!"], answer: "Apakah warna baju kamu?", explanation: "Menanyakan warna." },
+                    { question: "14. ___ yang sedang bermain bola?", options: ["Siapakah", "Apakah", "Aduh"], answer: "Siapakah", explanation: "Menanyakan individu." },
+                    { question: "15. Pilih ayat tanya.", options: ["Berapakah jumlah pensel itu?", "Pensel itu ada lima batang.", "Susunlah pensel itu!"], answer: "Berapakah jumlah pensel itu?", explanation: "Menanyakan bilangan." },
+                    { question: "16. ___ kamu membeli buku itu?", options: ["Di manakah", "Siapakah", "Wah"], answer: "Di manakah", explanation: "Menanyakan tempat." },
+                    { question: "17. Pilih ayat tanya.", options: ["Apakah yang kamu makan?", "Saya makan nasi.", "Makanlah nasi!"], answer: "Apakah yang kamu makan?", explanation: "Menanyakan objek makanan." },
+                    { question: "18. ___ kamu tidak hadir ke sekolah?", options: ["Mengapa", "Siapa", "Wah"], answer: "Mengapa", explanation: "Menanyakan alasan." },
+                    { question: "19. Pilih ayat tanya.", options: ["Bagaimanakah cara membuat kek?", "Ibu membuat kek.", "Buatlah kek itu!"], answer: "Bagaimanakah cara membuat kek?", explanation: "Menanyakan cara." },
+                    { question: "20. ___ umur kamu?", options: ["Berapakah", "Siapakah", "Aduh"], answer: "Berapakah", explanation: "Menanyakan usia." }
+                ]
             },
-            {
-                question: "16. ___ tumbuh di dalam tanah.",
-                options: ["pokok", "cantik", "berlari"],
-                answer: "pokok",
-                explanation: "'pokok' ialah tumbuhan (kata nama am)."
+            "ayat-perintah": {
+                name: "Topik 17: Ayat Perintah",
+                desc: "Uji pengecaman ayat perintah, larangan, dan silaan.",
+                icon: "🛑",
+                questions: [
+                    { question: "1. Pilih ayat perintah.", options: ["Bukalah pintu itu!", "Pintu itu terbuka.", "Siapakah yang membuka pintu?"], answer: "Bukalah pintu itu!", explanation: "Ayat perintah meminta melakukan sesuatu." },
+                    { question: "2. ___ buku kamu!", options: ["Bacalah", "Siapakah", "Apakah"], answer: "Bacalah", explanation: "Ayat suruhan membaca." },
+                    { question: "3. Pilih ayat perintah.", options: ["Duduklah di tempat kamu!", "Ali duduk di tempatnya.", "Di manakah Ali duduk?"], answer: "Duduklah di tempat kamu!", explanation: "Arahan supaya duduk." },
+                    { question: "4. ___ tangan sebelum makan!", options: ["Basuhlah", "Mengapakah", "Siapakah"], answer: "Basuhlah", explanation: "Arahan membasuh tangan." },
+                    { question: "5. Pilih ayat perintah.", options: ["Jangan berlari di dalam kelas!", "Murid itu berlari.", "Mengapa dia berlari?"], answer: "Jangan berlari di dalam kelas!", explanation: "Ayat larangan." },
+                    { question: "6. ___ sampah ke dalam tong!", options: ["Buanglah", "Apakah", "Siapa"], answer: "Buanglah", explanation: "Arahan membuang sampah." },
+                    { question: "7. Pilih ayat perintah.", options: ["Jagalah kebersihan kelas!", "Kelas itu bersih.", "Adakah kelas itu bersih?"], answer: "Jagalah kebersihan kelas!", explanation: "Arahan menjaga kebersihan." },
+                    { question: "8. ___ dengan perlahan!", options: ["Berjalanlah", "Siapakah", "Mengapa"], answer: "Berjalanlah", explanation: "Arahan cara berjalan." },
+                    { question: "9. Pilih ayat perintah.", options: ["Jangan bising!", "Murid itu bising.", "Mengapa murid itu bising?"], answer: "Jangan bising!", explanation: "Ayat larangan." },
+                    { question: "10. ___ kerja sekolah kamu!", options: ["Siapkan", "Apakah", "Siapa"], answer: "Siapkan", explanation: "Arahan menyiapkan kerja." },
+                    { question: "11. Pilih ayat perintah.", options: ["Tolong ambilkan buku itu.", "Buku itu di atas meja.", "Di manakah buku itu?"], answer: "Tolong ambilkan buku itu.", explanation: "Ayat permintaan tolong." },
+                    { question: "12. ___ pintu selepas keluar!", options: ["Tutupkan", "Mengapa", "Siapakah"], answer: "Tutupkan", explanation: "Arahan menutup pintu." },
+                    { question: "13. Pilih ayat perintah.", options: ["Tolong berikan saya pensel.", "Pensel itu berwarna merah.", "Apakah warna pensel itu?"], answer: "Tolong berikan saya pensel.", explanation: "Ayat permintaan." },
+                    { question: "14. ___ barisan dengan kemas!", options: ["Beraturlah", "Siapa", "Apa"], answer: "Beraturlah", explanation: "Arahan beratur." },
+                    { question: "15. Pilih ayat perintah.", options: ["Jangan sentuh barang itu!", "Barang itu di atas meja.", "Apakah barang itu?"], answer: "Jangan sentuh barang itu!", explanation: "Ayat larangan menyentuh." },
+                    { question: "16. ___ suara kamu!", options: ["Perlahankan", "Siapakah", "Bila"], answer: "Perlahankan", explanation: "Arahan memperlahankan suara." },
+                    { question: "17. Pilih ayat perintah.", options: ["Tolong tunggu saya.", "Saya sedang menunggu.", "Siapakah yang menunggu?"], answer: "Tolong tunggu saya.", explanation: "Permintaan menunggu." },
+                    { question: "18. ___ tangan kamu!", options: ["Angkatlah", "Apakah", "Mengapa"], answer: "Angkatlah", explanation: "Arahan mengangkat tangan." },
+                    { question: "19. Pilih ayat perintah.", options: ["Jangan bermain di jalan raya!", "Mereka bermain di taman.", "Di manakah mereka bermain?"], answer: "Jangan bermain di jalan raya!", explanation: "Larangan bermain di jalan." },
+                    { question: "20. ___ kepada guru semasa bercakap!", options: ["Dengarlah", "Siapa", "Bila"], answer: "Dengarlah", explanation: "Arahan mendengar." }
+                ]
             },
-            {
-                question: "17. Murid duduk di atas ___.",
-                options: ["kerusi", "buku", "makan"],
-                answer: "kerusi",
-                explanation: "'kerusi' tempat duduk."
+            "ayat-seruan": {
+                name: "Topik 18: Ayat Seruan",
+                desc: "Uji pengecaman ayat seruan dengan tanda seru (!).",
+                icon: "✨",
+                questions: [
+                    { question: "1. Pilih ayat seruan yang betul.", options: ["Wah, cantiknya bunga itu!", "Bunga itu cantik.", "Adakah bunga itu cantik?"], answer: "Wah, cantiknya bunga itu!", explanation: "Menggunakan kata seru dan tanda seru." },
+                    { question: "2. ___, sakitnya kaki saya!", options: ["Aduh", "Siapa", "Bila"], answer: "Aduh", explanation: "Kata seru sakit." },
+                    { question: "3. Pilih ayat seruan.", options: ["Amboi, cantiknya baju kamu!", "Baju kamu cantik.", "Apakah warna baju kamu?"], answer: "Amboi, cantiknya baju kamu!", explanation: "Ayat seruan kagum." },
+                    { question: "4. ___, besarnya rumah itu!", options: ["Wah", "Mengapa", "Siapa"], answer: "Wah", explanation: "Kata seru takjub." },
+                    { question: "5. Pilih ayat seruan.", options: ["Aduh, pedihnya luka ini!", "Luka itu pedih.", "Mengapa luka itu pedih?"], answer: "Aduh, pedihnya luka ini!", explanation: "Ayat seruan rasa sakit." },
+                    { question: "6. ___, terkejut saya!", options: ["Oh", "Apa", "Bila"], answer: "Oh", explanation: "Kata seru terkejut." },
+                    { question: "7. Pilih ayat seruan.", options: ["Wah, hebatnya persembahan itu!", "Persembahan itu hebat.", "Siapakah yang membuat persembahan?"], answer: "Wah, hebatnya persembahan itu!", explanation: "Ayat seruan kagum." },
+                    { question: "8. ___, tingginya pokok itu!", options: ["Amboi", "Siapa", "Mengapa"], answer: "Amboi", explanation: "Kata seru tinggi." },
+                    { question: "9. Pilih ayat seruan.", options: ["Aduh, sakitnya tangan saya!", "Tangan saya sakit.", "Apakah yang sakit?"], answer: "Aduh, sakitnya tangan saya!", explanation: "Ayat seruan sakit." },
+                    { question: "10. ___, cantiknya lukisan kamu!", options: ["Wah", "Apa", "Siapa"], answer: "Wah", explanation: "Kata seru kagum." },
+                    { question: "11. Pilih ayat seruan.", options: ["Oh, kamu sudah datang!", "Kamu sudah datang.", "Bilakah kamu datang?"], answer: "Oh, kamu sudah datang!", explanation: "Ayat seruan terkejut." },
+                    { question: "12. ___, sedapnya kek ini!", options: ["Amboi", "Mengapa", "Bila"], answer: "Amboi", explanation: "Kata seru makanan sedap." },
+                    { question: "13. Pilih ayat seruan.", options: ["Wah, lajunya kereta itu!", "Kereta itu laju.", "Ke manakah kereta itu pergi?"], answer: "Wah, lajunya kereta itu!", explanation: "Ayat seruan laju." },
+                    { question: "14. ___, takutnya saya!", options: ["Aduh", "Siapa", "Apa"], answer: "Aduh", explanation: "Kata seru rasa takut." },
+                    { question: "15. Pilih ayat seruan.", options: ["Amboi, baiknya hati kamu!", "Kamu mempunyai hati yang baik.", "Mengapa kamu baik?"], answer: "Amboi, baiknya hati kamu!", explanation: "Ayat seruan baik." },
+                    { question: "16. ___, indahnya pemandangan ini!", options: ["Wah", "Bila", "Siapa"], answer: "Wah", explanation: "Kata seru pemandangan." },
+                    { question: "17. Pilih ayat seruan.", options: ["Aduh, panasnya cuaca hari ini!", "Cuaca hari ini panas.", "Mengapakah cuaca panas?"], answer: "Aduh, panasnya cuaca hari ini!", explanation: "Ayat seruan cuaca." },
+                    { question: "18. ___, besarnya ikan itu!", options: ["Amboi", "Apa", "Siapa"], answer: "Amboi", explanation: "Kata seru saiz besar." },
+                    { question: "19. Pilih ayat seruan.", options: ["Oh, kamu rupanya!", "Kamu berada di situ.", "Siapakah kamu?"], answer: "Oh, kamu rupanya!", explanation: "Ayat seruan jumpa." },
+                    { question: "20. ___, pandainya murid itu!", options: ["Wah", "Mengapa", "Bila"], answer: "Wah", explanation: "Ayat seruan pandai." }
+                ]
             },
-            {
-                question: "18. Apakah kata nama am bagi benda yang menunjukkan masa?",
-                options: ["jam", "rumah", "guru"],
-                answer: "jam",
-                explanation: "'jam' menunjukkan masa."
+            "ayat-tunggal": {
+                name: "Topik 19: Ayat Tunggal",
+                desc: "Uji pengecaman ayat tunggal (satu subjek dan satu predikat).",
+                icon: "📌",
+                questions: [
+                    { question: "1. Pilih ayat tunggal.", options: ["Ali membaca buku.", "Ali membaca buku dan Siti melukis.", "Apakah yang dibaca Ali?"], answer: "Ali membaca buku.", explanation: "Mengandungi satu klausa sahaja (ayat tunggal)." },
+                    { question: "2. Ayat manakah ayat tunggal?", options: ["Ibu memasak nasi.", "Ibu memasak nasi dan ayah membaca surat khabar.", "Mengapa ibu memasak?"], answer: "Ibu memasak nasi.", explanation: "Satu subjek dan predikat." },
+                    { question: "3. Pilih ayat tunggal.", options: ["Adik tidur.", "Adik tidur dan abang bermain.", "Adakah adik tidur?"], answer: "Adik tidur.", explanation: "Ayat tunggal ringkas." },
+                    { question: "4. ___ ialah ayat tunggal.", options: ["Kakak membaca buku.", "Kakak membaca buku dan adik melukis.", "Apakah yang dibaca kakak?"], answer: "Kakak membaca buku.", explanation: "Ayat tunggal asas." },
+                    { question: "5. Pilih ayat tunggal.", options: ["Ayah mencuci kereta.", "Ayah mencuci kereta manakala ibu menyapu rumah.", "Siapakah yang mencuci kereta?"], answer: "Ayah mencuci kereta.", explanation: "Ayat tunggal penyata." },
+                    { question: "6. ___ ialah ayat tunggal.", options: ["Burung itu terbang.", "Burung itu terbang dan ikan berenang.", "Di manakah burung itu terbang?"], answer: "Burung itu terbang.", explanation: "Ayat tunggal tunggal." },
+                    { question: "7. Pilih ayat tunggal.", options: ["Siti menyiram bunga.", "Siti menyiram bunga dan Ali memotong rumput.", "Mengapa Siti menyiram bunga?"], answer: "Siti menyiram bunga.", explanation: "Satu tindakan sahaja." },
+                    { question: "8. ___ ialah ayat tunggal.", options: ["Abang bermain bola.", "Abang bermain bola dan adik bermain basikal.", "Siapakah yang bermain bola?"], answer: "Abang bermain bola.", explanation: "Ayat tunggal sukan." },
+                    { question: "9. Pilih ayat tunggal.", options: ["Ibu membeli sayur.", "Ibu membeli sayur dan ayah membeli ikan.", "Apakah yang dibeli ibu?"], answer: "Ibu membeli sayur.", explanation: "Ayat tunggal membeli." },
+                    { question: "10. ___ ialah ayat tunggal.", options: ["Murid-murid belajar.", "Murid-murid belajar dan guru mengajar.", "Di manakah murid belajar?"], answer: "Murid-murid belajar.", explanation: "Ayat tunggal sekolah." },
+                    { question: "11. Pilih ayat tunggal.", options: ["Adik minum susu.", "Adik minum susu dan kakak makan roti.", "Apakah yang diminum adik?"], answer: "Adik minum susu.", explanation: "Ayat tunggal harian." },
+                    { question: "12. ___ ialah ayat tunggal.", options: ["Ali berlari.", "Ali berlari dan Abu berjalan.", "Mengapa Ali berlari?"], answer: "Ali berlari.", explanation: "Ayat tunggal pendek." },
+                    { question: "13. Pilih ayat tunggal.", options: ["Kucing itu tidur.", "Kucing itu tidur manakala anjing bermain.", "Di manakah kucing tidur?"], answer: "Kucing itu tidur.", explanation: "Ayat tunggal haiwan." },
+                    { question: "14. ___ ialah ayat tunggal.", options: ["Ayah membaca surat khabar.", "Ayah membaca surat khabar dan ibu minum kopi.", "Apakah yang dibaca ayah?"], answer: "Ayah membaca surat khabar.", explanation: "Ayat tunggal aktiviti ayah." },
+                    { question: "15. Pilih ayat tunggal.", options: ["Saya makan nasi.", "Saya makan nasi dan adik makan roti.", "Apakah yang kamu makan?"], answer: "Saya makan nasi.", explanation: "Ayat tunggal diri." },
+                    { question: "16. ___ ialah ayat tunggal.", options: ["Aisy melukis gambar.", "Aisy melukis gambar dan Siti mewarna gambar.", "Siapakah yang melukis gambar?"], answer: "Aisy melukis gambar.", explanation: "Ayat tunggal lukisan." },
+                    { question: "17. Pilih ayat tunggal.", options: ["Pokok itu tinggi.", "Pokok itu tinggi tetapi pokok itu kecil.", "Mengapakah pokok itu tinggi?"], answer: "Pokok itu tinggi.", explanation: "Ayat tunggal sifat." },
+                    { question: "18. ___ ialah ayat tunggal.", options: ["Rumah itu besar.", "Rumah itu besar dan cantik.", "Adakah rumah itu besar?"], answer: "Rumah itu besar.", explanation: "Ayat tunggal sifat." },
+                    { question: "19. Pilih ayat tunggal.", options: ["Kakak menyanyi.", "Kakak menyanyi dan abang bermain gitar.", "Siapakah yang menyanyi?"], answer: "Kakak menyanyi.", explanation: "Ayat tunggal nyanyian." },
+                    { question: "20. ___ ialah ayat tunggal.", options: ["Kami pergi ke sekolah.", "Kami pergi ke sekolah dan mereka pergi ke taman.", "Ke manakah kamu pergi?"], answer: "Kami pergi ke sekolah.", explanation: "Ayat tunggal perjalanan." }
+                ]
             },
-            {
-                question: "19. Adik memakai ___ di kaki.",
-                options: ["kasut", "buku", "meja"],
-                answer: "kasut",
-                explanation: "'kasut' dipakai di kaki."
-            },
-            {
-                question: "20. Burung membuat sarang di atas ___.",
-                options: ["pokok", "pensel", "sekolah"],
-                answer: "pokok",
-                explanation: "Burung membuat sarang di atas 'pokok'."
+            "ayat-majmuk": {
+                name: "Topik 20: Ayat Majmuk",
+                desc: "Uji pengecaman ayat majmuk yang digabungkan dengan kata hubung.",
+                icon: "🔗",
+                questions: [
+                    { question: "1. Pilih ayat majmuk.", options: ["Ali membaca buku dan Siti melukis gambar.", "Ali membaca buku.", "Ali membaca?"], answer: "Ali membaca buku dan Siti melukis gambar.", explanation: "Menggunakan kata hubung 'dan' (ayat majmuk)." },
+                    { question: "2. Ibu memasak nasi ___ ayah mencuci kereta.", options: ["dan", "di", "siapa"], answer: "dan", explanation: "Kata hubung menyambung ayat." },
+                    { question: "3. Pilih ayat majmuk.", options: ["Adik tidur manakala abang membaca buku.", "Adik tidur.", "Adik tidur?"], answer: "Adik tidur manakala abang membaca buku.", explanation: "Ayat majmuk menggunakan 'manakala'." },
+                    { question: "4. Ali tidak bermain di luar ___ hari hujan.", options: ["kerana", "dan", "atau"], answer: "kerana", explanation: "Kata hubung sebab." },
+                    { question: "5. Pilih ayat majmuk.", options: ["Saya makan nasi dan minum air.", "Saya makan nasi.", "Saya makan?"], answer: "Saya makan nasi dan minum air.", explanation: "Gabungan dua perbuatan." },
+                    { question: "6. Ibu membeli ikan ___ sayur di pasar.", options: ["dan", "kerana", "tetapi"], answer: "dan", explanation: "Kata hubung objek." },
+                    { question: "7. Pilih ayat majmuk.", options: ["Ayah membaca surat khabar manakala ibu memasak.", "Ayah membaca surat khabar.", "Ayah membaca?"], answer: "Ayah membaca surat khabar manakala ibu memasak.", explanation: "Ayat majmuk perbuatan serentak." },
+                    { question: "8. Ali mahu bermain bola ___ hujan turun.", options: ["tetapi", "dan", "siapa"], answer: "tetapi", explanation: "Kata hubung pertentangan." },
+                    { question: "9. Pilih ayat majmuk.", options: ["Kakak membaca buku dan adik bermain.", "Kakak membaca buku.", "Kakak membaca?"], answer: "Kakak membaca buku dan adik bermain.", explanation: "Gabungan dua klausa." },
+                    { question: "10. Saya membawa payung ___ hari hujan.", options: ["kerana", "dan", "atau"], answer: "kerana", explanation: "Menyatakan sebab." },
+                    { question: "11. Pilih ayat majmuk.", options: ["Siti menyiram bunga dan Ali memotong rumput.", "Siti menyiram bunga.", "Siti menyiram?"], answer: "Siti menyiram bunga dan Ali memotong rumput.", explanation: "Ayat majmuk aktiviti taman." },
+                    { question: "12. Kamu mahu makan nasi ___ mi?", options: ["atau", "dan", "kerana"], answer: "atau", explanation: "Pilihan dalam ayat majmuk." },
+                    { question: "13. Pilih ayat majmuk.", options: ["Murid belajar di kelas dan guru mengajar.", "Murid belajar di kelas.", "Murid belajar?"], answer: "Murid belajar di kelas dan guru mengajar.", explanation: "Ayat majmuk sekolah." },
+                    { question: "14. Adik menangis ___ mainannya hilang.", options: ["kerana", "atau", "dan"], answer: "kerana", explanation: "Menyatakan sebab." },
+                    { question: "15. Pilih ayat majmuk.", options: ["Ayah mencuci kereta manakala ibu menyapu halaman.", "Ayah mencuci kereta.", "Ayah mencuci?"], answer: "Ayah mencuci kereta manakala ibu menyapu halaman.", explanation: "Ayat majmuk tugas rumah." },
+                    { question: "16. Ali suka bermain bola ___ Abu suka bermain badminton.", options: ["tetapi", "kerana", "atau"], answer: "tetapi", explanation: "Pertentangan hobi." },
+                    { question: "17. Pilih ayat majmuk.", options: ["Saya membaca buku dan kakak menulis.", "Saya membaca buku.", "Saya membaca?"], answer: "Saya membaca buku dan kakak menulis.", explanation: "Ayat majmuk gabungan." },
+                    { question: "18. Kami tidak pergi ke taman ___ hujan turun.", options: ["kerana", "dan", "atau"], answer: "kerana", explanation: "Sebab cuaca." },
+                    { question: "19. Pilih ayat majmuk.", options: ["Aisy makan nasi dan minum susu.", "Aisy makan nasi.", "Aisy makan?"], answer: "Aisy makan nasi dan minum susu.", explanation: "Ayat majmuk pemakanan." },
+                    { question: "20. Pilih ayat majmuk yang betul.", options: ["Ibu memasak nasi dan ayah membaca surat khabar.", "Ibu memasak nasi.", "Ayah membaca surat khabar."], answer: "Ibu memasak nasi dan ayah membaca surat khabar.", explanation: "Ayat majmuk lengkap." }
+                ]
             }
-        ];
+        };
 
         let currentUser = { email: "", name: "Murid Cilik", points: 0, badgesCount: 0, avatar: "Bijak", role: "student" };
+        let currentTopicKey = "";
         let currentQuizIndex = 0;
         let quizScore = 0;
         let tempGoogleUser = null;
 
-        window.onload = function() { renderAvatarSelector(); };
+        window.onload = function() {
+            renderAvatarSelector();
+            renderTopics();
+            renderBadges();
+            renderProgress();
+        };
 
         function renderAvatarSelector() {
             const container = document.getElementById('avatar-selector');
@@ -514,11 +969,17 @@
 
             if(idInput === "SKPA 2" && passInput === "skpuncakalam2") {
                 currentUser.role = roleInput;
-                currentUser.name = roleInput === 'admin' ? "Admin" : "Cikgu";
+                currentUser.name = roleInput === 'admin' ? "Admin Sistem" : "Cikgu Bertugas";
                 updateHeaderUI();
-                switchView(roleInput === 'teacher' ? 'teacher' : 'admin');
+                if(roleInput === 'teacher') {
+                    switchView('teacher');
+                    loadTeacherData();
+                } else {
+                    switchView('admin');
+                    loadAdminData();
+                }
             } else {
-                alert("ID atau Kata Laluan salah!");
+                alert("ID atau Kata Laluan Staf Salah!");
             }
         }
 
@@ -538,6 +999,17 @@
             currentUser.email = tempGoogleUser ? tempGoogleUser.email : "murid@cilik.com";
             currentUser.name = tempGoogleUser ? tempGoogleUser.name : "Murid Cilik";
             currentUser.role = "student";
+            
+            db.collection("users").doc(currentUser.email).set({
+                name: currentUser.name,
+                email: currentUser.email,
+                points: currentUser.points,
+                badgesCount: currentUser.badgesCount,
+                avatar: currentUser.avatar,
+                role: "student",
+                lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true }).catch(() => {});
+
             proceedToDashboard();
         }
 
@@ -560,7 +1032,9 @@
         }
 
         function handleLogoClick() {
-            switchView(currentUser.role === 'teacher' ? 'teacher' : (currentUser.role === 'admin' ? 'admin' : 'dashboard'));
+            if(currentUser.role === 'teacher') switchView('teacher');
+            else if(currentUser.role === 'admin') switchView('admin');
+            else switchView('dashboard');
         }
 
         function switchView(viewName) {
@@ -572,7 +1046,28 @@
             if(target) { target.classList.remove('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
         }
 
-        function startSpecificQuiz() {
+        function renderTopics() {
+            const container = document.getElementById('topics-container');
+            container.innerHTML = Object.keys(topicsData).map(key => {
+                const t = topicsData[key];
+                return `
+                    <div onclick="startQuiz('${key}')" class="pastel-card p-5 cursor-pointer hover:border-emerald-400 transition transform hover:-translate-y-1 space-y-3 bg-white">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl">${t.icon}</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-base">${t.name}</h4>
+                            <p class="text-xs text-gray-500 mt-0.5">${t.desc}</p>
+                        </div>
+                        <div class="flex justify-between items-center pt-2 border-t border-gray-100 text-xs font-bold text-emerald-600">
+                            <span>${t.questions.length} Soalan</span>
+                            <span>Mula Kuiz <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function startQuiz(topicKey) {
+            currentTopicKey = topicKey;
             currentQuizIndex = 0;
             quizScore = 0;
             switchView('quiz');
@@ -580,9 +1075,10 @@
         }
 
         function loadQuizQuestion() {
-            const q = kataNamaAmQuestions[currentQuizIndex];
-            document.getElementById('quiz-topic-name').innerText = "Kata Nama Am";
-            document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada 20`;
+            const topic = topicsData[currentTopicKey];
+            const q = topic.questions[currentQuizIndex];
+            document.getElementById('quiz-topic-name').innerText = topic.name;
+            document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada ${topic.questions.length}`;
             document.getElementById('quiz-current-score').innerText = quizScore;
             document.getElementById('quiz-question-text').innerText = q.question;
             document.getElementById('quiz-feedback').classList.add('hidden');
@@ -623,15 +1119,107 @@
         }
 
         function nextQuizQuestion() {
+            const topic = topicsData[currentTopicKey];
             currentQuizIndex++;
-            if(currentQuizIndex < kataNamaAmQuestions.length) {
+            if(currentQuizIndex < topic.questions.length) {
                 loadQuizQuestion();
             } else {
-                currentUser.points += 200;
+                const earnedPoints = quizScore;
+                currentUser.points += earnedPoints;
                 currentUser.badgesCount += 1;
                 updateHeaderUI();
+
+                document.getElementById('result-message').innerText = `Tahniah! Anda telah menamatkan kuiz ${topic.name}.`;
+                document.getElementById('res-score').innerText = `+${earnedPoints} Mata ⭐`;
                 switchView('result');
                 try { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); } catch(e) {}
+
+                if(currentUser.email) {
+                    db.collection("users").doc(currentUser.email).set({
+                        points: currentUser.points,
+                        badgesCount: currentUser.badgesCount
+                    }, { merge: true }).catch(() => {});
+                }
+            }
+        }
+
+        function renderBadges() {
+            const grid = document.getElementById('badges-grid');
+            const badges = [
+                { name: "Juara Bahasa", desc: "Selesaikan topik latihan bahasa", icon: "⭐" },
+                { name: "Pantas Bijak", desc: "Jawab kuiz dengan pantas", icon: "⚡" },
+                { name: "Bintang Cilik", desc: "Kumpul mata ganjaran tertinggi", icon: "🏆" }
+            ];
+            grid.innerHTML = badges.map(b => `
+                <div class="pastel-card p-5 text-center space-y-2 bg-white">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow-inner">${b.icon}</div>
+                    <h4 class="font-bold text-gray-800 text-sm">${b.name}</h4>
+                    <p class="text-xs text-gray-500">${b.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderProgress() {
+            const container = document.getElementById('full-progress-list');
+            container.innerHTML = Object.keys(topicsData).map(key => {
+                const t = topicsData[key];
+                return `
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-xs font-bold text-gray-700">
+                            <span>${t.name}</span>
+                            <span>${t.questions.length} Soalan</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function loadTeacherData() {
+            const tbody = document.getElementById('teacher-students-table');
+            try {
+                const snapshot = await db.collection("users").where("role", "==", "student").get();
+                if(snapshot.empty) {
+                    tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Tiada data murid dijumpai dalam pangkalan data.</td></tr>`;
+                    return;
+                }
+                tbody.innerHTML = "";
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 font-bold text-gray-800 flex items-center space-x-2">
+                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${data.avatar || 'Bijak'}" class="w-7 h-7 bg-emerald-100 rounded-full">
+                                <span>${data.name}</span>
+                            </td>
+                            <td class="p-3 text-gray-500">${data.email}</td>
+                            <td class="p-3 font-bold text-emerald-600">${data.points || 0} ⭐</td>
+                            <td class="p-3 font-bold text-amber-600">${data.badgesCount || 0} 🏅</td>
+                        </tr>
+                    `;
+                });
+            } catch(e) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400">Mod Luar Talian: Memaparkan akaun semasa sahaja.</td></tr>
+                <tr class="hover:bg-gray-50">
+                    <td class="p-3 font-bold text-gray-800 flex items-center space-x-2">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}" class="w-7 h-7 bg-emerald-100 rounded-full">
+                        <span>${currentUser.name}</span>
+                    </td>
+                    <td class="p-3 text-gray-500">${currentUser.email}</td>
+                    <td class="p-3 font-bold text-emerald-600">${currentUser.points} ⭐</td>
+                    <td class="p-3 font-bold text-amber-600">${currentUser.badgesCount} 🏅</td>
+                </tr>`;
+            }
+        }
+
+        async function loadAdminData() {
+            try {
+                const snapshot = await db.collection("users").where("role", "==", "student").get();
+                document.getElementById('admin-total-students').innerText = snapshot.size;
+            } catch(e) {
+                document.getElementById('admin-total-students').innerText = "1";
             }
         }
 
@@ -640,649 +1228,7 @@
                 document.getElementById('main-header').classList.add('hidden');
                 document.getElementById('mobile-nav').classList.add('hidden');
                 switchView('login');
-            });
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="ms">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabaran Cilik Bahasa Melayu</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Fredoka & Quicksand -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Canvas Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
-    <style>
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #F0Fdf4;
-            color: #1f2937;
-        }
-        h1, h2, h3, h4, .font-heading {
-            font-family: 'Fredoka', cursive, sans-serif;
-        }
-        .pastel-card {
-            background: #ffffff;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            border: 3px solid #e2e8f0;
-        }
-        .animate-bounce-short {
-            animation: bounce 1s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(-5%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
-            50% { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col">
-
-    <!-- HEADER / NAVIGATION -->
-    <header id="main-header" class="bg-white border-b-4 border-emerald-100 sticky top-0 z-50 hidden">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="handleLogoClick()">
-                <div class="bg-emerald-400 text-white p-2 rounded-2xl shadow-md text-2xl">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <h1 id="header-title" class="text-lg md:text-xl font-bold text-emerald-600 leading-tight">Cilik BM</h1>
-                    <p id="header-subtitle" class="text-xs text-gray-500 font-semibold">Tahun 1 KSSR</p>
-                </div>
-            </div>
-
-            <!-- Desktop Nav Menu (Hanya untuk Murid) -->
-            <nav id="nav-student-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
-                <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
-                <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
-                <button onclick="switchView('badges')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-medal mr-1"></i> Lencana</button>
-                <button onclick="switchView('progress')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-chart-line mr-1"></i> Kemajuan</button>
-            </nav>
-
-            <!-- User Quick Stats & Logout -->
-            <div class="flex items-center space-x-3">
-                <div id="header-points-container" class="bg-amber-50 border-2 border-amber-200 px-3 py-1 rounded-full flex items-center space-x-1 shadow-sm">
-                    <span class="text-amber-500 text-lg">⭐</span>
-                    <span id="header-points" class="font-bold text-amber-700 text-sm">0</span>
-                </div>
-                <div class="flex items-center space-x-2 cursor-pointer bg-gray-50 border border-gray-200 p-1.5 rounded-full pr-3" onclick="logout()">
-                    <img id="header-avatar-img" src="https://api.dicebear.com/7.x/bottts/svg?seed=Aisy" class="w-8 h-8 rounded-full bg-emerald-200" alt="Avatar">
-                    <span id="header-username" class="text-xs font-bold text-gray-700 hidden sm:inline">Pengguna</span>
-                    <i class="fa-solid fa-power-off text-red-400 text-xs ml-1"></i>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- MOBILE BOTTOM NAVIGATION -->
-    <div id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around py-2.5 px-2 shadow-lg hidden">
-        <button onclick="switchView('dashboard')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-house text-lg"></i>Utama</button>
-        <button onclick="switchView('worlds')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-book-open text-lg"></i>Belajar</button>
-        <button onclick="switchView('badges')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-medal text-lg"></i>Lencana</button>
-        <button onclick="switchView('progress')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-chart-line text-lg"></i>Kemajuan</button>
-    </div>
-
-    <!-- MAIN APP CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 pb-24 md:pb-8">
-
-        <!-- VIEW 1: LANDING PAGE / LOGIN -->
-        <div id="view-login" class="max-w-md mx-auto mt-6 pastel-card p-6 md:p-8 text-center">
-            <div class="mb-6">
-                <div class="w-24 h-24 bg-emerald-100 mx-auto rounded-full flex items-center justify-center text-4xl text-emerald-600 mb-3 shadow-inner">
-                    <i class="fa-solid fa-rocket animate-bounce-short"></i>
-                </div>
-                <h1 class="text-2xl md:text-3xl font-bold text-emerald-600">CABARAN CILIK BAHASA MELAYU</h1>
-                <p class="text-xs md:text-sm text-gray-500 mt-1 italic">“Belajar Kata Nama Am, Kumpul Lencana, Jadi Juara!”</p>
-            </div>
-
-            <!-- Tab Pemilihan Peranan -->
-            <div class="flex bg-gray-100 p-1 rounded-xl mb-6">
-                <button onclick="switchLoginTab('student')" id="tab-student" class="flex-1 py-2 text-xs font-bold rounded-lg bg-white text-emerald-600 shadow-sm transition">Log Masuk Murid</button>
-                <button onclick="switchLoginTab('staff')" id="tab-staff" class="flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition">Guru / Admin</button>
-            </div>
-
-            <!-- BORANG LOG MASUK MURID -->
-            <div id="form-student" class="space-y-4 text-center">
-                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs text-emerald-800 font-semibold mb-4 text-left">
-                    <i class="fa-solid fa-circle-info mr-1"></i> Klik butang di bawah untuk log masuk menggunakan akaun Google atau DELIMa anda.
-                </div>
-                <button onclick="handleGoogleLogin()" class="w-full py-4 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-3 text-sm">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                    </svg>
-                    <span>Log Masuk dengan Google / Gmail</span>
-                </button>
-            </div>
-
-            <!-- BORANG PEMILIHAN AVATAR -->
-            <div id="form-avatar-setup" class="space-y-4 text-left hidden">
-                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Sila pilih avatar kesukaanmu sebelum mula.
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Pilih Avatar</label>
-                    <div id="avatar-selector" class="grid grid-cols-4 gap-2"></div>
-                </div>
-                <button onclick="saveAvatarSelection()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
-                    Simpan & Mula Jawab Kuiz 🚀
-                </button>
-            </div>
-
-            <!-- BORANG GURU & ADMIN -->
-            <div id="form-staff" class="space-y-4 text-left hidden">
-                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID dan kata laluan staf.
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">ID Pengguna</label>
-                    <input type="text" id="staff-id" placeholder="ID Staf" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Kata Laluan</label>
-                    <input type="password" id="staff-password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Peranan</label>
-                    <select id="staff-role" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold bg-white">
-                        <option value="teacher">Mod Guru</option>
-                        <option value="admin">Mod Admin</option>
-                    </select>
-                </div>
-                <button onclick="handleStaffLogin()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-lg transition text-base">
-                    Log Masuk Staf 🔑
-                </button>
-            </div>
-        </div>
-
-        <!-- VIEW 2: DASHBOARD MURID -->
-        <div id="view-dashboard" class="space-y-6 hidden">
-            <div class="pastel-card bg-gradient-to-r from-emerald-400 to-teal-500 text-white p-6 md:p-8 flex flex-col md:flex-row justify-between items-center shadow-lg">
-                <div class="space-y-2 text-center md:text-left mb-4 md:mb-0">
-                    <span class="bg-white/25 px-3 py-1 rounded-full text-xs font-bold tracking-wider">TAHUN 1 KSSR</span>
-                    <h2 class="text-2xl md:text-4xl font-bold" id="dash-welcome">Hai, Murid! 👋</h2>
-                    <p class="text-emerald-50 text-sm">Jom jawab 20 soalan kuiz Kata Nama Am hari ini!</p>
-                </div>
-                <div class="flex space-x-3 bg-white/10 backdrop-blur p-3 rounded-2xl border border-white/25">
-                    <div class="text-center px-3 border-r border-white/20">
-                        <span class="block text-xl md:text-2xl font-bold" id="dash-points">0</span>
-                        <span class="text-xs uppercase tracking-wider opacity-80">Mata ⭐</span>
-                    </div>
-                    <div class="text-center px-3">
-                        <span class="block text-xl md:text-2xl font-bold" id="dash-badges-count">0</span>
-                        <span class="text-xs uppercase tracking-wider opacity-80">Lencana 🏅</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kad Terus ke Kuiz Kata Nama Am -->
-            <div class="pastel-card bg-emerald-50 border-emerald-200 p-6 flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                    <div class="bg-emerald-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow">📚</div>
-                    <div>
-                        <h3 class="font-bold text-emerald-900 text-lg">Topik Khas: Kata Nama Am (20 Soalan)</h3>
-                        <p class="text-xs text-emerald-700 mt-0.5">Latihan lengkap soalan pilihan anda berserta pilihan jawapan interaktif.</p>
-                    </div>
-                </div>
-                <button onclick="startSpecificQuiz()" class="px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg text-sm transition">
-                    Mula Kuiz Sekarang 🎯
-                </button>
-            </div>
-        </div>
-
-        <!-- VIEW 3: PILIH TOPIK -->
-        <div id="view-worlds" class="space-y-6 hidden">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Senarai Topik Latihan 📚</h2>
-                    <p class="text-xs text-gray-500">Pilih tajuk untuk menjawab kuiz.</p>
-                </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
-            </div>
-            <div id="topics-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-        </div>
-
-        <!-- VIEW 4: KUIZ & LATIHAN INTERAKTIF -->
-        <div id="view-quiz" class="max-w-2xl mx-auto space-y-6 hidden">
-            <div class="pastel-card p-6 md:p-8 space-y-6">
-                <div class="flex justify-between items-center border-b border-gray-100 pb-4">
-                    <div>
-                        <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Kata Nama Am</span>
-                        <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 20</h3>
-                    </div>
-                    <div class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">
-                        ⭐ Mata: <span id="quiz-current-score">0</span>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <p id="quiz-question-text" class="text-lg font-bold text-gray-800 leading-snug">Soalan...</p>
-                    <div id="quiz-options-container" class="space-y-3"></div>
-                </div>
-                <div id="quiz-feedback" class="hidden p-4 rounded-2xl font-bold text-sm space-y-1"></div>
-                <div class="flex justify-end pt-2">
-                    <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow transition text-sm">
-                        Seterusnya <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW 5: KEPUTUSAN -->
-        <div id="view-result" class="max-w-md mx-auto pastel-card p-8 text-center space-y-6 hidden">
-            <div class="w-24 h-24 bg-amber-100 text-amber-500 mx-auto rounded-full flex items-center justify-center text-4xl shadow-inner animate-bounce-short">🏆</div>
-            <div>
-                <h2 class="text-2xl font-bold text-gray-800">Tahniah, Hebat! 🎉</h2>
-                <p id="result-message" class="text-sm text-gray-600 mt-1">Kamu telah berjaya menjawab kesemua soalan Kata Nama Am!</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
-                <div class="flex justify-between text-sm font-semibold">
-                    <span class="text-gray-500">Markah Diperolehi:</span>
-                    <span id="res-score" class="text-emerald-600 font-bold">+200 Mata ⭐</span>
-                </div>
-            </div>
-            <div class="flex space-x-3 pt-2">
-                <button onclick="switchView('dashboard')" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">Utama</button>
-            </div>
-        </div>
-
-        <!-- VIEW 6: LENCANA -->
-        <div id="view-badges" class="space-y-6 hidden">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Lencana Saya 🏅</h2>
-                    <p class="text-xs text-gray-500">Koleksi lencana kejayaan.</p>
-                </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 font-bold rounded-xl text-xs">Kembali</button>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="badges-grid"></div>
-        </div>
-
-        <!-- VIEW 7: KEMAJUAN -->
-        <div id="view-progress" class="space-y-6 hidden">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Kemajuan Pembelajaran 📊</h2>
-                </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 font-bold rounded-xl text-xs">Kembali</button>
-            </div>
-            <div class="pastel-card p-6 space-y-4" id="full-progress-list"></div>
-        </div>
-
-        <!-- VIEW 8: GURU -->
-        <div id="view-teacher" class="space-y-6 hidden">
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
-                <button onclick="logout()" class="px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl text-xs">Log Keluar</button>
-            </div>
-            <div class="pastel-card p-6">
-                <table class="w-full text-left text-sm">
-                    <thead><tr class="bg-gray-50 text-gray-500"><th class="p-3">Nama Murid</th><th class="p-3">Markah</th></tr></thead>
-                    <tbody id="teacher-students-table" class="divide-y divide-gray-100"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- VIEW 9: ADMIN -->
-        <div id="view-admin" class="space-y-6 hidden">
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
-                <button onclick="logout()" class="px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl text-xs">Log Keluar</button>
-            </div>
-            <div class="pastel-card p-6">
-                <p>Jumlah Soalan Aktif: <b>20 Soalan Kata Nama Am</b></p>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBTTVMV8ur0A-_GCr7qBBcIe8GzVpvYsnA",
-            authDomain: "cabaran-cilik-bahasa-melayu.firebaseapp.com",
-            projectId: "cabaran-cilik-bahasa-melayu",
-            storageBucket: "cabaran-cilik-bahasa-melayu.firebasestorage.app",
-            messagingSenderId: "218574026784",
-            appId: "1:218574026784:web:c1fd5a00bc2bb6b1bc6445"
-        };
-
-        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playSound(type) {
-            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            if(type === 'correct') {
-                osc.type = 'sine'; osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.5);
-            } else {
-                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.35);
-            }
-        }
-
-        // 20 SOALAN SEBENAR KATA NAMA AM YANG ANDA BERIKAN
-        const kataNamaAmQuestions = [
-            {
-                question: "1. Apakah kata nama am bagi orang yang mengajar murid?",
-                options: ["guru", "sekolah", "buku"],
-                answer: "guru",
-                explanation: "'guru' adalah kata nama am bagi orang yang mengajar murid."
-            },
-            {
-                question: "2. Ali membaca sebuah ___.",
-                options: ["buku", "makan", "cantik"],
-                answer: "buku",
-                explanation: "'buku' ialah kata nama am yang dibaca oleh Ali."
-            },
-            {
-                question: "3. Ibu membeli ___ di pasar.",
-                options: ["ikan", "berlari", "merah"],
-                answer: "ikan",
-                explanation: "'ikan' ialah kata nama am benda/haiwan yang dibeli di pasar."
-            },
-            {
-                question: "4. ___ itu sangat besar.",
-                options: ["rumah", "tidur", "manis"],
-                answer: "rumah",
-                explanation: "'rumah' adalah kata nama am binaan."
-            },
-            {
-                question: "5. Apakah kata nama am bagi tempat murid belajar?",
-                options: ["sekolah", "guru", "pensel"],
-                answer: "sekolah",
-                explanation: "'sekolah' ialah kata nama am bagi tempat belajar."
-            },
-            {
-                question: "6. Adik bermain dengan ___.",
-                options: ["bola", "cantik", "berlari"],
-                answer: "bola",
-                explanation: "'bola' ialah kata nama am alat permainan."
-            },
-            {
-                question: "7. Ayah membaca ___ pada waktu pagi.",
-                options: ["surat khabar", "berjalan", "tinggi"],
-                answer: "surat khabar",
-                explanation: "'surat khabar' ialah kata nama am bahan bacaan."
-            },
-            {
-                question: "8. Kakak menggunakan ___ untuk menulis.",
-                options: ["pensel", "meja", "makan"],
-                answer: "pensel",
-                explanation: "'pensel' ialah alat tulis (kata nama am)."
-            },
-            {
-                question: "9. ___ itu mempunyai empat kaki.",
-                options: ["kerusi", "membaca", "biru"],
-                answer: "kerusi",
-                explanation: "'kerusi' ialah kata nama am perabot."
-            },
-            {
-                question: "10. Ibu memasak di ___.",
-                options: ["dapur", "cantik", "menyanyi"],
-                answer: "dapur",
-                explanation: "'dapur' ialah kata nama am ruang di dalam rumah."
-            },
-            {
-                question: "11. Apakah kata nama am bagi haiwan yang berbunyi “meow”?",
-                options: ["kucing", "pokok", "kereta"],
-                answer: "kucing",
-                explanation: "'kucing' ialah haiwan (kata nama am)."
-            },
-            {
-                question: "12. Adik minum susu menggunakan ___.",
-                options: ["cawan", "tidur", "besar"],
-                answer: "cawan",
-                explanation: "'cawan' ialah kata nama am bekas air."
-            },
-            {
-                question: "13. ___ digunakan untuk memadam tulisan pensel.",
-                options: ["pemadam", "buku", "berjalan"],
-                answer: "pemadam",
-                explanation: "'pemadam' ialah kata nama am alat tulis."
-            },
-            {
-                question: "14. Ayah memandu ___.",
-                options: ["kereta", "membaca", "merah"],
-                answer: "kereta",
-                explanation: "'kereta' ialah kenderaan (kata nama am)."
-            },
-            {
-                question: "15. Ibu membeli sayur di ___.",
-                options: ["pasar", "sekolah", "pensel"],
-                answer: "pasar",
-                explanation: "'pasar' ialah tempat (kata nama am)."
-            },
-            {
-                question: "16. ___ tumbuh di dalam tanah.",
-                options: ["pokok", "cantik", "berlari"],
-                answer: "pokok",
-                explanation: "'pokok' ialah tumbuhan (kata nama am)."
-            },
-            {
-                question: "17. Murid duduk di atas ___.",
-                options: ["kerusi", "buku", "makan"],
-                answer: "kerusi",
-                explanation: "'kerusi' tempat duduk."
-            },
-            {
-                question: "18. Apakah kata nama am bagi benda yang menunjukkan masa?",
-                options: ["jam", "rumah", "guru"],
-                answer: "jam",
-                explanation: "'jam' menunjukkan masa."
-            },
-            {
-                question: "19. Adik memakai ___ di kaki.",
-                options: ["kasut", "buku", "meja"],
-                answer: "kasut",
-                explanation: "'kasut' dipakai di kaki."
-            },
-            {
-                question: "20. Burung membuat sarang di atas ___.",
-                options: ["pokok", "pensel", "sekolah"],
-                answer: "pokok",
-                explanation: "Burung membuat sarang di atas 'pokok'."
-            }
-        ];
-
-        let currentUser = { email: "", name: "Murid Cilik", points: 0, badgesCount: 0, avatar: "Bijak", role: "student" };
-        let currentQuizIndex = 0;
-        let quizScore = 0;
-        let tempGoogleUser = null;
-
-        window.onload = function() { renderAvatarSelector(); };
-
-        function renderAvatarSelector() {
-            const container = document.getElementById('avatar-selector');
-            const seeds = ['Bijak', 'Budi', 'Tunas', 'Ilham'];
-            container.innerHTML = seeds.map((seed, idx) => `
-                <div onclick="selectAvatar('${seed}')" class="p-2 border-2 ${idx === 0 ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200'} rounded-2xl cursor-pointer text-center avatar-opt" data-seed="${seed}">
-                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${seed}" class="w-12 h-12 mx-auto">
-                    <span class="text-[10px] font-bold text-gray-600 mt-1 block">${seed}</span>
-                </div>
-            `).join('');
-            currentUser.avatar = seeds[0];
-        }
-
-        function selectAvatar(seed) {
-            currentUser.avatar = seed;
-            document.querySelectorAll('.avatar-opt').forEach(el => {
-                if(el.dataset.seed === seed) {
-                    el.className = "p-2 border-2 border-emerald-500 bg-emerald-50 rounded-2xl cursor-pointer text-center avatar-opt";
-                } else {
-                    el.className = "p-2 border-2 border-gray-200 rounded-2xl cursor-pointer text-center avatar-opt";
-                }
-            });
-        }
-
-        function switchLoginTab(type) {
-            if(type === 'student') {
-                document.getElementById('tab-student').className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-emerald-600 shadow-sm transition";
-                document.getElementById('tab-staff').className = "flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition";
-                document.getElementById('form-student').classList.remove('hidden');
-                document.getElementById('form-staff').classList.add('hidden');
-            } else {
-                document.getElementById('tab-staff').className = "flex-1 py-2 text-xs font-bold rounded-lg bg-white text-amber-600 shadow-sm transition";
-                document.getElementById('tab-student').className = "flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition";
-                document.getElementById('form-staff').classList.remove('hidden');
-                document.getElementById('form-student').classList.add('hidden');
-            }
-            document.getElementById('form-avatar-setup').classList.add('hidden');
-        }
-
-        function handleStaffLogin() {
-            const idInput = document.getElementById('staff-id').value.trim();
-            const passInput = document.getElementById('staff-password').value.trim();
-            const roleInput = document.getElementById('staff-role').value;
-
-            if(idInput === "SKPA 2" && passInput === "skpuncakalam2") {
-                currentUser.role = roleInput;
-                currentUser.name = roleInput === 'admin' ? "Admin" : "Cikgu";
-                updateHeaderUI();
-                switchView(roleInput === 'teacher' ? 'teacher' : 'admin');
-            } else {
-                alert("ID atau Kata Laluan salah!");
-            }
-        }
-
-        async function handleGoogleLogin() {
-            try {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                const result = await auth.signInWithPopup(provider);
-                tempGoogleUser = { email: result.user.email, name: result.user.displayName };
-            } catch(e) {
-                tempGoogleUser = { email: "murid@delima.edu.my", name: "Murid Cilik" };
-            }
-            document.getElementById('form-student').classList.add('hidden');
-            document.getElementById('form-avatar-setup').classList.remove('hidden');
-        }
-
-        function saveAvatarSelection() {
-            currentUser.email = tempGoogleUser ? tempGoogleUser.email : "murid@cilik.com";
-            currentUser.name = tempGoogleUser ? tempGoogleUser.name : "Murid Cilik";
-            currentUser.role = "student";
-            proceedToDashboard();
-        }
-
-        function proceedToDashboard() {
-            document.getElementById('form-avatar-setup').classList.add('hidden');
-            updateHeaderUI();
-            switchView('dashboard');
-            try { confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } }); } catch(e) {}
-        }
-
-        function updateHeaderUI() {
-            document.getElementById('main-header').classList.remove('hidden');
-            document.getElementById('mobile-nav').classList.remove('hidden');
-            document.getElementById('header-username').innerText = currentUser.name.split(' ')[0];
-            document.getElementById('header-points').innerText = currentUser.points;
-            document.getElementById('header-avatar-img').src = `https://api.dicebear.com/7.x/bottts/svg?seed=${currentUser.avatar}`;
-            document.getElementById('dash-welcome').innerText = `Hai, ${currentUser.name.split(' ')[0]}! 👋`;
-            document.getElementById('dash-points').innerText = currentUser.points;
-            document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
-        }
-
-        function handleLogoClick() {
-            switchView(currentUser.role === 'teacher' ? 'teacher' : (currentUser.role === 'admin' ? 'admin' : 'dashboard'));
-        }
-
-        function switchView(viewName) {
-            ['login', 'dashboard', 'worlds', 'quiz', 'result', 'badges', 'progress', 'teacher', 'admin'].forEach(v => {
-                const el = document.getElementById(`view-${v}`);
-                if(el) el.classList.add('hidden');
-            });
-            const target = document.getElementById(`view-${viewName}`);
-            if(target) { target.classList.remove('hidden'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-        }
-
-        function startSpecificQuiz() {
-            currentQuizIndex = 0;
-            quizScore = 0;
-            switchView('quiz');
-            loadQuizQuestion();
-        }
-
-        function loadQuizQuestion() {
-            const q = kataNamaAmQuestions[currentQuizIndex];
-            document.getElementById('quiz-topic-name').innerText = "Kata Nama Am";
-            document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada 20`;
-            document.getElementById('quiz-current-score').innerText = quizScore;
-            document.getElementById('quiz-question-text').innerText = q.question;
-            document.getElementById('quiz-feedback').classList.add('hidden');
-            document.getElementById('quiz-next-btn').classList.add('hidden');
-
-            const optContainer = document.getElementById('quiz-options-container');
-            optContainer.innerHTML = q.options.map(opt => `
-                <button type="button" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}', '${q.explanation.replace(/'/g, "\\'")}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
-                    ${opt}
-                </button>
-            `).join('');
-        }
-
-        function checkAnswer(btnElement, selected, correct, explanation) {
-            const feedback = document.getElementById('quiz-feedback');
-            feedback.classList.remove('hidden');
-
-            document.querySelectorAll('.option-btn').forEach(b => {
-                b.disabled = true;
-                if (b.innerText.trim() === correct.trim()) {
-                    b.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
-                }
-            });
-
-            if(selected.trim() === correct.trim()) {
-                quizScore += 10;
-                playSound('correct');
-                btnElement.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1 shadow-sm";
-                feedback.innerHTML = `🎉 Betul!<br><span class="text-xs font-normal text-emerald-700">${explanation}</span>`;
-            } else {
-                playSound('wrong');
-                btnElement.classList.add('border-red-400', 'bg-red-50', 'text-red-900');
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1 shadow-sm";
-                feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b><br><span class="text-xs font-normal text-amber-700">${explanation}</span>`;
-            }
-            document.getElementById('quiz-next-btn').classList.remove('hidden');
-        }
-
-        function nextQuizQuestion() {
-            currentQuizIndex++;
-            if(currentQuizIndex < kataNamaAmQuestions.length) {
-                loadQuizQuestion();
-            } else {
-                currentUser.points += 200;
-                currentUser.badgesCount += 1;
-                updateHeaderUI();
-                switchView('result');
-                try { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); } catch(e) {}
-            }
-        }
-
-        function logout() {
-            auth.signOut().then(() => {
+            }).catch(() => {
                 document.getElementById('main-header').classList.add('hidden');
                 document.getElementById('mobile-nav').classList.add('hidden');
                 switchView('login');
