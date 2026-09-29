@@ -487,6 +487,42 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
+        // ================= SISTEM BUNYI / SOUND EFFECT (WEB AUDIO API) =================
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            if(type === 'correct') {
+                // Bunyi Loceng Kejayaan (Chime)
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // A5
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            } else if(type === 'wrong') {
+                // Bunyi Amaran Lembut (Buzz)
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(110, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.35);
+            }
+        }
+
         // 20 TOPIK LENGKAP MERANGKUMI DUNIA 1, DUNIA 2, DAN DUNIA 3
         const topicsData = [
             // DUNIA 1: GOLONGAN KATA (1 - 11)
@@ -886,26 +922,46 @@
             document.getElementById('quiz-next-btn').classList.add('hidden');
 
             const optContainer = document.getElementById('quiz-options-container');
+            // Pembaikan logik butang pilihan jawapan menggunakan event handler onclick yang betul
             optContainer.innerHTML = q.options.map(opt => `
-                <button onclick="checkAnswer('${opt}', '${q.answer}', '${q.explanation}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
+                <button type="button" onclick="checkAnswer(this, '${escapeQuotes(opt)}', '${escapeQuotes(q.answer)}', '${escapeQuotes(q.explanation)}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
                     ${opt}
                 </button>
             `).join('');
         }
 
-        function checkAnswer(selected, correct, explanation) {
+        // Fungsi pembantu untuk mengelakkan ralat petikan teks dalam fungsi inline HTML
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        function checkAnswer(btnElement, selected, correct, explanation) {
             const feedback = document.getElementById('quiz-feedback');
             feedback.classList.remove('hidden');
-            document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+            
+            // Nyahaktifkan semua butang pilihan selepas satu jawapan dipilih
+            document.querySelectorAll('.option-btn').forEach(b => {
+                b.disabled = true;
+                b.classList.remove('hover:border-emerald-500', 'hover:bg-emerald-50');
+                if (b.innerText.trim() === correct.trim()) {
+                    b.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
+                }
+            });
 
-            if(selected === correct) {
+            if(selected.trim() === correct.trim()) {
                 quizScore += 10;
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1";
+                playSound('correct'); // Mainkan bunyi betul
+                btnElement.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1 shadow-sm";
                 feedback.innerHTML = `🎉 Betul!<br><span class="text-xs font-normal text-emerald-700">${explanation}</span>`;
             } else {
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1";
+                playSound('wrong'); // Mainkan bunyi salah
+                btnElement.classList.add('border-red-400', 'bg-red-50', 'text-red-900');
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1 shadow-sm";
                 feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b><br><span class="text-xs font-normal text-amber-700">${explanation}</span>`;
             }
+            
+            // Paparkan butang seterusnya supaya murid boleh bergerak ke soalan berikutnya
             document.getElementById('quiz-next-btn').classList.remove('hidden');
         }
 
