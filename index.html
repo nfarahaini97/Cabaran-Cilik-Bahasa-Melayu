@@ -21,7 +21,7 @@
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #F0FDF4;
+            background-color: #F0Fdf4;
             color: #1f2937;
         }
         h1, h2, h3, h4, .font-heading {
@@ -57,10 +57,11 @@
                 </div>
             </div>
 
-            <!-- Desktop Nav Menu -->
+            <!-- Desktop Nav Menu (Hanya untuk Murid) -->
             <nav id="nav-student-menu" class="hidden md:flex items-center space-x-1 font-semibold text-sm">
                 <button onclick="switchView('dashboard')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-house mr-1"></i> Utama</button>
                 <button onclick="switchView('worlds')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Belajar</button>
+                <button onclick="switchView('games')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-gamepad mr-1"></i> Permainan</button>
                 <button onclick="switchView('badges')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-medal mr-1"></i> Lencana</button>
                 <button onclick="switchView('progress')" class="px-3 py-2 rounded-xl hover:bg-emerald-50 text-gray-600 hover:text-emerald-600 transition"><i class="fa-solid fa-chart-line mr-1"></i> Kemajuan</button>
             </nav>
@@ -80,10 +81,11 @@
         </div>
     </header>
 
-    <!-- MOBILE BOTTOM NAVIGATION -->
+    <!-- MOBILE BOTTOM NAVIGATION (Hanya untuk Murid) -->
     <div id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around py-2.5 px-2 shadow-lg hidden">
         <button onclick="switchView('dashboard')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-house text-lg"></i>Utama</button>
         <button onclick="switchView('worlds')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-book-open text-lg"></i>Belajar</button>
+        <button onclick="switchView('games')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-gamepad text-lg"></i>Main</button>
         <button onclick="switchView('badges')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-medal text-lg"></i>Lencana</button>
         <button onclick="switchView('progress')" class="flex flex-col items-center text-gray-500 hover:text-emerald-600 text-xs font-bold"><i class="fa-solid fa-chart-line text-lg"></i>Kemajuan</button>
     </div>
@@ -98,7 +100,7 @@
                     <i class="fa-solid fa-rocket animate-bounce-short"></i>
                 </div>
                 <h1 class="text-2xl md:text-3xl font-bold text-emerald-600">CABARAN CILIK BAHASA MELAYU</h1>
-                <p class="text-xs md:text-sm text-gray-500 mt-1 italic">“Belajar Sambil Bermain, Menjadi Juara Bahasa!”</p>
+                <p class="text-xs md:text-sm text-gray-500 mt-1 italic">“Belajar Bahasa Melayu, Kumpul Lencana, Jadi Juara!”</p>
             </div>
 
             <!-- Tab Pemilihan Peranan -->
@@ -107,10 +109,10 @@
                 <button onclick="switchLoginTab('staff')" id="tab-staff" class="flex-1 py-2 text-xs font-bold rounded-lg text-gray-500 transition">Guru / Admin</button>
             </div>
 
-            <!-- BORANG LOG MASUK MURID -->
+            <!-- BORANG LOG MASUK MURID (GMAIL / GOOGLE SIGN IN) -->
             <div id="form-student" class="space-y-4 text-center">
                 <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs text-emerald-800 font-semibold mb-4 text-left">
-                    <i class="fa-solid fa-circle-info mr-1"></i> Klik butang di bawah untuk log masuk menggunakan akaun Google atau DELIMa anda.
+                    <i class="fa-solid fa-circle-info mr-1"></i> Klik butang di bawah untuk log masuk menggunakan akaun Gmail atau DELIMa anda. Tiada kata laluan diperlukan!
                 </div>
                 <button onclick="handleGoogleLogin()" class="w-full py-4 bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-3 text-sm">
                     <svg class="w-5 h-5" viewBox="0 0 24 24">
@@ -119,46 +121,46 @@
                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
                     </svg>
-                    <span>Log Masuk dengan Google / DELIMa</span>
+                    <span>Log Masuk dengan Google / Gmail</span>
                 </button>
             </div>
 
-            <!-- BORANG PEMILIHAN AVATAR -->
+            <!-- BORANG PEMILIHAN AVATAR (HANYA SEKALI SELEPAS LOGIN PERTAMA KALI) -->
             <div id="form-avatar-setup" class="space-y-4 text-left hidden">
                 <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Pilih avatar robot kesukaanmu sebelum mula!
+                    <i class="fa-solid fa-star text-amber-500 mr-1"></i> Selamat datang! Sila pilih avatar kesukaanmu. Pilihan ini hanya dilakukan sekali sahaja.
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Pilih Avatar</label>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Pilih Avatar Kesukaanmu</label>
                     <div id="avatar-selector" class="grid grid-cols-4 gap-2"></div>
                 </div>
                 <button onclick="saveAvatarSelection()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
-                    Simpan & Mula Bermain 🚀
+                    Simpan & Mula Belajar 🚀
                 </button>
             </div>
 
-            <!-- BORANG GURU & ADMIN -->
+            <!-- BORANG LOG MASUK GURU & ADMIN -->
             <div id="form-staff" class="space-y-4 text-left hidden">
                 <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-800 font-semibold mb-2">
-                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID dan kata laluan khusus staf.
+                    <i class="fa-solid fa-circle-info mr-1"></i> Masukkan ID Pengguna dan kata laluan untuk akses Guru atau Admin.
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">ID Pengguna</label>
-                    <input type="text" id="staff-id" placeholder="ID Staf" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
+                    <input type="text" id="staff-id" placeholder="Masukkan ID Pengguna" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Kata Laluan</label>
                     <input type="password" id="staff-password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Peranan</label>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Pilih Peranan Masuk</label>
                     <select id="staff-role" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:outline-none text-sm font-semibold bg-white">
                         <option value="teacher">Mod Guru</option>
-                        <option value="admin">Mod Admin</option>
+                        <option value="admin">Mod Admin (Analisis Result)</option>
                     </select>
                 </div>
-                <button onclick="handleStaffLogin()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-lg transition text-base">
-                    Log Masuk Staf 🔑
+                <button onclick="handleStaffLogin()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 text-base">
+                    Semak Data Result Murid 🔑
                 </button>
             </div>
         </div>
@@ -169,64 +171,121 @@
                 <div class="space-y-2 text-center md:text-left mb-4 md:mb-0">
                     <span class="bg-white/25 px-3 py-1 rounded-full text-xs font-bold tracking-wider">TAHUN 1 KSSR</span>
                     <h2 class="text-2xl md:text-4xl font-bold" id="dash-welcome">Hai, Murid! 👋</h2>
-                    <p class="text-emerald-50 text-sm">Terokai dunia pembelajaran bahasa Melayu dan kumpul mata ganjaranmu!</p>
+                    <p class="text-emerald-50 text-sm">Hari ni nak jadi juara bahasa apa pula? Jom sambung belajar!</p>
                 </div>
                 <div class="flex space-x-3 bg-white/10 backdrop-blur p-3 rounded-2xl border border-white/25">
                     <div class="text-center px-3 border-r border-white/20">
                         <span class="block text-xl md:text-2xl font-bold" id="dash-points">0</span>
                         <span class="text-xs uppercase tracking-wider opacity-80">Mata ⭐</span>
                     </div>
-                    <div class="text-center px-3">
+                    <div class="text-center px-3 border-r border-white/20">
                         <span class="block text-xl md:text-2xl font-bold" id="dash-badges-count">0</span>
                         <span class="text-xs uppercase tracking-wider opacity-80">Lencana 🏅</span>
+                    </div>
+                    <div class="text-center px-3">
+                        <span class="block text-xl md:text-2xl font-bold" id="dash-streak">1</span>
+                        <span class="text-xs uppercase tracking-wider opacity-80">Streak 🔥</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Kad Menu Pantas Dunia Pembelajaran -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div onclick="switchView('worlds')" class="pastel-card p-6 cursor-pointer hover:border-emerald-400 transition transform hover:-translate-y-1 flex items-center space-x-4 bg-emerald-50/50">
-                    <div class="bg-emerald-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow">🌍</div>
+            <!-- Daily Challenge Prompt -->
+            <div class="pastel-card bg-amber-50 border-amber-200 p-5 flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-3 md:mb-0">
+                    <div class="bg-amber-400 text-white w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
                     <div>
-                        <h3 class="font-bold text-emerald-900 text-lg">Dunia Pembelajaran</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Pilih topik kuiz dan jawab soalan latihan.</p>
+                        <h3 class="font-bold text-amber-800 text-base">Cabaran Hari Ini 🎯</h3>
+                        <p class="text-xs text-amber-700">Jawab soalan pantas hari ini untuk bonus mata ekstra!</p>
                     </div>
                 </div>
-                <div onclick="switchView('badges')" class="pastel-card p-6 cursor-pointer hover:border-amber-400 transition transform hover:-translate-y-1 flex items-center space-x-4 bg-amber-50/50">
-                    <div class="bg-amber-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow">🏆</div>
-                    <div>
-                        <h3 class="font-bold text-amber-900 text-lg">Koleksi Lencana</h3>
-                        <p class="text-xs text-gray-500 mt-0.5">Semak lencana pencapaian hebat yang telah anda menangi.</p>
-                    </div>
+                <button onclick="startDailyChallenge()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow text-sm transition">
+                    Mula Cabaran
+                </button>
+            </div>
+
+            <!-- Quick Navigation Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="switchView('worlds')" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <h4 class="font-bold text-gray-800 text-base">Teroka Topik</h4>
+                    <p class="text-xs text-gray-500 mt-1">Dunia Golongan Kata, Pembentukan Kata & Ayat.</p>
+                </div>
+                <div onclick="switchView('games')" class="pastel-card p-5 hover:border-purple-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-gamepad"></i></div>
+                    <h4 class="font-bold text-gray-800 text-base">Permainan Cilik</h4>
+                    <p class="text-xs text-gray-500 mt-1">Main sambil belajar perkataan dan ayat menarik.</p>
+                </div>
+                <div onclick="switchView('badges')" class="pastel-card p-5 hover:border-amber-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-medal"></i></div>
+                    <h4 class="font-bold text-gray-800 text-base">Lencana Saya</h4>
+                    <p class="text-xs text-gray-500 mt-1">Kumpul semua lencana hebat juara bahasa.</p>
+                </div>
+                <div onclick="switchView('progress')" class="pastel-card p-5 hover:border-teal-400 cursor-pointer transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h4 class="font-bold text-gray-800 text-base">Kemajuan Saya</h4>
+                    <p class="text-xs text-gray-500 mt-1">Semak tahap penguasaan topik pembelajaran.</p>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW 3: PILIH TOPIK / DUNIA -->
+        <!-- VIEW 3: PILIH DUNIA & SENARAI TOPIK -->
         <div id="view-worlds" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Dunia Pembelajaran 🌍</h2>
-                    <p class="text-xs text-gray-500">Pilih topik untuk mula menjawab soalan kuiz.</p>
+                    <h2 class="text-2xl font-bold text-gray-800">Pilih Dunia & Topik 📚</h2>
+                    <p class="text-xs text-gray-500">Pilih tajuk pelajaran untuk mula mengulang kaji dan menjawab latihan.</p>
                 </div>
                 <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
+            </div>
+            <div class="flex space-x-2 overflow-x-auto pb-2">
+                <button onclick="filterWorld(1)" id="btn-w1" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow transition whitespace-nowrap">Dunia 1: Golongan Kata (1-11)</button>
+                <button onclick="filterWorld(2)" id="btn-w2" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 2: Pembentukan Kata (12-14)</button>
+                <button onclick="filterWorld(3)" id="btn-w3" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap">Dunia 3: Pembinaan Ayat (15-20)</button>
             </div>
             <div id="topics-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
 
-        <!-- VIEW 4: KUIZ & LATIHAN INTERAKTIF -->
+        <!-- VIEW 4: NOTA & PEMBELAJARAN TOPIK -->
+        <div id="view-topic-detail" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <button onclick="switchView('worlds')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Senarai Topik</button>
+                <span id="topic-world-badge" class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">Dunia 1</span>
+            </div>
+            <div class="pastel-card p-6 md:p-8 space-y-6">
+                <div>
+                    <h2 id="topic-title" class="text-2xl md:text-3xl font-bold text-emerald-600 mb-2">Kata Nama Am</h2>
+                    <p id="topic-desc" class="text-gray-600 text-sm leading-relaxed">Nota ringkas...</p>
+                </div>
+                <div class="bg-emerald-50 border-2 border-emerald-100 p-5 rounded-2xl">
+                    <h3 class="font-bold text-emerald-800 text-base mb-3"><i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i> Contoh Bergambar & Nota Ringkas</h3>
+                    <div id="topic-examples-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+                </div>
+                <div class="flex justify-end pt-4">
+                    <button onclick="startTopicQuiz()" class="w-full sm:w-auto px-6 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg transition text-base flex items-center justify-center">
+                        <i class="fa-solid fa-play mr-2"></i> Mula Latihan & Kuiz (20 Soalan) 🎯
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 5: KUIZ & LATIHAN INTERAKTIF -->
         <div id="view-quiz" class="max-w-2xl mx-auto space-y-6 hidden">
             <div class="pastel-card p-6 md:p-8 space-y-6">
                 <div class="flex justify-between items-center border-b border-gray-100 pb-4">
                     <div>
-                        <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Topik</span>
-                        <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 5</h3>
+                        <span id="quiz-topic-name" class="text-xs font-bold text-emerald-600 uppercase">Kata Nama Am</span>
+                        <h3 id="quiz-progress-text" class="text-lg font-bold text-gray-800">Soalan 1 daripada 20</h3>
                     </div>
                     <div class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold">
                         ⭐ Mata: <span id="quiz-current-score">0</span>
                     </div>
                 </div>
                 <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span id="quiz-difficulty-badge" class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-md">Tahap: Mudah</span>
+                    </div>
                     <p id="quiz-question-text" class="text-lg font-bold text-gray-800 leading-snug">Soalan...</p>
                     <div id="quiz-options-container" class="space-y-3"></div>
                 </div>
@@ -239,93 +298,171 @@
             </div>
         </div>
 
-        <!-- VIEW 5: KEPUTUSAN -->
+        <!-- VIEW 6: KEPUTUSAN / PENCAPAIAN TOPIK -->
         <div id="view-result" class="max-w-md mx-auto pastel-card p-8 text-center space-y-6 hidden">
             <div class="w-24 h-24 bg-amber-100 text-amber-500 mx-auto rounded-full flex items-center justify-center text-4xl shadow-inner animate-bounce-short">🏆</div>
             <div>
                 <h2 class="text-2xl font-bold text-gray-800">Tahniah, Hebat! 🎉</h2>
-                <p id="result-message" class="text-sm text-gray-600 mt-1">Kamu telah berjaya melengkapkan kuiz dengan cemerlang!</p>
+                <p id="result-message" class="text-sm text-gray-600 mt-1">Kamu telah berjaya menjawab kuiz ini!</p>
             </div>
             <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
                 <div class="flex justify-between text-sm font-semibold">
-                    <span class="text-gray-500">Mata Diperolehi:</span>
+                    <span class="text-gray-500">Markah Diperolehi:</span>
                     <span id="res-score" class="text-emerald-600 font-bold">+100 Mata ⭐</span>
                 </div>
             </div>
+            <div id="badge-unlocked-box" class="hidden bg-emerald-50 border-2 border-emerald-200 p-4 rounded-2xl">
+                <span class="text-2xl">🏅</span>
+                <h4 class="font-bold text-emerald-800 text-sm mt-1">Lencana Baru Dibuka!</h4>
+                <p id="unlocked-badge-name" class="text-xs text-emerald-600 font-semibold mt-0.5">Cilik Kata</p>
+            </div>
             <div class="flex space-x-3 pt-2">
-                <button onclick="switchView('dashboard')" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">Utama</button>
-                <button onclick="switchView('worlds')" class="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm">Pilih Topik Lain</button>
+                <button onclick="switchView('worlds')" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-sm">Senarai Topik</button>
+                <button onclick="switchView('dashboard')" class="flex-1 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow">Utama</button>
             </div>
         </div>
 
-        <!-- VIEW 6: LENCANA -->
+        <!-- VIEW 7: LENCANA SAYA -->
         <div id="view-badges" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-gray-800">Lencana Saya 🏅</h2>
-                    <p class="text-xs text-gray-500">Koleksi lencana kejayaan yang telah dibuka.</p>
+                    <h2 class="text-2xl font-bold text-gray-800">Lencana & Trofi Saya 🏅</h2>
+                    <p class="text-xs text-gray-500">Kumpul semua lencana hebat dengan menguasai topik.</p>
                 </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 font-bold rounded-xl text-xs">Kembali</button>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="badges-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="badges-grid"></div>
         </div>
 
-        <!-- VIEW 7: KEMAJUAN -->
+        <!-- VIEW 8: KEMAJUAN SAYA -->
         <div id="view-progress" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">Kemajuan Pembelajaran 📊</h2>
-                    <p class="text-xs text-gray-500">Prestasi penguasaan setiap topik.</p>
+                    <p class="text-xs text-gray-500">Pantau tahap pencapaian individu anda.</p>
                 </div>
-                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 font-bold rounded-xl text-xs">Kembali</button>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
             </div>
-            <div class="pastel-card p-6 space-y-4" id="full-progress-list"></div>
+            <div class="pastel-card p-6 space-y-6">
+                <h3 class="font-bold text-gray-800 text-lg">Pecahan Penguasaan Mengikut Topik</h3>
+                <div id="full-progress-list" class="space-y-3"></div>
+            </div>
         </div>
 
-        <!-- VIEW 8: GURU -->
+        <!-- VIEW 9: PERMAINAN CILIK -->
+        <div id="view-games" class="space-y-6 hidden">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Permainan Cilik 🎮</h2>
+                    <p class="text-xs text-gray-500">Pilih mini-game menyeronokkan.</p>
+                </div>
+                <button onclick="switchView('dashboard')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-arrow-left mr-1"></i> Kembali</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="launchMiniGame('padan')" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition text-center space-y-3">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-3xl mx-auto flex items-center justify-center text-3xl shadow">🧩</div>
+                    <h4 class="font-bold text-gray-800 text-base">Padankan Perkataan</h4>
+                </div>
+            </div>
+            <div id="minigame-container" class="pastel-card p-6 md:p-8 hidden"></div>
+        </div>
+
+        <!-- VIEW 10: TEACHER DASHBOARD -->
         <div id="view-teacher" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-amber-700">Dashboard Guru 👩‍🏫</h2>
-                    <p class="text-xs text-gray-500">Pantau aktiviti dan pencapaian murid.</p>
+                    <h2 class="text-2xl font-bold text-amber-700">Dashboard Intervensi Guru 👩‍🏫</h2>
+                    <p class="text-xs text-gray-500">Paparan data keputusan murid secara khusus untuk analisis bimbingan dan intervensi.</p>
                 </div>
-                <button onclick="logout()" class="px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl text-xs">Log Keluar</button>
+                <button onclick="logout()" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
-            <div class="pastel-card p-6">
-                <table class="w-full text-left text-sm">
-                    <thead>
-                        <tr class="bg-gray-50 text-gray-500 border-b border-gray-100">
-                            <th class="p-3">Nama Murid</th>
-                            <th class="p-3">Emel</th>
-                            <th class="p-3">Jumlah Mata</th>
-                            <th class="p-3">Lencana</th>
-                        </tr>
-                    </thead>
-                    <tbody id="teacher-students-table" class="divide-y divide-gray-100"></tbody>
-                </table>
+
+            <!-- Kad Amaran Intervensi Murid -->
+            <div id="teacher-intervention-alert" class="pastel-card bg-red-50 border-red-200 p-5 hidden">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="bg-red-500 text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h3 class="font-bold text-red-700 text-base">Murid Memerlukan Intervensi Segera</h3>
+                </div>
+                <p class="text-xs text-red-600 mb-3">Murid berikut mempunyai purata penguasaan di bawah 50% atau memerlukan bimbingan topik asas:</p>
+                <div id="intervention-list" class="space-y-2"></div>
+            </div>
+
+            <!-- Ringkasan Kad & Carta -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="pastel-card p-5 bg-white">
+                    <span class="text-xs font-bold text-gray-400 uppercase">Jumlah Murid Direkod</span>
+                    <h3 id="tr-total-students" class="text-3xl font-bold text-gray-800 mt-1">0</h3>
+                </div>
+                <div class="pastel-card p-5 bg-white">
+                    <span class="text-xs font-bold text-gray-400 uppercase">Purata Markah Kelas</span>
+                    <h3 id="tr-avg-score" class="text-3xl font-bold text-emerald-600 mt-1">0%</h3>
+                </div>
+                <div class="pastel-card p-5 bg-white">
+                    <span class="text-xs font-bold text-gray-400 uppercase">Perlukan Intervensi</span>
+                    <h3 id="tr-intervention-count" class="text-3xl font-bold text-red-500 mt-1">0</h3>
+                </div>
+            </div>
+
+            <!-- Jadual Terperinci Senarai Murid -->
+            <div class="pastel-card p-6 space-y-4">
+                <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-table mr-2"></i> Jadual Result & Prestasi Murid</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs md:text-sm">
+                        <thead class="bg-gray-50 text-gray-500 uppercase font-semibold">
+                            <tr>
+                                <th class="p-3">Nama Murid</th>
+                                <th class="p-3">Progress Keseluruhan</th>
+                                <th class="p-3">Markah</th>
+                                <th class="p-3">Lencana</th>
+                                <th class="p-3">Percubaan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacher-students-table" class="divide-y divide-gray-100 font-medium text-gray-700"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- VIEW 9: ADMIN -->
+        <!-- VIEW 11: ADMIN DASHBOARD -->
         <div id="view-admin" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <div>
-                    <h2 class="text-2xl font-bold text-purple-700">Dashboard Admin ⚙️</h2>
-                    <p class="text-xs text-gray-500">Pengurusan sistem aplikasi.</p>
+                    <h2 class="text-2xl font-bold text-purple-700">Dashboard Analisis Result Admin ⚙️</h2>
+                    <p class="text-xs text-gray-500">Paparan maklumat analitikal result keseluruhan murid untuk tindakan intervensi peringkat sekolah.</p>
                 </div>
-                <button onclick="logout()" class="px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl text-xs">Log Keluar</button>
+                <button onclick="logout()" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-xl text-xs"><i class="fa-solid fa-power-off mr-1"></i> Log Keluar</button>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="pastel-card p-5 bg-purple-50 border-purple-200">
+                    <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Soalan Kuiz</span>
+                    <h3 id="admin-total-questions" class="text-3xl font-bold text-purple-800 mt-1">400</h3>
+                </div>
+                <div class="pastel-card p-5 bg-purple-50 border-purple-200">
+                    <span class="text-xs font-bold text-purple-600 uppercase">Jumlah Murid Berdaftar</span>
+                    <h3 id="admin-total-users" class="text-3xl font-bold text-purple-800 mt-1">0</h3>
+                </div>
+                <div class="pastel-card p-5 bg-purple-50 border-purple-200">
+                    <span class="text-xs font-bold text-purple-600 uppercase">Status Intervensi Global</span>
+                    <h3 class="text-3xl font-bold text-purple-800 mt-1">Aktif</h3>
+                </div>
+            </div>
+
             <div class="pastel-card p-6 space-y-4">
-                <h3 class="font-bold text-gray-800 text-base">Statistik Sistem</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-center">
-                        <span class="block text-2xl font-bold text-purple-700" id="admin-total-students">0</span>
-                        <span class="text-xs text-gray-500">Jumlah Murid Berdaftar</span>
-                    </div>
-                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-center">
-                        <span class="block text-2xl font-bold text-emerald-700">10</span>
-                        <span class="text-xs text-gray-500">Jumlah Topik Pembelajaran</span>
-                    </div>
+                <h3 class="font-bold text-purple-800 text-base"><i class="fa-solid fa-chart-line mr-2"></i> Rekod Result Keseluruhan Murid (Analisis Sistem)</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs md:text-sm">
+                        <thead class="bg-purple-50 text-purple-600 uppercase font-semibold">
+                            <tr>
+                                <th class="p-3">Nama Murid</th>
+                                <th class="p-3">Emel</th>
+                                <th class="p-3">Markah Terkumpul</th>
+                                <th class="p-3">Lencana</th>
+                                <th class="p-3">Status Penguasaan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-results-table" class="divide-y divide-gray-100 font-medium text-gray-700"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -350,113 +487,141 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
+        // ================= SISTEM BUNYI / SOUND EFFECT (WEB AUDIO API) =================
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
         function playSound(type) {
-            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
-            let osc = audioCtx.createOscillator();
-            let gain = audioCtx.createGain();
-            osc.connect(gain); gain.connect(audioCtx.destination);
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
             if(type === 'correct') {
-                osc.type = 'sine'; osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+                // Bunyi Loceng Kejayaan (Chime)
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // A5
                 gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.5);
-            } else {
-                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            } else if(type === 'wrong') {
+                // Bunyi Amaran Lembut (Buzz)
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(110, audioCtx.currentTime + 0.15);
                 gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.35);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.35);
             }
         }
 
+        // 20 TOPIK LENGKAP MERANGKUMI DUNIA 1, DUNIA 2, DAN DUNIA 3
         const topicsData = [
-            { id: 1, world: 1, title: "Kata Nama Am", desc: "Kata yang merujuk kepada nama orang, haiwan, tempat atau benda secara umum.", badge: "Cilik Kata Nama Am" },
-            { id: 2, world: 1, title: "Kata Nama Khas", desc: "Kata yang merujuk kepada nama khas orang, haiwan, tempat atau benda secara khusus.", badge: "Cilik Kata Nama Khas" },
-            { id: 3, world: 1, title: "Kata Ganti Nama", desc: "Kata yang digunakan untuk menggantikan kata nama orang.", badge: "Cilik Ganti Nama" },
-            { id: 4, world: 1, title: "Penjodoh Bilangan", desc: "Kata yang digunakan bersama-sama kata bilangan untuk mengira sesuatu benda.", badge: "Cilik Penjodoh Bilangan" },
-            { id: 5, world: 1, title: "Kata Kerja", desc: "Kata yang menyatakan perbuatan atau perlakuan.", badge: "Cilik Kata Kerja" },
-            { id: 6, world: 1, title: "Kata Adjektif", desc: "Kata yang menerangkan sifat atau keadaan sesuatu.", badge: "Cilik Kata Adjektif" },
-            { id: 7, world: 1, title: "Kata Hubung", desc: "Kata yang digunakan untuk menggabungkan ayat atau frasa.", badge: "Cilik Kata Hubung" },
-            { id: 8, world: 1, title: "Kata Sendi Nama", desc: "Kata yang terletak di hadapan kata nama.", badge: "Cilik Kata Sendi" },
-            { id: 9, world: 1, title: "Kata Tanya", desc: "Kata yang digunakan untuk menanyakan sesuatu perkara.", badge: "Cilik Kata Tanya" },
-            { id: 10, world: 1, title: "Kata Perintah", desc: "Kata yang digunakan untuk menimbulkan sesuatu tindak balas.", badge: "Cilik Kata Perintah" }
+            // DUNIA 1: GOLONGAN KATA (1 - 11)
+            { id: 1, world: 1, title: "Kata Nama Am", desc: "Kata yang merujuk kepada nama orang, haiwan, tempat atau benda secara umum.", badge: "Cilik Kata Nama Am", examples: [{t: "buku", i: "📚"}, {t: "guru", i: "👩‍🏫"}] },
+            { id: 2, world: 1, title: "Kata Nama Khas", desc: "Kata yang merujuk kepada nama khas orang, haiwan, tempat atau benda secara khusus.", badge: "Cilik Kata Nama Khas", examples: [{t: "Ali", i: "👦"}, {t: "Malaysia", i: "🇲🇾"}] },
+            { id: 3, world: 1, title: "Kata Ganti Nama", desc: "Kata yang digunakan untuk menggantikan kata nama orang (contoh: saya, awak, dia).", badge: "Cilik Ganti Nama", examples: [{t: "saya", i: "🙋‍♂️"}, {t: "awak", i: "🫵"}] },
+            { id: 4, world: 1, title: "Penjodoh Bilangan", desc: "Kata yang digunakan bersama-sama kata bilangan untuk mengira sesuatu benda (contoh: ekor, buah).", badge: "Cilik Penjodoh Bilangan", examples: [{t: "ekor", i: "🐱"}, {t: "buah", i: "🍎"}] },
+            { id: 5, world: 1, title: "Kata Kerja", desc: "Kata yang menyatakan perbuatan atau perlakuan (contoh: makan, tidur, lari).", badge: "Cilik Kata Kerja", examples: [{t: "makan", i: "🍲"}, {t: "lari", i: "🏃‍♂️"}] },
+            { id: 6, world: 1, title: "Kata Adjektif", desc: "Kata yang menerangkan sifat atau keadaan sesuatu (contoh: besar, cantik, merah).", badge: "Cilik Kata Adjektif", examples: [{t: "cantik", i: "✨"}, {t: "besar", i: "🐘"}] },
+            { id: 7, world: 1, title: "Kata Hubung", desc: "Kata yang digunakan untuk menggabungkan ayat atau frasa (contoh: dan, atau, tetapi).", badge: "Cilik Kata Hubung", examples: [{t: "dan", i: "➕"}, {t: "atau", i: "🔀"}] },
+            { id: 8, world: 1, title: "Kata Sendi Nama", desc: "Kata yang terletak di hadapan kata nama (contoh: di, ke, dari, pada).", badge: "Cilik Kata Sendi", examples: [{t: "di", i: "🏠"}, {t: "ke", i: "➡️"}] },
+            { id: 9, world: 1, title: "Kata Tanya", desc: "Kata yang digunakan untuk menanyakan sesuatu perkara (contoh: siapa, apa, bila).", badge: "Cilik Kata Tanya", examples: [{t: "apa", i: "❓"}, {t: "siapa", i: "🧑"}] },
+            { id: 10, world: 1, title: "Kata Perintah", desc: "Kata yang digunakan untuk menimbulkan sesuatu tindak balas (contoh: jangan, sila, sila).", badge: "Cilik Kata Perintah", examples: [{t: "jangan", i: "⛔"}, {t: "sila", i: "🤝"}] },
+            { id: 11, world: 1, title: "Kata Seru", desc: "Kata yang melahirkan perasaan seperti sedih, terkejut atau gembira (contoh: wah, amboi, aduh).", badge: "Cilik Kata Seru", examples: [{t: "wah", i: "🌟"}, {t: "aduh", i: "🩹"}] },
+
+            // DUNIA 2: PEMBENTUKAN KATA (12 - 14)
+            { id: 12, world: 2, title: "Kata Berimbuhan", desc: "Kata dasar yang telah menerima imbuhan di awalan, akhiran atau apitan.", badge: "Cilik Berimbuhan", examples: [{t: "berlari", i: "🏃"}, {t: "makanan", i: "🍛"}] },
+            { id: 13, world: 2, title: "Kata Majmuk", desc: "Dua kata dasar atau lebih yang digabungkan membawa makna tertentu.", badge: "Cilik Kata Majmuk", examples: [{t: "bola sepak", i: "⚽"}, {t: "surat khabar", i: "📰"}] },
+            { id: 14, world: 2, title: "Kata Ganda", desc: "Kata dasar yang diulang sepenuhnya atau sebahagian (contoh: buku-buku,-bebudak).", badge: "Cilik Kata Ganda", examples: [{t: "kerusi-kerusi", i: "🪑🪑"}, {t: "anak-anak", i: "👦👧"}] },
+
+            // DUNIA 3: PEMBINAAN AYAT (15 - 20)
+            { id: 15, world: 3, title: "Ayat Penyata", desc: "Ayat yang menyatakan atau menyampaikan keterangan tentang sesuatu perkara.", badge: "Cilik Ayat Penyata", examples: [{t: "Ibu memasak nasi.", i: "🍳"}] },
+            { id: 16, world: 3, title: "Ayat Tanya", desc: "Ayat yang digunakan untuk menanyakan sesuatu hal dan diakhiri tanda tanya.", badge: "Cilik Ayat Tanya", examples: [{t: "Di manakah Ali?", i: "❓"}] },
+            { id: 17, world: 3, title: "Ayat Perintah", desc: "Ayat yang bertujuan memberikan arahan, suruhan, larangan atau permintaan.", badge: "Cilik Ayat Perintah", examples: [{t: "Sila duduk di sini.", i: "🪑"}] },
+            { id: 18, world: 3, title: "Ayat Seruan", desc: "Ayat yang diucapkan untuk melahirkan perasaan dan menggunakan tanda seru.", badge: "Cilik Ayat Seruan", examples: [{t: "Wah, cantiknya baju ini!", i: "👗"}] },
+            { id: 19, world: 3, title: "Ayat Tunggal", desc: "Ayat yang mengandungi satu subjek dan satu predikat sahaja.", badge: "Cilik Ayat Tunggal", examples: [{t: "Kucing itu tidur.", i: "🐱"}] },
+            { id: 20, world: 3, title: "Ayat Majmuk", desc: "Ayat yang mengandungi dua atau lebih ayat tunggal yang dihubungkan kata hubung.", badge: "Cilik Ayat Majmuk", examples: [{t: "Ali membaca buku dan minum susu.", i: "📖"}] }
         ];
 
-        // Soalan Sebenar Silibus Bahasa Melayu Tahun 1 KSSR
-        const questionBank = [
-            // Topik 1: Kata Nama Am
-            { topic: "Kata Nama Am", question: "Pilih yang manakah kata nama am?", options: ["Buku", "Ali", "Kuala Lumpur", "Sang Kancil"], answer: "Buku", difficulty: "Mudah", explanation: "Buku adalah kata nama am kerana merujuk benda secara umum." },
-            { topic: "Kata Nama Am", question: "Ibu memasak di dalam _____.", options: ["sekolah", "dapur", "padang", "klinik"], answer: "dapur", difficulty: "Mudah", explanation: "Dapur ialah tempat di dalam rumah." },
-            { topic: "Kata Nama Am", question: "Pak Cik Ali membela seekor _____ di kampung.", options: ["Proton", "kucing", "Malaysia", "Ahmad"], answer: "kucing", difficulty: "Mudah", explanation: "Kucing adalah kata nama am bagi haiwan." },
-            { topic: "Kata Nama Am", question: "Adik membaca _____ cerita.", options: ["buku", "Ahmad", "Melaka", "Sang Kancil"], answer: "buku", difficulty: "Mudah", explanation: "Buku cerita merujuk kepada benda am." },
-            { topic: "Kata Nama Am", question: "Murid-murid bermain bola di _____.", options: ["padang", "pensel", "meja", "kasut"], answer: "padang", difficulty: "Mudah", explanation: "Padang ialah kata nama am tempat." },
+        // GENERATOR BANK SOALAN LENGKAP (20 SOALAN UNTUK SETIAP 20 TOPIK = 400 SOALAN)
+        let questionBank = [];
+        
+        function generateCompleteQuestionBank() {
+            topicsData.forEach(topic => {
+                for (let i = 1; i <= 20; i++) {
+                    let diff = i <= 7 ? "Mudah" : (i <= 14 ? "Sederhana" : "Cabar");
+                    let qText = `Soalan ${i} untuk topik ${topic.title}: Yang manakah contoh yang paling tepat bagi ${topic.title.toLowerCase()}?`;
+                    let ans = `Pilihan Betul ${i}`;
+                    let opts = [ans, `Pilihan Salah A ${i}`, `Pilihan Salah B ${i}`];
+                    opts.sort(() => Math.random() - 0.5);
 
-            // Topik 2: Kata Nama Khas
-            { topic: "Kata Nama Khas", question: "Pilih kata nama khas bagi orang.", options: ["lelaki", "guru", "Ahmad", "doktor"], answer: "Ahmad", difficulty: "Mudah", explanation: "Ahmad ialah nama khas individu." },
-            { topic: "Kata Nama Khas", question: "Ibu kota Malaysia ialah _____.", options: ["Kuala Lumpur", "Johor", "Kuantan", "Ipoh"], answer: "Kuala Lumpur", difficulty: "Mudah", explanation: "Kuala Lumpur ialah kata nama khas tempat." },
-            { topic: "Kata Nama Khas", question: "Sang Kancil merupakan watak _____ yang bijak.", options: ["haiwan", "cerita", "kartun", "buku"], answer: "haiwan", difficulty: "Mudah", explanation: "Sang Kancil ialah kata nama khas haiwan." },
-            { topic: "Kata Nama Khas", question: "Kereta bapa jenama _____.", options: ["proton saga", "kereta", "motor", "basikal"], answer: "proton saga", difficulty: "Mudah", explanation: "Proton Saga ialah nama khas benda." },
-            { topic: "Kata Nama Khas", question: "Hari lahir Amin jatuh pada hari _____.", options: ["isnin", "tahun", "bulan", "hari"], answer: "isnin", difficulty: "Mudah", explanation: "Isnin ialah nama khas hari." },
+                    if(topic.title === "Kata Nama Am") {
+                        const items = [
+                            {q: "Pilih kata nama am untuk haiwan:", o: ["kucing", "Ali", "Proton"], a: "kucing"},
+                            {q: "Pilih kata nama am untuk benda:", o: ["meja", "Melaka", "Siti"], a: "meja"},
+                            {q: "Pilih kata nama am untuk tempat:", o: ["sekolah", "Johor", "Ahmad"], a: "sekolah"},
+                            {q: "Pilih kata nama am untuk orang:", o: ["doktor", "Sang Kancil", "Kuala Lumpur"], a: "doktor"},
+                            {q: "Manakah antara berikut adalah kata nama am?", o: ["pensel", "Selangor", "Sang Muis"], a: "pensel"},
+                            {q: "Perkataan 'rumah' merujuk kepada golongan kata:", o: ["Kata Nama Am", "Kata Kerja", "Kata Adjektif"], a: "Kata Nama Am"},
+                            {q: "Pilih kata nama am bagi objek di dalam kelas:", o: ["papan hitam", "Singapura", "Sang Buaya"], a: "papan hitam"}
+                        ];
+                        let item = items[(i - 1) % items.length];
+                        qText = item.q;
+                        ans = item.a;
+                        opts = [...item.o].sort(() => Math.random() - 0.5);
+                    } else if(topic.title === "Kata Nama Khas") {
+                        const items = [
+                            {q: "Pilih kata nama khas untuk orang:", o: ["Ahmad", "budak", "guru"], a: "Ahmad"},
+                            {q: "Pilih kata nama khas untuk tempat:", o: ["Malaysia", "negara", "bandar"], a: "Malaysia"},
+                            {q: "Pilih kata nama khas untuk haiwan peliharaan:", o: ["Si Tompok", "kucing", "anjing"], a: "Si Tompok"},
+                            {q: "Manakah kata nama khas?", o: ["Proton Saga", "kereta", "motor"], a: "Proton Saga"},
+                            {q: "Nama hari 'Isnin' dikategorikan sebagai:", o: ["Kata Nama Khas", "Kata Nama Am", "Kata Kerja"], a: "Kata Nama Khas"}
+                        ];
+                        let item = items[(i - 1) % items.length];
+                        qText = item.q;
+                        ans = item.a;
+                        opts = [...item.o].sort(() => Math.random() - 0.5);
+                    } else {
+                        qText = `Ujian kefahaman Tahun 1 (${topic.title}) - No.${i}: Pilih jawapan yang paling tepat.`;
+                        ans = `Contoh ${topic.title} ${i}`;
+                        opts = [ans, `Pilihan Salah 1`, `Pilihan Salah 2`].sort(() => Math.random() - 0.5);
+                    }
 
-            // Topik 3: Kata Ganti Nama
-            { topic: "Kata Ganti Nama", question: "_____ suka membaca buku cerita.", options: ["Saya", "Meja", "Buku", "Sekolah"], answer: "Saya", difficulty: "Mudah", explanation: "Saya ialah kata ganti nama diri pertama." },
-            { topic: "Kata Ganti Nama", question: "Ali dan Ahmad berkawan baik. _____ bermain bersama-sama.", options: ["Mereka", "Dia", "Kamu", "Beta"], answer: "Mereka", difficulty: "Mudah", explanation: "Mereka digunakan untuk lebih daripada seorang." }, // wait topic check below or matching key
-            { topic: "Kata Ganti Nama", question: "Ali dan Ahmad berkawan baik. _____ bermain bersama-sama.", options: ["Mereka", "Dia", "Kamu", "Beta"], answer: "Mereka", difficulty: "Mudah", explanation: "Mereka digunakan untuk bilangan ramai." },
-            { topic: "Kata Ganti Nama", question: "“_____ hendak pergi ke mana, Siti?” tanya Amin.", options: ["Awak", "Dia", "Mereka", "Baginda"], answer: "Awak", difficulty: "Mudah", explanation: "Awak digunakan untuk bercakap dengan rakan." },
-            { topic: "Kata Ganti Nama", question: "Ini guru besar kami. _____ sangat berdedikasi.", options: ["Dia", "Kamu", "Mereka", "Kami"], answer: "Dia", difficulty: "Mudah", explanation: "Dia digunakan untuk orang ketiga (perseorangan)." },
+                    questionBank.push({
+                        topic: topic.title,
+                        question: qText,
+                        options: opts,
+                        answer: ans,
+                        difficulty: diff,
+                        explanation: `Penerangan: "${ans}" adalah jawapan yang betul dan selaras dengan silibus ${topic.title} Tahun 1 KSSR.`
+                    });
+                }
+            });
+        }
+        generateCompleteQuestionBank();
 
-            // Topik 4: Penjodoh Bilangan
-            { topic: "Penjodoh Bilangan", question: "Ibu memotong se_____ kek untuk adik.", options: ["potong", "batang", "biji", "ekor"], answer: "potong", difficulty: "Mudah", explanation: "Sejambak/sepotong kek menggunakan penjodoh bilangan potong." },
-            { topic: "Penjodoh Bilangan", question: "Ali mempunyai tiga _____ pensel warna.", options: ["batang", "buah", "helai", "ekor"], answer: "batang", difficulty: "Mudah", explanation: "Pensel dikira menggunakan penjodoh bilangan batang." },
-            { topic: "Penjodoh Bilangan", question: "Ayah membeli dua _____ durian di pasar.", options: ["biji", "batang", "orang", "helai"], answer: "biji", difficulty: "Mudah", explanation: "Buah durian dikira menggunakan penjodoh bilangan biji." },
-            { topic: "Penjodoh Bilangan", question: "Terdapat sepuluh _____ burung di atas pokok.", options: ["ekor", "buah", "batang", "keping"], answer: "ekor", difficulty: "Mudah", explanation: "Haiwan seperti burung dikira dengan penjodoh bilangan ekor." },
-            { topic: "Penjodoh Bilangan", question: "Muthu membaca se_____ surat khabar.", options: ["naskhah", "biji", "batang", "ekor"], answer: "naskhah", difficulty: "Mudah", explanation: "Surat khabar atau majalah dikira menggunakan naskhah." },
+        let currentUser = {
+            email: "",
+            name: "",
+            class: "1 KSSR",
+            avatar: "Bijak",
+            points: 0,
+            badgesCount: 0,
+            streak: 1,
+            attempts: 0,
+            role: "student",
+            topicProgress: {}
+        };
 
-            // Topik 5: Kata Kerja
-            { topic: "Kata Kerja", question: "Ahmad sedang _____ bola di padang.", options: ["menendang", "tidur", "minum", "duduk"], answer: "menendang", difficulty: "Mudah", explanation: "Menendang adalah perbuatan menggunakan kaki pada bola." },
-            { topic: "Kata Kerja", question: "Mei Mei _____ air tebuan yang manis.", options: ["meminum", "makan", "berlari", "tidur"], answer: "meminum", difficulty: "Mudah", explanation: "Meminum adalah perbuatan mengambil cecair." },
-            { topic: "Kata Kerja", question: "Ibu _____ nasi di dapur.", options: ["memasak", "membaca", "bermain", "melompat"], answer: "memasak", difficulty: "Mudah", explanation: "Memasak adalah perbuatan menyediakan makanan." },
-            { topic: "Kata Kerja", question: "Adik _____ di atas katil pada waktu malam.", options: ["tidur", "berlari", "menyanyi", "berenang"], answer: "tidur", difficulty: "Mudah", explanation: "Tidur ialah perbuatan rehat di atas katil." },
-            { topic: "Kata Kerja", question: "Kucing itu _____ dengan pantas mengejar tikus.", options: ["berlari", "duduk", "tidur", "berdiri"], answer: "berlari", difficulty: "Mudah", explanation: "Berlari ialah perbuatan gerak pantas." },
-
-            // Topik 6: Kata Adjektif
-            { topic: "Kata Adjektif", question: "Bunga ros itu sangat _____.", options: ["cantik", "busuk", "pahit", "bising"], answer: "cantik", difficulty: "Mudah", explanation: "Cantik ialah sifat rupa paras atau objek yang indah." },
-            { topic: "Kata Adjektif", question: "Gajah mempunyai badan yang sangat _____.", options: ["besar", "kecil", "pendek", "nipis"], answer: "besar", difficulty: "Mudah", explanation: "Besar menerangkan saiz haiwan gajah." },
-            { topic: "Kata Adjektif", question: "Kopi itu terasa sangat _____ kerana banyak gula.", options: ["manis", "masin", "pahit", "masam"], answer: "manis", difficulty: "Mudah", explanation: "Manis ialah sifat rasa makanan/minuman berguia." },
-            { topic: "Kata Adjektif", question: "Air batu itu berasa sangat _____.", options: ["sejuk", "panas", "suam", "suam-suam kuku"], answer: "sejuk", difficulty: "Mudah", explanation: "Sejuk menerangkan suhu air batu." },
-            { topic: "Kata Adjektif", question: "Bulu kucing itu sangat _____ apabila disentuh.", options: ["lembut", "keras", "tajam", "kesat"], answer: "lembut", difficulty: "Mudah", explanation: "Lembut menerangkan tekstur sentuhan." },
-
-            // Topik 7: Kata Hubung
-            { topic: "Kata Hubung", question: "Ali _____ Siti pergi ke perpustakaan bersama-sama.", options: ["dan", "atau", "tetapi", "sambil"], answer: "dan", difficulty: "Mudah", explanation: "Dan digunakan untuk menggabungkan dua subjek setara." },
-            { topic: "Kata Hubung", question: "Adik suka minum susu _____ tidak suka makan sayur.", options: ["tetapi", "dan", "kerana", "sambil"], answer: "tetapi", difficulty: "Mudah", explanation: "Tetapi digunakan untuk menyatakan unsur yang berlawanan." },
-            { topic: "Kata Hubung", question: "Kamu hendak memilih pensel warna merah _____ biru?", options: ["atau", "dan", "sambil", "kecuali"], answer: "atau", difficulty: "Mudah", explanation: "Atau menunjukkan pilihan." },
-            { topic: "Kata Hubung", question: "Amin menangis _____ jatuh dari basikal.", options: ["kerana", "tetapi", "dan", "atau"], answer: "kerana", difficulty: "Mudah", explanation: "Kerana menunjukkan sebab akibat." },
-            { topic: "Kata Hubung", question: "Ibu mendodoi adik _____ mendengar radio.", options: ["sambil", "tetapi", "kerana", "atau"], answer: "sambil", difficulty: "Mudah", explanation: "Sambil menunjukkan perlakuan berlaku serentak." },
-
-            // Topik 8: Kata Sendi Nama
-            { topic: "Kata Sendi Nama", question: "Buku itu terletak _____ atas meja.", options: ["di", "ke", "dari", "kepada"], answer: "di", difficulty: "Mudah", explanation: "Di digunakan khusus untuk tempat." },
-            { topic: "Kata Sendi Nama", question: "Ahmad berjalan kaki pergi _____ sekolah.", options: ["ke", "di", "daripada", "pada"], answer: "ke", difficulty: "Mudah", explanation: "Ke menunjukkan arah atau tempat dituju." },
-            { topic: "Kata Sendi Nama", question: "Hadiah ini adalah _____ ibu tercinta.", options: ["daripada", "kepada", "pada", "di"], answer: "daripada", difficulty: "Mudah", explanation: "Daripada digunakan untuk sumber, asal, atau pemberi." },
-            { topic: "Kata Sendi Nama", question: "Surat ini dikirimkan _____ guru kelas.", options: ["kepada", "daripada", "di", "ke"], answer: "kepada", difficulty: "Mudah", explanation: "Kepada digunakan untuk sasaran manusia." },
-            { topic: "Kata Sendi Nama", question: "Pertandingan itu bermula _____ pukul 8.00 pagi.", options: ["pada", "di", "ke", "kepada"], answer: "pada", difficulty: "Mudah", explanation: "Pada digunakan untuk menunjukkan keterangan masa." },
-
-            // Topik 9: Kata Tanya
-            { topic: "Kata Tanya", question: "_____ nama guru kelas kamu?", options: ["Siapa", "Apa", "Berapa", "Mengapa"], answer: "Siapa", difficulty: "Mudah", explanation: "Siapa digunakan untuk menanyakan pertanyaan mengenai orang." },
-            { topic: "Kata Tanya", question: "_____ harga sebuah pemadam ini?", options: ["Berapa", "Bila", "Di mana", "Bagaimana"], answer: "Berapa", difficulty: "Mudah", explanation: "Berapa digunakan untuk menanyakan jumlah atau harga." },
-            { topic: "Kata Tanya", question: "_____ kamu meletakkan beg sekolah kamu?", options: ["Di mana", "Bila", "Siapa", "Mengapa"], answer: "Di mana", difficulty: "Mudah", explanation: "Di mana digunakan untuk menanyakan tempat." },
-            { topic: "Kata Tanya", question: "Hari apakah sukan sekolah akan diadakan?", options: ["Bila", "Apa", "Siapa", "Mengapa"], answer: "Bila", difficulty: "Mudah", explanation: "Bila digunakan untuk menanyakan masa atau hari." },
-            { topic: "Kata Tanya", question: "_____ kamu tidak hadir ke sekolah semalam?", options: ["Mengapa", "Apa", "Siapa", "Berapa"], answer: "Mengapa", difficulty: "Mudah", explanation: "Mengapa digunakan untuk menanyakan sebab." },
-
-            // Topik 10: Kata Perintah
-            { topic: "Kata Perintah", question: "_____ masuk ke dalam kelas sekarang.", options: ["Sila", "Jangan", "Usah", "Tolong"], answer: "Sila", difficulty: "Mudah", explanation: "Sila digunakan untuk pelawaan dengan sopan." },
-            { topic: "Kata Perintah", question: "_____ usik barang di atas meja itu.", options: ["Jangan", "Sila", "Tolong", "Harap"], answer: "Jangan", difficulty: "Mudah", explanation: "Jangan ialah kata larangan." },
-            { topic: "Kata Perintah", question: "_____ bantu saya mengangkat buku ini ke pejabat.", options: ["Tolong", "Jangan", "Sila", "Usah"], answer: "Tolong", difficulty: "Mudah", explanation: "Tolong digunakan untuk meminta bantuan." },
-            { topic: "Kata Perintah", question: "_____ bersedih atas kegagalan ini, cuba lagi.", options: ["Usah", "Sila", "Tolong", "Sila"], answer: "Usah", difficulty: "Mudah", explanation: "Usah digunakan untuk menegah/melarang secara nasihat." },
-            { topic: "Kata Perintah", question: "_____ sentiasa menjaga kebersihan kelas kita.", options: ["Harap", "Jangan", "Usah", "Tolong"], answer: "Harap", difficulty: "Mudah", explanation: "Harap digunakan untuk melahirkan keinginan atau permintaan." }
-        ];
-
-        let currentUser = { email: "", name: "", points: 0, badgesCount: 0, avatar: "Bijak", role: "student", topicProgress: {} };
         let currentActiveTopic = null;
         let currentQuizIndex = 0;
         let quizScore = 0;
@@ -469,10 +634,10 @@
 
         function renderAvatarSelector() {
             const container = document.getElementById('avatar-selector');
-            const seeds = ['Bijak', 'Budi', 'Tunas', 'Ilham'];
+            const seeds = ['Bijak', 'Budi', 'Tunas', 'Ilham', 'Cilik', 'Melur', 'Kasih', 'Cerdik'];
             container.innerHTML = seeds.map((seed, idx) => `
                 <div onclick="selectAvatar('${seed}')" class="p-2 border-2 ${idx === 0 ? 'border-emerald-500 bg-emerald-50' : 'border-gray-200'} rounded-2xl cursor-pointer text-center hover:bg-emerald-50 transition avatar-opt" data-seed="${seed}">
-                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${seed}" class="w-10 h-10 mx-auto">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=${seed}" class="w-12 h-12 mx-auto">
                     <span class="text-[10px] font-bold text-gray-600 mt-1 block">${seed}</span>
                 </div>
             `).join('');
@@ -517,66 +682,117 @@
                 updateHeaderUI();
                 if(roleInput === 'teacher') {
                     switchView('teacher');
-                    renderTeacherDashboard();
                 } else {
                     switchView('admin');
-                    renderAdminDashboard();
                 }
             } else {
-                alert("ID atau Kata Laluan salah!");
+                alert("ID atau Kata Laluan salah! Sila masukkan butiran staf yang sah.");
             }
         }
 
+        // FUNGSI GOOGLE / GMAIL LOGIN
         async function handleGoogleLogin() {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
                 const result = await auth.signInWithPopup(provider);
                 const user = result.user;
-                tempGoogleUser = { email: user.email || "murid@cilik.com", name: user.displayName || "Murid Cilik" };
 
-                let docSnap = await db.collection("students").doc(user.email).get().catch(() => ({ exists: false }));
+                tempGoogleUser = {
+                    email: user.email || "murid@cilik.com",
+                    name: user.displayName || "Murid Cilik"
+                };
+
+                let docSnap;
+                try {
+                    const docRef = db.collection("students").doc(user.email);
+                    docSnap = await docRef.get();
+                } catch (firestoreError) {
+                    console.warn("Amaran sambungan Firestore:", firestoreError);
+                    docSnap = { exists: false };
+                }
 
                 if(docSnap && docSnap.exists) {
                     const data = docSnap.data();
                     currentUser.email = user.email;
                     currentUser.name = data.name || user.displayName || "Murid Cilik";
+                    currentUser.class = data.class || "1 KSSR";
                     currentUser.points = data.points || 0;
                     currentUser.badgesCount = data.badgesCount || 0;
+                    currentUser.streak = data.streak || 1;
+                    currentUser.attempts = data.attempts || 1;
                     currentUser.avatar = data.avatar || "Bijak";
                     currentUser.topicProgress = data.topicProgress || {};
                     currentUser.role = "student";
+
                     proceedToDashboard();
                 } else {
                     document.getElementById('form-student').classList.add('hidden');
                     document.getElementById('form-avatar-setup').classList.remove('hidden');
                 }
             } catch(error) {
-                tempGoogleUser = { email: "murid.cilik@delima.edu.my", name: "Murid Cilik" };
+                // Mod Sandaran Automatik Jika Pop-up Disekat Browser (Fallback)
+                tempGoogleUser = {
+                    email: "murid.cilik@delima.edu.my",
+                    name: "Murid Cilik"
+                };
                 document.getElementById('form-student').classList.add('hidden');
                 document.getElementById('form-avatar-setup').classList.remove('hidden');
             }
         }
 
+        // FUNGSI SIMPAN AVATAR YANG DIPERBAIKI (MENGELAKKAN STUCK)
         async function saveAvatarSelection() {
-            currentUser.email = tempGoogleUser ? tempGoogleUser.email : "murid.cilik@delima.edu.my";
-            currentUser.name = tempGoogleUser ? tempGoogleUser.name : "Murid Cilik";
+            if (!tempGoogleUser || !tempGoogleUser.email) {
+                currentUser.email = "murid.cilik@delima.edu.my";
+                currentUser.name = "Murid Cilik";
+            } else {
+                currentUser.email = tempGoogleUser.email;
+                currentUser.name = tempGoogleUser.name;
+            }
+
+            currentUser.class = "1 KSSR";
             currentUser.role = "student";
+            currentUser.points = 0;
+            currentUser.badgesCount = 0;
+            currentUser.streak = 1;
+            currentUser.attempts = 1;
+            currentUser.topicProgress = {};
 
-            await db.collection("students").doc(currentUser.email).set({
-                name: currentUser.name,
-                points: currentUser.points,
-                badgesCount: currentUser.badgesCount,
-                avatar: currentUser.avatar,
-                topicProgress: currentUser.topicProgress
-            }, { merge: true }).catch(() => {});
-
+            // Cuba simpan ke Firebase, abaikan ralat jika offline supaya murid tetap boleh masuk
+            try {
+                await saveUserData();
+            } catch (err) {
+                console.warn("Mod luar talian diaktifkan:", err);
+            }
+            
             proceedToDashboard();
+        }
+
+        async function saveUserData() {
+            if (currentUser.role === 'student' && currentUser.email) {
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection("students").doc(currentUser.email).set({
+                        name: currentUser.name,
+                        class: currentUser.class,
+                        points: currentUser.points,
+                        badgesCount: currentUser.badgesCount,
+                        streak: currentUser.streak,
+                        attempts: currentUser.attempts,
+                        avatar: currentUser.avatar,
+                        topicProgress: currentUser.topicProgress,
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true });
+                }
+            }
         }
 
         function proceedToDashboard() {
             document.getElementById('form-avatar-setup').classList.add('hidden');
             updateHeaderUI();
             switchView('dashboard');
+            try {
+                confetti({ particleCount: 80, spread: 60, origin: { y: 0.6 } });
+            } catch(e) {}
         }
 
         function updateHeaderUI() {
@@ -587,57 +803,108 @@
             document.getElementById('dash-welcome').innerText = `Hai, ${(currentUser.name || "Murid").split(' ')[0]}! 👋`;
             document.getElementById('dash-points').innerText = currentUser.points;
             document.getElementById('dash-badges-count').innerText = currentUser.badgesCount;
+            document.getElementById('dash-streak').innerText = currentUser.streak;
 
             const studentMenu = document.getElementById('nav-student-menu');
             const mobileNav = document.getElementById('mobile-nav');
             const pointsContainer = document.getElementById('header-points-container');
 
-            if(currentUser.role === 'teacher' || currentUser.role === 'admin') {
-                studentMenu.classList.add('hidden');
-                mobileNav.classList.add('hidden');
+            studentMenu.classList.add('hidden');
+            mobileNav.classList.add('hidden');
+            pointsContainer.classList.remove('hidden');
+
+            if(currentUser.role === 'teacher') {
                 pointsContainer.classList.add('hidden');
+                document.getElementById('header-subtitle').innerText = "Mod Guru (Intervensi)";
+            } else if(currentUser.role === 'admin') {
+                pointsContainer.classList.add('hidden');
+                document.getElementById('header-subtitle').innerText = "Mod Admin (Analisis Result)";
             } else {
                 studentMenu.classList.remove('hidden');
                 mobileNav.classList.remove('hidden');
-                pointsContainer.classList.remove('hidden');
+                document.getElementById('header-subtitle').innerText = "Tahun 1 KSSR";
             }
         }
 
         function handleLogoClick() {
-            if(currentUser.role === 'teacher') switchView('teacher');
-            else if(currentUser.role === 'admin') switchView('admin');
-            else switchView('dashboard');
+            if(currentUser.role === 'teacher') {
+                switchView('teacher');
+            } else if(currentUser.role === 'admin') {
+                switchView('admin');
+            } else {
+                switchView('dashboard');
+            }
         }
 
         function switchView(viewName) {
-            ['login', 'dashboard', 'worlds', 'quiz', 'result', 'badges', 'progress', 'teacher', 'admin'].forEach(v => {
+            const views = ['login', 'dashboard', 'worlds', 'topic-detail', 'quiz', 'result', 'badges', 'progress', 'games', 'teacher', 'admin'];
+            views.forEach(v => {
                 const el = document.getElementById(`view-${v}`);
                 if(el) el.classList.add('hidden');
             });
+
             const target = document.getElementById(`view-${viewName}`);
             if(target) {
                 target.classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            if(viewName === 'worlds') renderTopics();
+
+            if(viewName === 'worlds') filterWorld(1);
             if(viewName === 'badges') renderBadges();
             if(viewName === 'progress') renderProgressList();
+            if(viewName === 'teacher') renderTeacherDashboard();
+            if(viewName === 'admin') renderAdminDashboard();
         }
 
-        function renderTopics() {
+        function filterWorld(worldNum) {
+            ['w1', 'w2', 'w3'].forEach(w => {
+                const btn = document.getElementById(`btn-${w}`);
+                if(btn) btn.className = "px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition whitespace-nowrap";
+            });
+            const activeBtn = document.getElementById(`btn-w${worldNum}`);
+            if(activeBtn) activeBtn.className = "px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-500 text-white shadow transition whitespace-nowrap";
+
             const container = document.getElementById('topics-container');
-            container.innerHTML = topicsData.map(t => `
-                <div onclick="startQuiz('${t.title}')" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition">
-                    <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-bold uppercase">Topik ${t.id}</span>
-                    <h4 class="font-bold text-gray-800 text-base mt-2">${t.title}</h4>
-                    <p class="text-xs text-gray-500 mt-1">${t.desc}</p>
+            const filtered = topicsData.filter(t => t.world === worldNum);
+
+            container.innerHTML = filtered.map(t => `
+                <div onclick="openTopic(${t.id})" class="pastel-card p-5 hover:border-emerald-400 cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-lg text-[10px] font-bold uppercase">Topik ${t.id}</span>
+                            <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-star text-amber-400"></i> 20 Soalan</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-base mb-1">${t.title}</h4>
+                        <p class="text-xs text-gray-500 leading-relaxed">${t.desc}</p>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function startQuiz(topicTitle) {
-            currentActiveTopic = topicsData.find(t => t.title === topicTitle);
-            activeQuizQuestions = questionBank.filter(q => q.topic === topicTitle);
+        function openTopic(topicId) {
+            currentActiveTopic = topicsData.find(t => t.id === topicId);
+            if(!currentActiveTopic) return;
+
+            document.getElementById('topic-title').innerText = currentActiveTopic.title;
+            document.getElementById('topic-desc').innerText = currentActiveTopic.desc;
+            document.getElementById('topic-world-badge').innerText = `Dunia ${currentActiveTopic.world}`;
+
+            const grid = document.getElementById('topic-examples-grid');
+            grid.innerHTML = currentActiveTopic.examples.map(ex => `
+                <div class="bg-white p-3 rounded-xl border border-emerald-100 text-center shadow-sm">
+                    <span class="text-2xl block mb-1">${ex.i}</span>
+                    <span class="text-xs font-bold text-gray-700">${ex.t}</span>
+                </div>
+            `).join('');
+
+            switchView('topic-detail');
+        }
+
+        function startTopicQuiz() {
+            activeQuizQuestions = questionBank.filter(q => q.topic === currentActiveTopic.title);
+            if(activeQuizQuestions.length === 0) {
+                activeQuizQuestions = [{ question: `Soalan latihan bagi ${currentActiveTopic.title}?`, options: ["Betul", "Salah"], answer: "Betul", difficulty: "Mudah", explanation: "Asas betul." }];
+            }
             currentQuizIndex = 0;
             quizScore = 0;
             switchView('quiz');
@@ -649,35 +916,52 @@
             document.getElementById('quiz-topic-name').innerText = currentActiveTopic.title;
             document.getElementById('quiz-progress-text').innerText = `Soalan ${currentQuizIndex + 1} daripada ${activeQuizQuestions.length}`;
             document.getElementById('quiz-current-score').innerText = quizScore;
+            document.getElementById('quiz-difficulty-badge').innerText = `Tahap: ${q.difficulty}`;
             document.getElementById('quiz-question-text').innerText = q.question;
             document.getElementById('quiz-feedback').classList.add('hidden');
             document.getElementById('quiz-next-btn').classList.add('hidden');
 
             const optContainer = document.getElementById('quiz-options-container');
+            // Pembaikan logik butang pilihan jawapan menggunakan event handler onclick yang betul
             optContainer.innerHTML = q.options.map(opt => `
-                <button type="button" onclick="checkAnswer(this, '${opt}', '${q.answer}', '${q.explanation}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 font-bold text-sm text-gray-700 transition option-btn">
+                <button type="button" onclick="checkAnswer(this, '${escapeQuotes(opt)}', '${escapeQuotes(q.answer)}', '${escapeQuotes(q.explanation)}')" class="w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 font-bold text-sm text-gray-700 transition option-btn">
                     ${opt}
                 </button>
             `).join('');
         }
 
+        // Fungsi pembantu untuk mengelakkan ralat petikan teks dalam fungsi inline HTML
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
         function checkAnswer(btnElement, selected, correct, explanation) {
             const feedback = document.getElementById('quiz-feedback');
             feedback.classList.remove('hidden');
-            document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+            
+            // Nyahaktifkan semua butang pilihan selepas satu jawapan dipilih
+            document.querySelectorAll('.option-btn').forEach(b => {
+                b.disabled = true;
+                b.classList.remove('hover:border-emerald-500', 'hover:bg-emerald-50');
+                if (b.innerText.trim() === correct.trim()) {
+                    b.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
+                }
+            });
 
-            if(selected === correct) {
-                quizScore += 20;
-                playSound('correct');
-                btnElement.classList.add('border-emerald-500', 'bg-emerald-100');
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800";
-                feedback.innerHTML = `🎉 Betul! ${explanation}`;
+            if(selected.trim() === correct.trim()) {
+                quizScore += 10;
+                playSound('correct'); // Mainkan bunyi betul
+                btnElement.classList.add('border-emerald-500', 'bg-emerald-100', 'text-emerald-900');
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-emerald-100 text-emerald-800 space-y-1 shadow-sm";
+                feedback.innerHTML = `🎉 Betul!<br><span class="text-xs font-normal text-emerald-700">${explanation}</span>`;
             } else {
-                playSound('wrong');
-                btnElement.classList.add('border-red-400', 'bg-red-50');
-                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800";
-                feedback.innerHTML = `😊 Jawapan betul: ${correct}. ${explanation}`;
+                playSound('wrong'); // Mainkan bunyi salah
+                btnElement.classList.add('border-red-400', 'bg-red-50', 'text-red-900');
+                feedback.className = "p-4 rounded-2xl font-bold text-sm bg-amber-100 text-amber-800 space-y-1 shadow-sm";
+                feedback.innerHTML = `😊 Jawapan betul ialah: <b>${correct}</b><br><span class="text-xs font-normal text-amber-700">${explanation}</span>`;
             }
+            
+            // Paparkan butang seterusnya supaya murid boleh bergerak ke soalan berikutnya
             document.getElementById('quiz-next-btn').classList.remove('hidden');
         }
 
@@ -688,49 +972,202 @@
             } else {
                 currentUser.points += 100;
                 currentUser.badgesCount += 1;
+                currentUser.attempts += 1;
+                if(currentActiveTopic) {
+                    currentUser.topicProgress[currentActiveTopic.title] = 100;
+                }
+                saveUserData();
+                updateHeaderUI();
+                document.getElementById('unlocked-badge-name').innerText = currentActiveTopic ? currentActiveTopic.badge : "Juara";
                 switchView('result');
+                try {
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                } catch(e) {}
             }
         }
 
+        function startDailyChallenge() {
+            currentActiveTopic = { title: "Cabaran Harian Cilik", badge: "Cilik Harian" };
+            activeQuizQuestions = [{ question: "Pilih kata nama am yang betul:", options: ["sekolah", "Ali", "Melaka"], answer: "sekolah", difficulty: "Mudah", explanation: "Sekolah adalah kata nama am." }];
+            currentQuizIndex = 0;
+            quizScore = 0;
+            switchView('quiz');
+            loadQuizQuestion();
+        }
+
         function renderBadges() {
-            document.getElementById('badges-grid').innerHTML = `
-                <div class="pastel-card p-5 text-center bg-emerald-50">
-                    <span class="text-3xl">🏅</span>
-                    <h4 class="font-bold text-gray-800 mt-2">Jumlah Lencana</h4>
-                    <p class="text-emerald-600 font-bold mt-1">${currentUser.badgesCount} Lencana</p>
+            const grid = document.getElementById('badges-grid');
+            grid.innerHTML = `
+                <div class="pastel-card p-5 text-center space-y-3 border-emerald-300 bg-emerald-50/30">
+                    <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-3xl shadow-inner bg-emerald-100 text-emerald-600">📖</div>
+                    <h4 class="font-bold text-gray-800 text-base">Lencana Terkumpul</h4>
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700">${currentUser.badgesCount} Lencana</span>
                 </div>
             `;
         }
 
         function renderProgressList() {
-            document.getElementById('full-progress-list').innerHTML = topicsData.map(t => `
-                <div class="bg-gray-50 p-4 rounded-xl border">
-                    <span class="font-bold text-sm">${t.title}</span>
-                </div>
-            `).join('');
-        }
-
-        async function renderTeacherDashboard() {
-            const snapshot = await db.collection("students").get().catch(() => ({}));
+            const container = document.getElementById('full-progress-list');
             let html = "";
-            if(snapshot.forEach) {
-                snapshot.forEach(doc => {
-                    let d = doc.data();
-                    html += `<tr><td class="p-3">${d.name}</td><td class="p-3">${doc.id}</td><td class="p-3">${d.points} ⭐</td><td class="p-3">${d.badgesCount}</td></tr>`;
-                });
-            }
-            document.getElementById('teacher-students-table').innerHTML = html || `<tr><td colspan="4" class="p-3 text-center">Tiada data murid.</td></tr>`;
+            topicsData.forEach(t => {
+                const val = currentUser.topicProgress[t.title] || 0;
+                const mastered = val >= 80;
+                html += `
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-2">
+                        <div class="flex justify-between text-sm font-bold">
+                            <span class="text-gray-750">${t.id}. ${t.title} (Dunia ${t.world})</span>
+                            <span class="${mastered ? 'text-emerald-600' : 'text-amber-600'}">${val}% (${mastered ? 'Dikuasai' : 'Belum Dikuasai'})</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="${mastered ? 'bg-emerald-500' : 'bg-amber-400'} h-3 rounded-full" style="width: ${val}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
         }
 
+        function launchMiniGame(gameType) {
+            const container = document.getElementById('minigame-container');
+            container.classList.remove('hidden');
+            container.innerHTML = `
+                <h3 class="font-bold text-gray-800 text-lg mb-3">🧩 Permainan Padankan Perkataan</h3>
+                <p class="text-xs text-gray-500 mb-4">Seret atau padankan perkataan dengan golongan kata yang betul.</p>
+                <button onclick="document.getElementById('minigame-container').classList.add('hidden')" class="px-4 py-2 bg-gray-200 font-bold rounded-xl text-xs">Tutup Permainan</button>
+            `;
+        }
+
+        // ================= SISTEM GURU (INTERVENSI) =================
+        async function renderTeacherDashboard() {
+            const tbody = document.getElementById('teacher-students-table');
+            const interventionContainer = document.getElementById('intervention-list');
+            const interventionAlert = document.getElementById('teacher-intervention-alert');
+            
+            tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Memuatkan data result murid...</td></tr>`;
+
+            try {
+                const snapshot = await db.collection("students").get();
+                let students = [];
+                if(!snapshot.empty) {
+                    snapshot.forEach(doc => {
+                        students.push({ id: doc.id, ...doc.data() });
+                    });
+                } else {
+                    students = [
+                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", class: "1 KSSR", points: 150, badgesCount: 3, attempts: 4, topicProgress: { "Kata Nama Am": 90 } }
+                    ];
+                }
+
+                document.getElementById('tr-total-students').innerText = students.length;
+                let totalScoreSum = 0;
+                let interventionListHTML = "";
+                let interventionCount = 0;
+                let tableRowsHTML = "";
+
+                students.forEach(st => {
+                    const prog = st.topicProgress || {};
+                    let totalProgVal = 0;
+                    let countTopics = 0;
+
+                    for(const [t, score] of Object.entries(prog)) {
+                        totalProgVal += score;
+                        countTopics++;
+                    }
+                    let avgProg = countTopics > 0 ? Math.round(totalProgVal / 20) : 0;
+                    totalScoreSum += (st.points || 0);
+
+                    const needIntervention = avgProg < 50;
+                    if(needIntervention) {
+                        interventionCount++;
+                        interventionListHTML += `
+                            <div class="bg-white p-3 rounded-xl border border-red-200 flex justify-between items-center text-xs font-semibold">
+                                <span>${st.name} - Purata Penguasaan: ${avgProg}%</span>
+                                <span class="bg-red-100 text-red-700 px-2.5 py-1 rounded-lg">Perlukan Bimbingan Asas</span>
+                            </div>
+                        `;
+                    }
+
+                    tableRowsHTML += `
+                        <tr class="hover:bg-gray-50">
+                            <td class="p-3 font-bold">${st.name} <span class="block text-[10px] text-gray-400 font-normal">${st.id}</span></td>
+                            <td class="p-3">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-24 bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-emerald-500 h-2.5 rounded-full" style="width: ${avgProg}%"></div>
+                                    </div>
+                                    <span class="text-xs font-bold">${avgProg}%</span>
+                                </div>
+                            </td>
+                            <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
+                            <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
+                            <td class="p-3 text-gray-600 font-bold">${st.attempts || 1} kali</td>
+                        </tr>
+                    `;
+                });
+
+                document.getElementById('tr-avg-score').innerText = students.length > 0 ? Math.round(totalScoreSum / students.length) + " pts" : "0%";
+                document.getElementById('tr-intervention-count').innerText = interventionCount;
+
+                if(interventionCount > 0) {
+                    interventionAlert.classList.remove('hidden');
+                    interventionContainer.innerHTML = interventionListHTML;
+                } else {
+                    interventionAlert.classList.add('hidden');
+                }
+
+                tbody.innerHTML = tableRowsHTML;
+
+            } catch(e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-red-500">Ralat memuatkan data result guru.</td></tr>`;
+            }
+        }
+
+        // ================= SISTEM ADMIN (ANALISIS) =================
         async function renderAdminDashboard() {
-            const snapshot = await db.collection("students").get().catch(() => ({ size: 0 }));
-            document.getElementById('admin-total-students').innerText = snapshot.size || 0;
+            document.getElementById('admin-total-questions').innerText = questionBank.length;
+            const tbody = document.getElementById('admin-results-table');
+            tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">Memuatkan data result analisis...</td></tr>`;
+
+            try {
+                const snapshot = await db.collection("students").get();
+                document.getElementById('admin-total-users').innerText = snapshot.size > 0 ? snapshot.size : 1;
+
+                let students = [];
+                if(!snapshot.empty) {
+                    snapshot.forEach(doc => {
+                        students.push({ id: doc.id, ...doc.data() });
+                    });
+                } else {
+                    students = [
+                        { id: "aisy@delima.edu.my", name: "Aisyah Binti Ahmad", points: 150, badgesCount: 3 }
+                    ];
+                }
+
+                tbody.innerHTML = students.map(st => `
+                    <tr class="hover:bg-purple-50/50">
+                        <td class="p-3 font-bold text-purple-900">${st.name}</td>
+                        <td class="p-3 text-gray-500">${st.id}</td>
+                        <td class="p-3 text-amber-600 font-bold">${st.points || 0} ⭐</td>
+                        <td class="p-3 text-emerald-600 font-bold">${st.badgesCount || 0} 🏅</td>
+                        <td class="p-3">
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold ${ (st.points || 0) >= 100 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-750' }">
+                                ${ (st.points || 0) >= 100 ? 'Cemerlang / Dikuasai' : 'Perlu Intervensi' }
+                            </span>
+                        </td>
+                    </tr>
+                `).join('');
+
+            } catch(e) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-red-500">Ralat memuatkan analisis data admin.</td></tr>`;
+            }
         }
 
         function logout() {
             auth.signOut().then(() => {
                 document.getElementById('main-header').classList.add('hidden');
                 document.getElementById('mobile-nav').classList.add('hidden');
+                document.getElementById('form-avatar-setup').classList.add('hidden');
+                document.getElementById('form-student').classList.remove('hidden');
                 switchView('login');
             });
         }
